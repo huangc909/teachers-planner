@@ -10,6 +10,8 @@ import SignIn from './components/SignIn/SignIn'
 import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 
+import LandingPage from './components/routes/LandingPage'
+
 class App extends Component {
   constructor (props) {
     super(props)
@@ -53,6 +55,9 @@ class App extends Component {
           />
         ))}
         <main className="container">
+          <Route path='/' exact render={() => (
+            <LandingPage />
+          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />

@@ -13,6 +13,7 @@ class SignUp extends Component {
 
     this.state = {
       email: '',
+      firstName: '',
       password: '',
       passwordConfirmation: ''
     }
@@ -35,7 +36,7 @@ class SignUp extends Component {
         message: messages.signUpSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/'))
+      .then(() => history.push('/defaultLifeSections'))
       .catch(error => {
         this.setState({ email: '', password: '', passwordConfirmation: '' })
         msgAlert({
@@ -47,7 +48,7 @@ class SignUp extends Component {
   }
 
   render () {
-    const { email, password, passwordConfirmation } = this.state
+    const { email, firstName, password, passwordConfirmation } = this.state
 
     return (
       <div className="row">
@@ -62,6 +63,18 @@ class SignUp extends Component {
                 name="email"
                 value={email}
                 placeholder="Enter email"
+                onChange={this.handleChange}
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group controlId="firstName">
+              <Form.Label>First Name</Form.Label>
+              <Form.Control
+                required
+                name="firstName"
+                value={firstName}
+                type="text"
+                placeholder="First Name"
                 onChange={this.handleChange}
               />
             </Form.Group>
