@@ -11,6 +11,10 @@ import SignOut from './components/SignOut/SignOut'
 import ChangePassword from './components/ChangePassword/ChangePassword'
 
 import LandingPage from './components/routes/LandingPage'
+import HomePage from './components/routes/HomePage'
+
+import SchoolYearCreate from './components/routes/SchoolYearCreate'
+import DateCreate from './components/routes/DateCreate'
 
 class App extends Component {
   constructor (props) {
@@ -55,9 +59,6 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route path='/' exact render={() => (
-            <LandingPage />
-          )} />
           <Route path='/sign-up' render={() => (
             <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
           )} />
@@ -69,6 +70,20 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+
+          <Route path='/' exact render={() => (
+            <LandingPage />
+          )} />
+          <AuthenticatedRoute user={user} exact path='/home-page' render={() => (
+            <HomePage msgAlert={this.msgAlert} user={user} />
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/schoolyear-create' render={(props) => (
+            <SchoolYearCreate msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/date-create' render={(props) => (
+            <DateCreate msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>
