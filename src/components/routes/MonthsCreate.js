@@ -1,9 +1,8 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-import { august, september } from '../../api/monthOfYear'
+import { august, september } from '../../api/month'
 
-const DayOfYearCreate = props => {
-  console.log('dayofyearcreate page')
+const MonthsCreate = props => {
   console.log(props)
   const { user, msgAlert } = props
   const schoolYearId = props.location.aboutProps.schoolYear.schoolYearId
@@ -27,4 +26,4 @@ const DayOfYearCreate = props => {
   )
 }
 
-export default DayOfYearCreate
+export default MonthsCreate

@@ -4,12 +4,12 @@ import axios from 'axios'
 export const august = (schoolYear, schoolYearId, user) => {
   return axios({
     method: 'POST',
-    url: apiUrl + `/schoolYears/${schoolYearId}/monthsOfYear`,
+    url: apiUrl + `/schoolYears/${schoolYearId}/months`,
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
     data: {
-      monthOfYear: {
+      month: {
         month: 'August'
       }
     }
@@ -19,12 +19,12 @@ export const august = (schoolYear, schoolYearId, user) => {
 export const september = (schoolYear, schoolYearId, user) => {
   return axios({
     method: 'POST',
-    url: apiUrl + `/schoolYears/${schoolYearId}/monthsOfYear`,
+    url: apiUrl + `/schoolYears/${schoolYearId}/months`,
     headers: {
       'Authorization': `Bearer ${user.token}`
     },
     data: {
-      monthOfYear: {
+      month: {
         month: 'September'
       }
     }

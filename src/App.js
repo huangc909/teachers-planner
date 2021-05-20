@@ -14,9 +14,9 @@ import LandingPage from './components/routes/LandingPage'
 import HomePage from './components/routes/HomePage'
 
 import SchoolYearCreate from './components/routes/SchoolYearCreate'
-import MonthsOfYearCreate from './components/routes/MonthsOfYearCreate'
+import MonthsCreate from './components/routes/MonthsCreate'
 
-import MonthsOfYear from './components/routes/MonthsOfYear'
+import Months from './components/routes/Months'
 
 class App extends Component {
   constructor (props) {
@@ -84,12 +84,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/schoolyear-create' render={(props) => (
             <SchoolYearCreate msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/monthsofyear-create' render={(props) => (
-            <MonthsOfYearCreate msgAlert={this.msgAlert} user={user} {...props}/>
+          <AuthenticatedRoute user={user} exact path='/months-create' render={(props) => (
+            <MonthsCreate msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
 
-          <AuthenticatedRoute user={user} exact path='/monthsofyear' render={(props) => (
-            <MonthsOfYear msgAlert={this.msgAlert} user={user} {...props}/>
+          <AuthenticatedRoute user={user} exact path='/months' render={(props) => (
+            <Months msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>

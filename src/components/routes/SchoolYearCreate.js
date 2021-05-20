@@ -48,7 +48,7 @@ const SchoolYearCreate = props => {
 
   if (schoolYearId) {
     return <Redirect to={{
-      pathname: '/monthsofyear-create',
+      pathname: '/months-create',
       aboutProps: {
         schoolYear: { schoolYear, schoolYearId }
       }

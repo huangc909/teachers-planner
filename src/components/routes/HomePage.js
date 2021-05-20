@@ -41,7 +41,7 @@ const HomePage = (props) => {
   const years = schoolYears.map(schoolYear => (
     <div key={schoolYear._id}>
       <Link to={{
-        pathname: '/monthsofyear',
+        pathname: '/months',
         aboutProps: {
           schoolYear: { schoolYear }
         }
