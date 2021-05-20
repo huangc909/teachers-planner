@@ -81,7 +81,7 @@ const MonthsCreate = props => {
   }
 
   return (
-    <Redirect to={'/monthsofyear'} />
+    <Redirect to={'/schoolyear'} />
   )
 }
 
