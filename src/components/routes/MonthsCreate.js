@@ -13,20 +13,71 @@ const MonthsCreate = props => {
 
   for (let i = 0; i < months.length; i++) {
     const monthName = months[i]
-    month(schoolYear, schoolYearId, monthName, user)
-      .then(res => {
-        const monthId = res.data.schoolYear.months[res.data.schoolYear.months.length - 1]._id
-        let num = 0
-        for (let i = 1; i < 32; i++) {
-          num = i
-          day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
-        }
-      })
-      .then(() => msgAlert({
-        heading: 'Calendar Created',
-        variant: 'success'
-      }))
-      .catch(error => console.log(error))
+    if (monthName === 'February') {
+      const year = parseInt(schoolYear.endYear)
+      const leapYear = (year % 100 === 0) ? (year % 400 === 0) : (year % 4 === 0)
+      if (leapYear) {
+        month(schoolYear, schoolYearId, monthName, user)
+          .then(res => {
+            const monthId = res.data.schoolYear.months[res.data.schoolYear.months.length - 1]._id
+            let num = 0
+            for (let i = 1; i < 30; i++) {
+              num = i
+              day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
+            }
+          })
+          .then(() => msgAlert({
+            heading: 'Calendar Created',
+            variant: 'success'
+          }))
+          .catch(error => console.log(error))
+      } else {
+        month(schoolYear, schoolYearId, monthName, user)
+          .then(res => {
+            const monthId = res.data.schoolYear.months[res.data.schoolYear.months.length - 1]._id
+            let num = 0
+            for (let i = 1; i < 29; i++) {
+              num = i
+              day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
+            }
+          })
+          .then(() => msgAlert({
+            heading: 'Calendar Created',
+            variant: 'success'
+          }))
+          .catch(error => console.log(error))
+      }
+    } else if (monthName === 'August' || monthName === 'October' || monthName === 'December' || monthName === 'January' || monthName === 'March' || monthName === 'May' || monthName === 'July') {
+      month(schoolYear, schoolYearId, monthName, user)
+        .then(res => {
+          const monthId = res.data.schoolYear.months[res.data.schoolYear.months.length - 1]._id
+          let num = 0
+          for (let i = 1; i < 32; i++) {
+            num = i
+            day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
+          }
+        })
+        .then(() => msgAlert({
+          heading: 'Calendar Created',
+          variant: 'success'
+        }))
+        .catch(error => console.log(error))
+    } else {
+      month(schoolYear, schoolYearId, monthName, user)
+        .then(res => {
+          const monthId = res.data.schoolYear.months[res.data.schoolYear.months.length - 1]._id
+          let num = 0
+          for (let i = 1; i < 31; i++) {
+            num = i
+            day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
+          }
+        })
+        .then(() => msgAlert({
+          heading: 'Calendar Created',
+          variant: 'success'
+        }))
+        .catch(error => console.log(error))
+    }
   }
 
   return (
