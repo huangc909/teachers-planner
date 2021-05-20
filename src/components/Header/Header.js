@@ -11,7 +11,7 @@ const authenticatedOptions = (
 
 const Header = ({ user }) => (
   <Navbar expand="md">
-    <Navbar.Brand href="#homepage">
+    <Navbar.Brand href="#home-page">
       { user ? <h2> Teacher&apos;s Planner </h2> : <div></div> }
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
@@ -47,7 +47,12 @@ const SchoolYearCreate = props => {
   }
 
   if (schoolYearId) {
-    return <Link to={'/date-create'} />
+    return <Redirect to={{
+      pathname: '/dayofyear-create',
+      aboutProps: {
+        schoolYearId: { schoolYearId, schoolYear }
+      }
+    }} />
   }
 
   return (

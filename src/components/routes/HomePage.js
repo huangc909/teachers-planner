@@ -40,7 +40,9 @@ const HomePage = (props) => {
 
   const years = schoolYears.map(schoolYear => (
     <div key={schoolYear._id}>
-      <button>{schoolYear.startYear} - {schoolYear.endYear}</button>
+      <Link to={'/daysofyear'}>
+        <button>{schoolYear.startYear} - {schoolYear.endYear}</button>
+      </Link>
     </div>
   ))
   return (

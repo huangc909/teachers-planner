@@ -14,7 +14,9 @@ import LandingPage from './components/routes/LandingPage'
 import HomePage from './components/routes/HomePage'
 
 import SchoolYearCreate from './components/routes/SchoolYearCreate'
-import DateCreate from './components/routes/DateCreate'
+import DayOfYearCreate from './components/routes/DayOfYearCreate'
+
+import DaysOfYear from './components/routes/DaysOfYear'
 
 class App extends Component {
   constructor (props) {
@@ -82,8 +84,12 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/schoolyear-create' render={(props) => (
             <SchoolYearCreate msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/date-create' render={(props) => (
-            <DateCreate msgAlert={this.msgAlert} user={user} {...props}/>
+          <AuthenticatedRoute user={user} exact path='/dayofyear-create' render={(props) => (
+            <DayOfYearCreate msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+
+          <AuthenticatedRoute user={user} exact path='/daysofyear' render={(props) => (
+            <DaysOfYear msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>
