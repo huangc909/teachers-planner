@@ -8,7 +8,7 @@ import SchoolYearForm from './../shared/SchoolYearForm'
 
 const SchoolYearCreate = props => {
   const { user, msgAlert } = props
-  console.log('User Token: ', user.token)
+
   const [schoolYear, setSchoolYear] = useState({
     startYear: '',
     endYear: ''
@@ -23,7 +23,7 @@ const SchoolYearCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log(schoolYear)
+
     axios({
       url: `${apiUrl}/schoolYears`,
       method: 'POST',
