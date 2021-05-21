@@ -60,9 +60,15 @@ const SchoolYear = props => {
       <Redirect to={'/home-page'} />
     )
   }
+  const monthsJsx = schoolYear.months.map(month => (
+    <li key={month._id}>
+      <p>{month.month}</p>
+    </li>
+  ))
   return (
     <div>
       <h1>School Year</h1>
+      <div>{monthsJsx}</div>
       <button onClick={destroy}>delete</button>
     </div>
   )
