@@ -25,7 +25,8 @@ export const august = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'August'
+        month: 'August',
+        number: 1
       }
     }
   })
@@ -40,7 +41,8 @@ export const september = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'September'
+        month: 'September',
+        number: 2
       }
     }
   })
@@ -55,7 +57,8 @@ export const october = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'October'
+        month: 'October',
+        number: 3
       }
     }
   })
@@ -70,7 +73,8 @@ export const november = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'November'
+        month: 'November',
+        number: 4
       }
     }
   })
@@ -85,7 +89,8 @@ export const december = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'December'
+        month: 'December',
+        number: 5
       }
     }
   })
@@ -100,7 +105,8 @@ export const january = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'January'
+        month: 'January',
+        number: 6
       }
     }
   })
@@ -115,7 +121,8 @@ export const february = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'February'
+        month: 'February',
+        number: 7
       }
     }
   })
@@ -130,7 +137,8 @@ export const march = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'March'
+        month: 'March',
+        number: 8
       }
     }
   })
@@ -145,7 +153,8 @@ export const april = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'April'
+        month: 'April',
+        number: 9
       }
     }
   })
@@ -160,7 +169,8 @@ export const may = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'May'
+        month: 'May',
+        number: 10
       }
     }
   })
@@ -175,7 +185,8 @@ export const june = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'June'
+        month: 'June',
+        number: 11
       }
     }
   })
@@ -190,7 +201,8 @@ export const july = (schoolYear, schoolYearId, user) => {
     },
     data: {
       month: {
-        month: 'July'
+        month: 'July',
+        number: 12
       }
     }
   })
