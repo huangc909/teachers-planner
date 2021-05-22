@@ -55,12 +55,13 @@ const SchoolYear = props => {
   if (!schoolYear) {
     return <p>Loading...</p>
   }
+
   if (deleted) {
     return (
       <Redirect to={'/home-page'} />
     )
   }
-  const monthsJsx = schoolYear.months.map(month => (
+  const monthsJsx = schoolYear.months.sort((a, b) => a.number - b.number).map(month => (
     <li key={month._id}>
       <p>{month.month}</p>
     </li>
@@ -68,6 +69,7 @@ const SchoolYear = props => {
   return (
     <div>
       <h1>School Year</h1>
+      <h2>{schoolYear.startYear} - {schoolYear.endYear}</h2>
       <div>{monthsJsx}</div>
       <button onClick={destroy}>delete</button>
     </div>
