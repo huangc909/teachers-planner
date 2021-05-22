@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const DailyList = () => {
   const today = new Date()
@@ -13,7 +14,9 @@ const DailyList = () => {
           <li>Task 2</li>
         </ul>
       </div>
-      <button style={{ borderRadius: '25px' }}>+</button>
+      <Link to={'/task-create'} >
+        <button style={{ borderRadius: '25px' }}>+</button>
+      </Link>
     </div>
   )
 }

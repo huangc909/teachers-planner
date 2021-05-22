@@ -12,6 +12,30 @@ const SchoolYear = props => {
   const [deleted, setDeleted] = useState(false)
   const { msgAlert } = props
 
+  const today = new Date()
+  const todaysMonthNumber = (today.getMonth() + 1)
+  console.log('todaysMonth ', todaysMonthNumber)
+  const todaysDay = today.getDate()
+  console.log('todaysDay ', todaysDay)
+
+  const monthNumber = {
+    1: 'January',
+    2: 'February',
+    3: 'March',
+    4: 'April',
+    5: 'May',
+    6: 'June',
+    7: 'July',
+    8: 'August',
+    9: 'September',
+    10: 'October',
+    11: 'November',
+    12: 'December'
+  }
+
+  const todaysMonthName = monthNumber[todaysMonthNumber]
+  console.log(todaysMonthName)
+
   useEffect(() => {
     axios({
       url: `${apiUrl}/schoolYears/${props.match.params.schoolYearId}`,
@@ -64,20 +88,24 @@ const SchoolYear = props => {
       <Redirect to={'/home-page'} />
     )
   }
-  // const monthsJsx = schoolYear.months.sort((a, b) => a.number - b.number).map(month => (
-  //   <li key={month._id}>
-  //     <p>{month.month}</p>
-  //   </li>
-  // ))
+
+  const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
   const months = (
     <Months
-      schoolYear={schoolYear.months.sort((a, b) => a.number - b.number)}
+      sortedSchoolYear={sortedSchoolYear}
     />
   )
+  // const currentMonth = (
+  //
+  // )
+  console.log(sortedSchoolYear)
+  const showTodaysMonth = sortedSchoolYear.filter(month => month.month === todaysMonthName)
+  console.log(showTodaysMonth)
+
   return (
     <div>
       <h1>School Year</h1>
-      <h2>{schoolYear.startYear} - {schoolYear.endYear}</h2>
+      <h4>{schoolYear.startYear} - {schoolYear.endYear}</h4>
       <div>
         <Day/>
       </div>
