@@ -18,6 +18,8 @@ import MonthsCreate from './components/routes/MonthsCreate'
 
 import SchoolYear from './components/routes/SchoolYear'
 import Months from './components/routes/Months'
+import Month from './components/routes/Month'
+import Day from './components/routes/Day'
 
 class App extends Component {
   constructor (props) {
@@ -94,6 +96,15 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/months' render={(props) => (
             <Months msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/months' render={(props) => (
+            <Months msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/months/:monthId' render={(props) => (
+            <Month msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/days/:dayId' render={(props) => (
+            <Day msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>

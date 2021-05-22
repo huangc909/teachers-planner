@@ -3,6 +3,9 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
+import Months from './Months'
+import Day from './Day'
+
 const SchoolYear = props => {
   console.log(props)
   const [schoolYear, setSchoolYear] = useState(null)
@@ -61,16 +64,24 @@ const SchoolYear = props => {
       <Redirect to={'/home-page'} />
     )
   }
-  const monthsJsx = schoolYear.months.sort((a, b) => a.number - b.number).map(month => (
-    <li key={month._id}>
-      <p>{month.month}</p>
-    </li>
-  ))
+  // const monthsJsx = schoolYear.months.sort((a, b) => a.number - b.number).map(month => (
+  //   <li key={month._id}>
+  //     <p>{month.month}</p>
+  //   </li>
+  // ))
+  const months = (
+    <Months
+      schoolYear={schoolYear.months.sort((a, b) => a.number - b.number)}
+    />
+  )
   return (
     <div>
       <h1>School Year</h1>
       <h2>{schoolYear.startYear} - {schoolYear.endYear}</h2>
-      <div>{monthsJsx}</div>
+      <div>
+        <Day/>
+      </div>
+      <div>{months}</div>
       <button onClick={destroy}>delete</button>
     </div>
   )

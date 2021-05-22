@@ -1,9 +1,12 @@
 import React from 'react'
 
 const DailyList = () => {
+  const today = new Date()
+  const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear()
+  console.log(date)
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>[Today&apos;s Date]</h1>
+      <h1>{date}</h1>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
         <ul>
           <li>Task 1</li>
