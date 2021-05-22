@@ -15,11 +15,14 @@ import HomePage from './components/routes/HomePage'
 
 import SchoolYearCreate from './components/routes/SchoolYearCreate'
 import MonthsCreate from './components/routes/MonthsCreate'
+import TaskCreate from './components/routes/TaskCreate'
 
 import SchoolYear from './components/routes/SchoolYear'
 import Months from './components/routes/Months'
 import Month from './components/routes/Month'
 import Day from './components/routes/Day'
+import Tasks from './components/routes/Tasks'
+import Task from './components/routes/Task'
 
 class App extends Component {
   constructor (props) {
@@ -90,21 +93,27 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/months-create' render={(props) => (
             <MonthsCreate msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
+          <AuthenticatedRoute user={user} exact path='/task-create' render={(props) => (
+            <TaskCreate msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
 
           <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId' render={(props) => (
             <SchoolYear msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/months' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months' render={(props) => (
             <Months msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/months' render={(props) => (
-            <Months msgAlert={this.msgAlert} user={user} {...props}/>
-          )} />
-          <AuthenticatedRoute user={user} exact path='/months/:monthId' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months/:monthId' render={(props) => (
             <Month msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/days/:dayId' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months/:monthId/days/:dayId' render={(props) => (
             <Day msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months/:monthId/days/:dayId/tasks' render={(props) => (
+            <Tasks msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months/:monthId/days/:dayId/tasks/:taskId' render={(props) => (
+            <Task msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>
