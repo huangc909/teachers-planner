@@ -8,7 +8,7 @@ import TaskForm from './../shared/TaskForm'
 
 const TaskCreate = props => {
   const { user, msgAlert } = props
-
+  console.log(props)
   const schoolYearId = props.location.aboutProps.schoolYearId.sortedSchoolYearId
   const monthId = props.location.aboutProps.monthId.todaysMonthId
   const dayId = props.location.aboutProps.dayId.sortedTodaysDayId
@@ -92,7 +92,7 @@ const TaskCreate = props => {
         onCompletion={onCompletion}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath='/home-page'
+        cancelPath={`/schoolyears/${schoolYearId}`}
       />
     </div>
   )
