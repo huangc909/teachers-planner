@@ -7,7 +7,6 @@ import apiUrl from '../../apiConfig'
 // import Day from './Day'
 
 const SchoolYear = props => {
-  // console.log(props)
   const schoolYearId = props.match.params.schoolYearId
   const [schoolYear, setSchoolYear] = useState(null)
   // const [deleted, setDeleted] = useState(false)
@@ -15,9 +14,6 @@ const SchoolYear = props => {
 
   const today = new Date()
   const todaysMonthNumber = (today.getMonth() + 1)
-  // console.log('todaysMonth ', todaysMonthNumber)
-  // const todaysDay = today.getDate()
-  // console.log('todaysDay ', todaysDay)
 
   const monthNumber = {
     1: 'January',
@@ -91,27 +87,24 @@ const SchoolYear = props => {
   // }
 
   const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
-  // const months = (
-  //   <Months
-  //     sortedSchoolYear={sortedSchoolYear}
-  //   />
-  // )
-  // const currentMonth = (
-  //
-  // )
-  // console.log(sortedSchoolYear)
-  const todaysMonth = sortedSchoolYear.find(month => month.month === todaysMonthName)
-  // console.log(todaysMonth)
-  const todaysMonthId = todaysMonth._id
-  // console.log(todaysMonthId)
 
+  const todaysMonth = sortedSchoolYear.find(month => month.month === todaysMonthName)
+
+  const todaysMonthId = todaysMonth._id
+
+  const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear()
+
+  const todaysNum = today.getDate()
+
+  const sortedTodaysMonthDays = todaysMonth.days.sort((a, b) => a.day - b.day)
+
+  const sortedTodaysDayId = sortedTodaysMonthDays[todaysNum - 1]._id
   if (schoolYear) {
     return (
       <Redirect to={{
-        pathname: '/day',
+        pathname: `/schoolyears/${schoolYearId}/months/${todaysMonthId}/days/${sortedTodaysDayId}`,
         aboutProps: {
-          sortedSchoolYear: { sortedSchoolYear, schoolYearId },
-          todaysMonth: { todaysMonth, todaysMonthId }
+          date: { date }
         }
       }} />
     )
@@ -119,10 +112,6 @@ const SchoolYear = props => {
 
   return (
     <div>
-      {/* <h1>School Year</h1>
-      <h4>{schoolYear.startYear} - {schoolYear.endYear}</h4>
-      <div>{months}</div>
-      <button onClick={destroy}>delete</button> */}
     </div>
   )
 }

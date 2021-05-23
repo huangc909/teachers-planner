@@ -7,28 +7,17 @@ import CheckMark from './CheckMark'
 
 const Day = (props) => {
   const { msgAlert } = props
-  // const sortedSchoolYear = props.location.aboutProps.sortedSchoolYear.sortedSchoolYear
-  // console.log(sortedSchoolYear)
-  const sortedSchoolYearId = props.location.aboutProps.sortedSchoolYear.schoolYearId
-  const todaysMonthInfo = props.location.aboutProps.todaysMonth.todaysMonth
-  // console.log(todaysMonthInfo)
-  const todaysMonthId = props.location.aboutProps.todaysMonth.todaysMonthId
-  const today = new Date()
-  const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear()
-  // console.log(date)
-  const todaysNum = today.getDate()
-  // console.log(todaysNum)
-  const sortedTodaysMonthDays = todaysMonthInfo.days.sort((a, b) => a.day - b.day)
+  console.log(props)
+  const schoolYearId = props.match.params.schoolYearId
+  const monthId = props.match.params.monthId
+  const dayId = props.match.params.dayId
+  const date = props.location.aboutProps.date.date
 
-  // console.log(sortedTodaysMonthDays)
-  // const sortedTodaysDayInfo = sortedTodaysMonthDays[todaysNum - 1]
-  // console.log(sortedTodaysDayInfo)
-  const sortedTodaysDayId = sortedTodaysMonthDays[todaysNum - 1]._id
   const [day, setDay] = useState(null)
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${sortedSchoolYearId}/months/${todaysMonthId}/days/${sortedTodaysDayId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -57,9 +46,9 @@ const Day = (props) => {
       {...props}
       key={task._id}
       task={task}
-      schoolYearId={sortedSchoolYearId}
-      monthId={todaysMonthId}
-      dayId={sortedTodaysDayId}
+      schoolYearId={schoolYearId}
+      monthId={monthId}
+      dayId={dayId}
     />
   ))
 
@@ -80,9 +69,9 @@ const Day = (props) => {
       <Link to={{
         pathname: '/task-create',
         aboutProps: {
-          schoolYearId: { sortedSchoolYearId },
-          monthId: { todaysMonthId },
-          dayId: { sortedTodaysDayId }
+          schoolYearId: { schoolYearId },
+          monthId: { monthId },
+          dayId: { dayId }
         }
       }} >
         <button style={{ borderRadius: '25px' }}>+</button>

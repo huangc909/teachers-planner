@@ -103,7 +103,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months' render={(props) => (
             <Months msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/day' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months/:monthId/days/:dayId' render={(props) => (
             <Day msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
