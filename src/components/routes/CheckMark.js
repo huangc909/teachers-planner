@@ -17,9 +17,9 @@ const CheckMark = (props) => {
     note: props.task.note,
     dueDate: props.task.dueDate,
     priority: props.task.priority,
-    checkmark: !props.task.checkmark
+    checkmark: !checked.checkmark
   })
-
+  console.log(checked)
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -31,11 +31,11 @@ const CheckMark = (props) => {
       },
       data: {
         task: {
+          checkmark: !checked.checkmark,
           name: props.task.name,
           note: props.task.note,
           dueDate: props.task.dueDate,
-          priority: props.task.priority,
-          checkmark: !props.task.checkmark
+          priority: props.task.priority
         }
       }
     })
