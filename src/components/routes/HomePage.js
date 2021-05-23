@@ -45,6 +45,7 @@ const HomePage = (props) => {
       </Link>
     </div>
   ))
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>School Year</h1>

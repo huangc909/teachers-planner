@@ -3,9 +3,6 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-// import Months from './Months'
-// import Day from './Day'
-
 const SchoolYear = props => {
   const schoolYearId = props.match.params.schoolYearId
   const [schoolYear, setSchoolYear] = useState(null)
@@ -13,7 +10,10 @@ const SchoolYear = props => {
   const { msgAlert } = props
 
   const today = new Date()
+  const todaysYear = today.getFullYear()
   const todaysMonthNumber = (today.getMonth() + 1)
+  const todaysDate = today.getDate()
+  const todaysDayNumber = today.getDay()
 
   const monthNumber = {
     1: 'January',
@@ -31,7 +31,18 @@ const SchoolYear = props => {
   }
 
   const todaysMonthName = monthNumber[todaysMonthNumber]
-  console.log(todaysMonthName)
+
+  const dayNumber = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+  }
+
+  const todaysDay = dayNumber[todaysDayNumber]
 
   useEffect(() => {
     axios({
@@ -88,23 +99,20 @@ const SchoolYear = props => {
 
   const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
 
-  const todaysMonth = sortedSchoolYear.find(month => month.month === todaysMonthName)
+  const todaysMonthObject = sortedSchoolYear.find(month => month.month === todaysMonthName)
 
-  const todaysMonthId = todaysMonth._id
+  const todaysMonthId = todaysMonthObject._id
 
-  const date = (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getFullYear()
-
-  const todaysNum = today.getDate()
-
-  const sortedTodaysMonthDays = todaysMonth.days.sort((a, b) => a.day - b.day)
-
-  const sortedTodaysDayId = sortedTodaysMonthDays[todaysNum - 1]._id
   if (schoolYear) {
     return (
       <Redirect to={{
-        pathname: `/schoolyears/${schoolYearId}/months/${todaysMonthId}/days/${sortedTodaysDayId}`,
+        pathname: '/current-day',
         aboutProps: {
-          date: { date }
+          currentSchoolYearInfo: { sortedSchoolYear, schoolYearId },
+          todaysYearInfo: { todaysYear },
+          todaysMonthInfo: { todaysMonthObject, todaysMonthId, todaysMonthNumber, todaysMonthName },
+          todaysDateInfo: { todaysDate },
+          todaysDayInfo: { todaysDay }
         }
       }} />
     )
