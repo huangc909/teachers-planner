@@ -3,20 +3,21 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-import Months from './Months'
-import Day from './Day'
+// import Months from './Months'
+// import Day from './Day'
 
 const SchoolYear = props => {
-  console.log(props)
+  // console.log(props)
+  const schoolYearId = props.match.params.schoolYearId
   const [schoolYear, setSchoolYear] = useState(null)
-  const [deleted, setDeleted] = useState(false)
+  // const [deleted, setDeleted] = useState(false)
   const { msgAlert } = props
 
   const today = new Date()
   const todaysMonthNumber = (today.getMonth() + 1)
-  console.log('todaysMonth ', todaysMonthNumber)
-  const todaysDay = today.getDate()
-  console.log('todaysDay ', todaysDay)
+  // console.log('todaysMonth ', todaysMonthNumber)
+  // const todaysDay = today.getDate()
+  // console.log('todaysDay ', todaysDay)
 
   const monthNumber = {
     1: 'January',
@@ -38,7 +39,7 @@ const SchoolYear = props => {
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${props.match.params.schoolYearId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -58,59 +59,70 @@ const SchoolYear = props => {
       })
   }, [])
 
-  const destroy = () => {
-    axios({
-      url: `${apiUrl}/schoolYears/${props.match.params.schoolYearId}`,
-      method: 'DELETE',
-      headers: {
-        'Authorization': `Bearer ${props.user.token}`
-      }
-    })
-      .then(() => setDeleted(true))
-      .then(() => msgAlert({
-        heading: 'School Year Deleted',
-        variant: 'success'
-      }))
-      .catch(error => {
-        setSchoolYear({ startYear: '' })
-        msgAlert({
-          heading: 'Failed to delete' + error.message,
-          variant: 'danger'
-        })
-      })
-  }
+  // const destroy = () => {
+  //   axios({
+  //     url: `${apiUrl}/schoolYears/${props.match.params.schoolYearId}`,
+  //     method: 'DELETE',
+  //     headers: {
+  //       'Authorization': `Bearer ${props.user.token}`
+  //     }
+  //   })
+  //     .then(() => setDeleted(true))
+  //     .then(() => msgAlert({
+  //       heading: 'School Year Deleted',
+  //       variant: 'success'
+  //     }))
+  //     .catch(error => {
+  //       setSchoolYear({ startYear: '' })
+  //       msgAlert({
+  //         heading: 'Failed to delete' + error.message,
+  //         variant: 'danger'
+  //       })
+  //     })
+  // }
   if (!schoolYear) {
     return <p>Loading...</p>
   }
 
-  if (deleted) {
-    return (
-      <Redirect to={'/home-page'} />
-    )
-  }
+  // if (deleted) {
+  //   return (
+  //     <Redirect to={'/home-page'} />
+  //   )
+  // }
 
   const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
-  const months = (
-    <Months
-      sortedSchoolYear={sortedSchoolYear}
-    />
-  )
+  // const months = (
+  //   <Months
+  //     sortedSchoolYear={sortedSchoolYear}
+  //   />
+  // )
   // const currentMonth = (
   //
   // )
-  console.log(sortedSchoolYear)
-  const showTodaysMonth = sortedSchoolYear.filter(month => month.month === todaysMonthName)
-  console.log(showTodaysMonth)
+  // console.log(sortedSchoolYear)
+  const todaysMonth = sortedSchoolYear.find(month => month.month === todaysMonthName)
+  // console.log(todaysMonth)
+  const todaysMonthId = todaysMonth._id
+  // console.log(todaysMonthId)
+
+  if (schoolYear) {
+    return (
+      <Redirect to={{
+        pathname: '/day',
+        aboutProps: {
+          sortedSchoolYear: { sortedSchoolYear, schoolYearId },
+          todaysMonth: { todaysMonth, todaysMonthId }
+        }
+      }} />
+    )
+  }
 
   return (
     <div>
-      <h1>School Year</h1>
+      {/* <h1>School Year</h1>
       <h4>{schoolYear.startYear} - {schoolYear.endYear}</h4>
-      <div>
-        <Day/>
-      </div>
       <div>{months}</div>
-      <button onClick={destroy}>delete</button>
+      <button onClick={destroy}>delete</button> */}
     </div>
   )
 }
