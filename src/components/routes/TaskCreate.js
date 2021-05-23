@@ -9,9 +9,9 @@ import TaskForm from './../shared/TaskForm'
 const TaskCreate = props => {
   const { user, msgAlert } = props
   console.log(props)
-  const schoolYearId = props.location.aboutProps.schoolYearId.sortedSchoolYearId
-  const monthId = props.location.aboutProps.monthId.todaysMonthId
-  const dayId = props.location.aboutProps.dayId.sortedTodaysDayId
+  const schoolYearId = props.location.aboutProps.schoolYearId.schoolYearId
+  const monthId = props.location.aboutProps.monthId.monthId
+  const dayId = props.location.aboutProps.dayId.dayId
 
   const [task, setTask] = useState({
     name: '',
