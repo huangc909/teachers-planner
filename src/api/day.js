@@ -14,6 +14,6 @@ export const day = (schoolYear, schoolYearId, monthId, num, user, msgAlert) => {
       }
     }
   })
-    .then(console.log('Calendar Created'))
+    // .then(console.log('Calendar Created'))
     .catch(error => console.log(error))
 }
