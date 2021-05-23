@@ -81,7 +81,7 @@ const TaskCreate = props => {
   }
 
   if (taskId) {
-    return <Redirect to={'/home-page'} />
+    return <Redirect to={`/schoolyears/${schoolYearId}`} />
   }
 
   return (
