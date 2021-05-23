@@ -9,32 +9,30 @@ const CurrentDay = (props) => {
   const { msgAlert } = props
 
   const schoolYearId = props.location.aboutProps.currentSchoolYearInfo.schoolYearId
-  const todaysYear = props.location.aboutProps.todaysYearInfo.todaysYear
-  const todaysMonthObject = props.location.aboutProps.todaysMonthInfo.todaysMonthObject
-  const todaysMonthName = props.location.aboutProps.todaysMonthInfo.todaysMonthName
-  const todaysMonthId = props.location.aboutProps.todaysMonthInfo.todaysMonthId
-  const todaysDate = props.location.aboutProps.todaysDateInfo.todaysDate
-  const todaysDay = props.location.aboutProps.todaysDayInfo.todaysDay
+  const year = props.location.aboutProps.todaysYearInfo.todaysYear
+  const monthObject = props.location.aboutProps.todaysMonthInfo.todaysMonthObject
+  const monthName = props.location.aboutProps.todaysMonthInfo.todaysMonthName
+  const monthId = props.location.aboutProps.todaysMonthInfo.todaysMonthId
+  const date = props.location.aboutProps.todaysDateInfo.todaysDate
+  const day = props.location.aboutProps.todaysDayInfo.todaysDay
 
-  const sortedTodaysMonthDays = todaysMonthObject.days.sort((a, b) => a.day - b.day)
+  const sortedMonthObject = monthObject.days.sort((a, b) => a.day - b.day)
 
-  console.log(sortedTodaysMonthDays)
-
-  const sortedTodaysDayId = sortedTodaysMonthDays[todaysDate - 1]._id
-  const [day, setDay] = useState(null)
+  const dayId = sortedMonthObject[date - 1]._id
+  const [currentDay, setCurrentDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${todaysMonthId}/days/${sortedTodaysDayId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setDay(res.data.day))
+      .then(res => setCurrentDay(res.data.day))
       .then(() => msgAlert({
-        heading: 'Showing selected school year',
+        heading: 'Showing today&apos;s list',
         variant: 'primary'
       }))
       .catch(error => {
@@ -46,18 +44,18 @@ const CurrentDay = (props) => {
       })
   }, [])
 
-  if (!day) {
+  if (!currentDay) {
     return <p>Loading...</p>
   }
-  console.log(day)
-  const dailyTasks = day.tasks.map(task => (
+  console.log(currentDay)
+  const dailyTasks = currentDay.tasks.map(task => (
     <CheckMark
       {...props}
       key={task._id}
       task={task}
       schoolYearId={schoolYearId}
-      monthId={todaysMonthId}
-      dayId={sortedTodaysDayId}
+      monthId={monthId}
+      dayId={dayId}
       taskId={task._id}
     />
   ))
@@ -89,14 +87,10 @@ const CurrentDay = (props) => {
     )
   }
 
-  const next = () => {
-
-  }
-
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>{todaysDay}</h1>
-      <h2>{todaysMonthName} {todaysDate}, {todaysYear}</h2>
+      <h1>{day}</h1>
+      <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <button>Previous Day</button>
@@ -106,14 +100,14 @@ const CurrentDay = (props) => {
         </div>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: '/day',
+            pathname: '/next-day',
             aboutProps: {
-              schoolYearId: { schoolYearId },
-              monthId: { todaysMonthId },
-              dayId: { sortedTodaysDayId }
+              schoolYearInfo: { schoolYearId, year },
+              monthInfo: { monthName, monthId, sortedMonthObject },
+              dayInfo: { dayId, date, day }
             }
           }}>
-            <button onClick={next}>Next Day</button>
+            <button>Next Day</button>
           </Link>
         </div>
       </div>
@@ -121,8 +115,8 @@ const CurrentDay = (props) => {
         pathname: '/task-create',
         aboutProps: {
           schoolYearId: { schoolYearId },
-          monthId: { todaysMonthId },
-          dayId: { sortedTodaysDayId }
+          monthId: { monthId },
+          dayId: { dayId }
         }
       }} >
         <button style={{ borderRadius: '25px' }}>+</button>

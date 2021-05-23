@@ -15,7 +15,7 @@ const SchoolYear = props => {
   const todaysDate = today.getDate()
   const todaysDayNumber = today.getDay()
 
-  const monthNumber = {
+  const monthNumbers = {
     1: 'January',
     2: 'February',
     3: 'March',
@@ -30,9 +30,9 @@ const SchoolYear = props => {
     12: 'December'
   }
 
-  const todaysMonthName = monthNumber[todaysMonthNumber]
+  const todaysMonthName = monthNumbers[todaysMonthNumber]
 
-  const dayNumber = {
+  const dayNumbers = {
     0: 'Sunday',
     1: 'Monday',
     2: 'Tuesday',
@@ -42,7 +42,7 @@ const SchoolYear = props => {
     6: 'Saturday'
   }
 
-  const todaysDay = dayNumber[todaysDayNumber]
+  const todaysDay = dayNumbers[todaysDayNumber]
 
   useEffect(() => {
     axios({
