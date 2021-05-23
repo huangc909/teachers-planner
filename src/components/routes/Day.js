@@ -62,7 +62,14 @@ const Day = (props) => {
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
         {dailyTasks}
       </div>
-      <Link to={'/task-create'} >
+      <Link to={{
+        pathname: '/task-create',
+        aboutProps: {
+          schoolYearId: { sortedSchoolYearId },
+          monthId: { todaysMonthId },
+          dayId: { sortedTodaysDayId }
+        }
+      }} >
         <button style={{ borderRadius: '25px' }}>+</button>
       </Link>
     </div>
