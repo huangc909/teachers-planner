@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
+import CheckMark from './CheckMark'
+
 const Day = (props) => {
   const { msgAlert } = props
   // const sortedSchoolYear = props.location.aboutProps.sortedSchoolYear.sortedSchoolYear
@@ -51,16 +53,29 @@ const Day = (props) => {
   }
   console.log(day)
   const dailyTasks = day.tasks.map(task => (
-    <li key={task._id}>
-      <p>{task.name}</p>
-    </li>
+    <CheckMark
+      {...props}
+      key={task._id}
+      task={task}
+      schoolYearId={sortedSchoolYearId}
+      monthId={todaysMonthId}
+      dayId={sortedTodaysDayId}
+    />
   ))
 
   return (
     <div style={{ textAlign: 'center' }}>
       <h1>{date}</h1>
-      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-        {dailyTasks}
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ margin: '10px' }}>
+          <button>Previous Day</button>
+        </div>
+        <div style={{ margin: '10px' }}>
+          {dailyTasks}
+        </div>
+        <div style={{ margin: '10px' }}>
+          <button>Next Day</button>
+        </div>
       </div>
       <Link to={{
         pathname: '/task-create',
