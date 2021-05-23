@@ -19,10 +19,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   september(schoolYear, schoolYearId, user)
@@ -34,10 +34,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   october(schoolYear, schoolYearId, user)
@@ -49,10 +49,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   november(schoolYear, schoolYearId, user)
@@ -64,10 +64,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   december(schoolYear, schoolYearId, user)
@@ -79,10 +79,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   january(schoolYear, schoolYearId, user)
@@ -94,10 +94,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   const year = parseInt(schoolYear.endYear)
@@ -112,10 +112,10 @@ const MonthsCreate = props => {
           day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
         }
       })
-      .then(() => msgAlert({
-        heading: 'Calendar Created',
-        variant: 'success'
-      }))
+      // .then(() => msgAlert({
+      //   heading: 'Calendar Created',
+      //   variant: 'success'
+      // }))
       .catch(error => console.log(error))
   } else {
     february(schoolYear, schoolYearId, user)
@@ -127,10 +127,10 @@ const MonthsCreate = props => {
           day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
         }
       })
-      .then(() => msgAlert({
-        heading: 'Calendar Created',
-        variant: 'success'
-      }))
+      // .then(() => msgAlert({
+      //   heading: 'Calendar Created',
+      //   variant: 'success'
+      // }))
       .catch(error => console.log(error))
   }
 
@@ -143,10 +143,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   april(schoolYear, schoolYearId, user)
@@ -158,10 +158,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   may(schoolYear, schoolYearId, user)
@@ -173,10 +173,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   june(schoolYear, schoolYearId, user)
@@ -188,10 +188,10 @@ const MonthsCreate = props => {
         day(schoolYear, schoolYearId, monthId, num, user, msgAlert)
       }
     })
-    .then(() => msgAlert({
-      heading: 'Calendar Created',
-      variant: 'success'
-    }))
+    // .then(() => msgAlert({
+    //   heading: 'Calendar Created',
+    //   variant: 'success'
+    // }))
     .catch(error => console.log(error))
 
   july(schoolYear, schoolYearId, user)
