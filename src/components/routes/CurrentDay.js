@@ -9,12 +9,14 @@ const CurrentDay = (props) => {
   const { msgAlert } = props
 
   const schoolYearId = props.location.aboutProps.currentSchoolYearInfo.schoolYearId
-  const year = props.location.aboutProps.todaysYearInfo.todaysYear
-  const monthObject = props.location.aboutProps.todaysMonthInfo.todaysMonthObject
-  const monthName = props.location.aboutProps.todaysMonthInfo.todaysMonthName
-  const monthId = props.location.aboutProps.todaysMonthInfo.todaysMonthId
-  const date = props.location.aboutProps.todaysDateInfo.todaysDate
-  const day = props.location.aboutProps.todaysDayInfo.todaysDay
+  const year = props.location.aboutProps.yearInfo.year
+  const monthObject = props.location.aboutProps.monthInfo.monthObject
+  const monthName = props.location.aboutProps.monthInfo.monthName
+  const monthId = props.location.aboutProps.monthInfo.monthId
+  const date = props.location.aboutProps.dateInfo.date
+  const day = props.location.aboutProps.dayInfo.day
+  const dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  console.log('day ', day)
 
   const sortedMonthObject = monthObject.days.sort((a, b) => a.day - b.day)
 
@@ -93,7 +95,16 @@ const CurrentDay = (props) => {
       <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
-          <button>Previous Day</button>
+          <Link to={{
+            pathname: '/previous-day',
+            aboutProps: {
+              schoolYearInfo: { schoolYearId, year },
+              monthInfo: { monthName, monthId, sortedMonthObject },
+              dayInfo: { dayId, date, day, dayNumber }
+            }
+          }}>
+            <button>Previous Day</button>
+          </Link>
         </div>
         <div style={{ margin: '10px' }}>
           {dailyTasks}
@@ -104,7 +115,7 @@ const CurrentDay = (props) => {
             aboutProps: {
               schoolYearInfo: { schoolYearId, year },
               monthInfo: { monthName, monthId, sortedMonthObject },
-              dayInfo: { dayId, date, day }
+              dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
             <button>Next Day</button>

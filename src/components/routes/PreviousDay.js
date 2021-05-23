@@ -5,7 +5,7 @@ import apiUrl from '../../apiConfig'
 
 import CheckMark from './CheckMark'
 
-const NextDay = props => {
+const PreviousDay = props => {
   const { msgAlert } = props
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   console.log(schoolYearId)
@@ -16,13 +16,14 @@ const NextDay = props => {
   console.log(monthId)
   const monthObject = props.location.aboutProps.monthInfo.sortedMonthObject
   console.log('todaysMonthObject ', monthObject)
-  const previousDate = props.location.aboutProps.dayInfo.date
-  console.log(previousDate)
-  const date = previousDate + 1
+  const nextDate = props.location.aboutProps.dayInfo.date
+  console.log(nextDate)
+  const date = nextDate - 1
   console.log(date)
-  const dayId = monthObject[date + 1]._id
-  const previousDayNumber = props.location.aboutProps.dayInfo.dayNumber
-  const dayNumber = previousDayNumber + 1
+  const dayId = monthObject[date - 1]._id
+  const nextDayNumber = props.location.aboutProps.dayInfo.dayNumber
+  console.log(nextDayNumber)
+  const dayNumber = nextDayNumber - 1
   let day = ''
 
   const dayNumbers = {
@@ -35,8 +36,8 @@ const NextDay = props => {
     6: 'Saturday'
   }
 
-  if (previousDayNumber === 6) {
-    day = dayNumbers[0]
+  if (nextDayNumber === 0) {
+    day = dayNumbers[6]
   } else {
     day = dayNumbers[dayNumber]
   }
@@ -58,7 +59,7 @@ const NextDay = props => {
   //   6: 'December'
   // }
 
-  const [nextDay, setNextDay] = useState(null)
+  const [previousDay, setPreviousDay] = useState(null)
 
   useEffect(() => {
     axios({
@@ -68,9 +69,9 @@ const NextDay = props => {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setNextDay(res.data.day))
+      .then(res => setPreviousDay(res.data.day))
       .then(() => msgAlert({
-        heading: 'Showing next list',
+        heading: 'Showing previous list',
         variant: 'primary'
       }))
       .catch(error => {
@@ -82,12 +83,12 @@ const NextDay = props => {
       })
   }, [])
 
-  console.log(nextDay)
-  if (!nextDay) {
+  console.log(previousDay)
+  if (!previousDay) {
     return <p>Loading...</p>
   }
 
-  const dailyTasks = nextDay.tasks.map(task => (
+  const dailyTasks = previousDay.tasks.map(task => (
     <CheckMark
       {...props}
       key={task._id}
@@ -125,8 +126,8 @@ const NextDay = props => {
               pathname: '/next-day',
               aboutProps: {
                 schoolYearInfo: { schoolYearId, year },
-                todaysMonthInfo: { monthName, monthId, monthObject },
-                todaysDayInfo: { dayId, date, day, dayNumber }
+                monthInfo: { monthName, monthId, monthObject },
+                dayInfo: { dayId, date, day, dayNumber }
               }
             }}>
               <button>Next Day</button>
@@ -148,4 +149,4 @@ const NextDay = props => {
   )
 }
 
-export default NextDay
+export default PreviousDay

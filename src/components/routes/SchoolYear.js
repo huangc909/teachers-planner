@@ -10,10 +10,10 @@ const SchoolYear = props => {
   const { msgAlert } = props
 
   const today = new Date()
-  const todaysYear = today.getFullYear()
-  const todaysMonthNumber = (today.getMonth() + 1)
-  const todaysDate = today.getDate()
-  const todaysDayNumber = today.getDay()
+  const year = today.getFullYear()
+  const monthNumber = (today.getMonth() + 1)
+  const date = today.getDate()
+  const dayNumber = today.getDay()
 
   const monthNumbers = {
     1: 'January',
@@ -30,7 +30,7 @@ const SchoolYear = props => {
     12: 'December'
   }
 
-  const todaysMonthName = monthNumbers[todaysMonthNumber]
+  const monthName = monthNumbers[monthNumber]
 
   const dayNumbers = {
     0: 'Sunday',
@@ -42,7 +42,7 @@ const SchoolYear = props => {
     6: 'Saturday'
   }
 
-  const todaysDay = dayNumbers[todaysDayNumber]
+  const day = dayNumbers[dayNumber]
 
   useEffect(() => {
     axios({
@@ -99,9 +99,9 @@ const SchoolYear = props => {
 
   const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
 
-  const todaysMonthObject = sortedSchoolYear.find(month => month.month === todaysMonthName)
+  const monthObject = sortedSchoolYear.find(month => month.month === monthName)
 
-  const todaysMonthId = todaysMonthObject._id
+  const monthId = monthObject._id
 
   if (schoolYear) {
     return (
@@ -109,10 +109,10 @@ const SchoolYear = props => {
         pathname: '/current-day',
         aboutProps: {
           currentSchoolYearInfo: { sortedSchoolYear, schoolYearId },
-          todaysYearInfo: { todaysYear },
-          todaysMonthInfo: { todaysMonthObject, todaysMonthId, todaysMonthNumber, todaysMonthName },
-          todaysDateInfo: { todaysDate },
-          todaysDayInfo: { todaysDay }
+          yearInfo: { year },
+          monthInfo: { monthObject, monthId, monthNumber, monthName },
+          dateInfo: { date },
+          dayInfo: { day, dayNumber }
         }
       }} />
     )

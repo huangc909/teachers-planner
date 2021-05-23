@@ -22,6 +22,7 @@ import Months from './components/routes/Months'
 // import Month from './components/routes/Month'
 import CurrentDay from './components/routes/CurrentDay'
 import NextDay from './components/routes/NextDay'
+import PreviousDay from './components/routes/PreviousDay'
 
 class App extends Component {
   constructor (props) {
@@ -107,6 +108,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} exact path='/next-day' render={(props) => (
             <NextDay msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/previous-day' render={(props) => (
+            <PreviousDay msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
         </main>
       </Fragment>
