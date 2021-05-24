@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -48,8 +49,13 @@ const CheckMark = (props) => {
         handleChange(event)
         handleSubmit(event)
       }} />
-      <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center' }}>
-        <p style={{ marginBottom: '0px', fontSize: '20px' }}>{task.name}</p>
+      <div style={{ height: '20px', width: '5px', marginRight: '5px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center', flexWrap: 'wrap' }}>
+        <p style={{ fontColor: 'red', fontSize: '17px' }}>{task.priority ? '!' : ' '}</p>
+      </div>
+      <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center', flexWrap: 'wrap' }}>
+        <Link to={`/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}`}>
+          <p style={{ fontSize: '17px' }}>{task.name}</p>
+        </Link>
       </div>
     </li>
 
