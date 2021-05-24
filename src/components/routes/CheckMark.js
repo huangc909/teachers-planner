@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const CheckMark = (props) => {
-  const { schoolYearId, monthId, dayId, task, user } = props
+  const { year, schoolYearId, monthName, monthObject, monthId, date, day, dayId, dayNumber, task, user } = props
   const [checked, setChecked] = useState({
     name: props.task.name,
     note: props.task.note,
@@ -53,7 +53,14 @@ const CheckMark = (props) => {
         <p style={{ fontColor: 'red', fontSize: '17px' }}>{task.priority ? '!' : ' '}</p>
       </div>
       <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center', flexWrap: 'wrap' }}>
-        <Link to={`/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}`}>
+        <Link to={{
+          pathname: `/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}`,
+          aboutProps: {
+            schoolYearInfo: { schoolYearId, year },
+            monthInfo: { monthName, monthId, monthObject },
+            dayInfo: { dayId, date, day, dayNumber }
+          }
+        }}>
           <p style={{ fontSize: '17px' }}>{task.name}</p>
         </Link>
       </div>
