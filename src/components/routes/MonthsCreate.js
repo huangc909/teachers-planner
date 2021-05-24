@@ -161,7 +161,8 @@ const MonthsCreate = props => {
     .catch(error => console.log(error))
 
   return (
-    <Redirect to={`/schoolyears/${schoolYearId}`} />
+    // <Redirect to={`/schoolyears/${schoolYearId}`} />
+    <Redirect to={'/home-page'} />
   )
 }
 

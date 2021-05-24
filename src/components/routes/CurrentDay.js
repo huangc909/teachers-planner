@@ -12,14 +12,14 @@ const CurrentDay = (props) => {
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
   const monthObject = props.location.aboutProps.monthInfo.monthObject
-  console.log('monthObject in CurrentDay ', monthObject)
   const monthName = props.location.aboutProps.monthInfo.monthName
   const monthId = props.location.aboutProps.monthInfo.monthId
-  let date = props.location.aboutProps.dateInfo.date
-  console.log('date ', date)
+  const date = props.location.aboutProps.dateInfo.date
   const day = props.location.aboutProps.dayInfo.day
   const dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  let dayId = props.location.aboutProps.dayInfo.dayId
+  const dayId = props.location.aboutProps.dayInfo.dayId
+  const nextDayId = monthObject[date]._id
+  const previousDayId = monthObject[date - 2]._id
 
   const [currentDay, setCurrentDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
@@ -49,13 +49,14 @@ const CurrentDay = (props) => {
   if (!currentDay) {
     return <p>Loading...</p>
   }
-  // console.log('currentDay ', currentDay)
+  console.log('currentDay ', currentDay)
   const dailyTasks = currentDay.tasks.map(task => (
     <CheckMark
       {...props}
       key={task._id}
       task={task}
       year={year}
+      schoolYear={schoolYear}
       schoolYearId={schoolYearId}
       monthName={monthName}
       monthObject={monthObject}
@@ -95,21 +96,16 @@ const CurrentDay = (props) => {
     )
   }
 
-  const next = () => {
-    date += 1
-    dayId = monthObject[date]._id
-  }
-
   return (
     <div style={{ textAlign: 'center' }}>
       <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
-      <button className="button-style" onClick={destroy}>Delete School Year</button>
+      <br />
       <h1>{day}</h1>
       <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/previous-day/${dayId}`,
+            pathname: `/previous-day/${previousDayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
@@ -126,16 +122,16 @@ const CurrentDay = (props) => {
         </div>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/next-day/${dayId}`,
+            pathname: `/next-day/${nextDayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
               monthInfo: { monthObject, monthId, monthName },
               dateInfo: { date },
-              dayInfo: { day, dayNumber }
+              dayInfo: { day, dayNumber, dayId }
             }
           }}>
-            <button onClick={next} className="button-style">Next Day</button>
+            <button className="button-style">Next Day</button>
           </Link>
         </div>
       </div>
@@ -143,13 +139,19 @@ const CurrentDay = (props) => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearId: { schoolYearId },
-            monthId: { monthId },
-            dayId: { dayId }
+            schoolYearInfo: { schoolYear, schoolYearId },
+            yearInfo: { year },
+            monthInfo: { monthObject, monthId, monthName },
+            dateInfo: { date },
+            dayInfo: { day, dayNumber, dayId }
           }
         }} >
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
         </Link>
+      </div>
+      <br />
+      <div>
+        <button style={{ marginTop: '250px' }} className="button-style" onClick={destroy}>Delete School Year</button>
       </div>
     </div>
   )

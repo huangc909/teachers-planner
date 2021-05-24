@@ -7,6 +7,7 @@ import apiUrl from './../../apiConfig'
 const HomePage = (props) => {
   const { msgAlert, user } = props
   const [schoolYears, setSchoolYears] = useState([])
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     axios({
@@ -19,6 +20,7 @@ const HomePage = (props) => {
       .then(res => {
         setSchoolYears(res.data.schoolYears)
       })
+      .then(setLoading(false))
       .then(() => msgAlert({
         heading: 'Showing all school years',
         variant: 'success'
@@ -46,12 +48,18 @@ const HomePage = (props) => {
     </div>
   ))
 
-  return (
-    <div style={{ textAlign: 'center' }}>
-      <h1>School Year</h1>
+  const info = (
+    <div>
       { years }
       <br />
       { addYear }
+    </div>
+  )
+
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <h1>School Year</h1>
+      { loading ? <div>Loading...</div> : info }
     </div>
   )
 }

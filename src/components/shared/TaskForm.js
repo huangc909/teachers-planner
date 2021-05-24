@@ -48,16 +48,6 @@ const TaskForm = ({ task, onPriority, onCompletion, handleSubmit, handleChange, 
       />
     </div>
     <br />
-    <label>Completed</label>
-    <div>
-      <input
-        value={task.checkmark}
-        name="checkmark"
-        onChange={onCompletion}
-        type="checkbox"
-      />
-    </div>
-    <br />
     <button className="button-style" type="submit">Add</button>
     <Link to={cancelPath}>
       <button className="button-style">Cancel</button>

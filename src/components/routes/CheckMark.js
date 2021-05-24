@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const CheckMark = (props) => {
-  const { year, schoolYearId, monthName, monthObject, monthId, date, day, dayId, dayNumber, task, user } = props
+  const { schoolYear, schoolYearId, year, monthName, monthObject, monthId, date, day, dayId, dayNumber, task, user } = props
   const [checked, setChecked] = useState({
     name: props.task.name,
     note: props.task.note,
@@ -20,7 +20,7 @@ const CheckMark = (props) => {
     priority: props.task.priority,
     checkmark: !checked.checkmark
   })
-  console.log(checked)
+
   const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -56,9 +56,11 @@ const CheckMark = (props) => {
         <Link to={{
           pathname: `/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}`,
           aboutProps: {
-            schoolYearInfo: { schoolYearId, year },
-            monthInfo: { monthName, monthId, monthObject },
-            dayInfo: { dayId, date, day, dayNumber }
+            schoolYearInfo: { schoolYear, schoolYearId },
+            yearInfo: { year },
+            monthInfo: { monthObject, monthName, monthId },
+            dateInfo: { date },
+            dayInfo: { day, dayNumber, dayId }
           }
         }}>
           <p style={{ fontSize: '17px' }}>{task.name}</p>

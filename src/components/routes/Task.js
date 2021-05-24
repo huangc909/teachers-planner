@@ -4,17 +4,17 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const Task = props => {
-  const schoolYearId = props.match.params.schoolYearId
-  const monthId = props.match.params.monthId
-  const dayId = props.match.params.dayId
-  const taskId = props.match.params.taskId
-
-  const year = props.location.aboutProps.schoolYearInfo.year
-  const monthName = props.location.aboutProps.monthInfo.monthName
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
+  const year = props.location.aboutProps.yearInfo.year
   const monthObject = props.location.aboutProps.monthInfo.monthObject
-  const date = props.location.aboutProps.dayInfo.date
+  const monthName = props.location.aboutProps.monthInfo.monthName
+  const monthId = props.location.aboutProps.monthInfo.monthId
+  const date = props.location.aboutProps.dateInfo.date
   const day = props.location.aboutProps.dayInfo.day
   const dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  const dayId = props.location.aboutProps.dayInfo.dayId
+  const taskId = props.match.params.taskId
 
   const { msgAlert } = props
 
@@ -73,11 +73,11 @@ const Task = props => {
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          schoolYearInfo: { schoolYearId },
+          schoolYearInfo: { schoolYear, schoolYearId },
           yearInfo: { year },
-          monthInfo: { monthObject, monthId, monthName },
+          monthInfo: { monthObject, monthName, monthId },
           dateInfo: { date },
-          dayInfo: { day, dayNumber }
+          dayInfo: { day, dayNumber, dayId }
         }
       }} />
     )
@@ -96,11 +96,11 @@ const Task = props => {
         <Link to={{
           pathname: '/current-day',
           aboutProps: {
-            schoolYearInfo: { schoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId },
             yearInfo: { year },
-            monthInfo: { monthObject, monthId, monthName },
+            monthInfo: { monthObject, monthName, monthId },
             dateInfo: { date },
-            dayInfo: { day, dayNumber }
+            dayInfo: { day, dayNumber, dayId }
           }
         }} >
           <button>Go Back</button>

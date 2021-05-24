@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -11,14 +11,20 @@ const NextDay = props => {
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
   const monthObject = props.location.aboutProps.monthInfo.monthObject
-  const monthId = props.location.aboutProps.monthInfo.monthId
   const monthName = props.location.aboutProps.monthInfo.monthName
-  const previousDate = props.location.aboutProps.dateInfo.date
-  const date = previousDate + 1
-  const dayId = monthObject[date + 1]._id
-  let dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  dayNumber += 1
+  const monthId = props.location.aboutProps.monthInfo.monthId
+  let date = props.location.aboutProps.dateInfo.date
+  date += 1
   let day = ''
+  let dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  if (dayNumber === 6) {
+    dayNumber = 0
+  } else {
+    dayNumber += 1
+  }
+  const dayId = monthObject[date - 1]._id
+  const nextDayId = monthObject[date]._id
+  const previousDayId = monthObject[date - 2]._id
 
   const dayNumbers = {
     0: 'Sunday',
@@ -30,13 +36,7 @@ const NextDay = props => {
     6: 'Saturday'
   }
 
-  if (dayNumber === 6) {
-    day = dayNumbers[0]
-    dayNumber = 0
-  } else {
-    day = dayNumbers[dayNumber]
-  }
-
+  day = dayNumbers[dayNumber]
   // const thirtyDayMonthNames = {
   //   0: 'April',
   //   1: 'June',
@@ -55,6 +55,7 @@ const NextDay = props => {
   // }
 
   const [nextDay, setNextDay] = useState(null)
+  const [deleted, setDeleted] = useState(false)
 
   useEffect(() => {
     axios({
@@ -66,7 +67,7 @@ const NextDay = props => {
     })
       .then(res => setNextDay(res.data.day))
       .then(() => msgAlert({
-        heading: 'Showing next list',
+        heading: 'Showing selected day to-do list',
         variant: 'primary'
       }))
       .catch(error => {
@@ -87,46 +88,80 @@ const NextDay = props => {
       {...props}
       key={task._id}
       task={task}
+      year={year}
+      schoolYear={schoolYear}
       schoolYearId={schoolYearId}
+      monthName={monthName}
+      monthObject={monthObject}
       monthId={monthId}
+      date={date}
+      day={day}
       dayId={dayId}
+      dayNumber={dayNumber}
       taskId={task._id}
     />
   ))
 
+  const destroy = (event) => {
+    axios({
+      url: `${apiUrl}/schoolYears/${schoolYearId}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .then(() => msgAlert({
+        heading: 'School Year Deleted',
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          variant: 'danger'
+        })
+      })
+  }
+
+  if (deleted) {
+    return (
+      <Redirect to={'/home-page'} />
+    )
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
-      <button className="button-style">Delete School Year</button>
+      <br />
       <h1>{day}</h1>
       <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/previous-day/${dayId}`,
+            pathname: `/previous-day/${previousDayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
               monthInfo: { monthName, monthId, monthObject },
               dateInfo: { date },
-              dayInfo: { dayId, date, day, dayNumber }
+              dayInfo: { day, dayNumber, dayId }
             }
           }}>
             <button className="button-style">Previous Day</button>
           </Link>
         </div>
         <div style={{ margin: '10px' }}>
-          {dailyTasks}
+          {nextDay.length === 0 ? <div></div> : dailyTasks}
         </div>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/next-day/${dayId}`,
+            pathname: `/next-day/${nextDayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
-              monthInfo: { monthName, monthId, monthObject },
+              monthInfo: { monthObject, monthId, monthName },
               dateInfo: { date },
-              dayInfo: { dayId, day, dayNumber }
+              dayInfo: { day, dayNumber, dayId }
             }
           }}>
             <button className="button-style">Next Day</button>
@@ -137,13 +172,19 @@ const NextDay = props => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearId: { schoolYearId },
-            monthId: { monthId },
-            dayId: { dayId }
+            schoolYearInfo: { schoolYear, schoolYearId },
+            yearInfo: { year },
+            monthInfo: { monthObject, monthId, monthName },
+            dateInfo: { date },
+            dayInfo: { day, dayNumber, dayId }
           }
         }} >
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
         </Link>
+      </div>
+      <br />
+      <div>
+        <button style={{ marginTop: '250px' }} className="button-style" onClick={destroy}>Delete School Year</button>
       </div>
     </div>
   )

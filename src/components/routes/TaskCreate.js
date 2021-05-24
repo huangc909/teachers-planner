@@ -9,16 +9,22 @@ import TaskForm from './../shared/TaskForm'
 const TaskCreate = props => {
   const { user, msgAlert } = props
   console.log(props)
-  const schoolYearId = props.location.aboutProps.schoolYearId.schoolYearId
-  const monthId = props.location.aboutProps.monthId.monthId
-  const dayId = props.location.aboutProps.dayId.dayId
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
+  const year = props.location.aboutProps.yearInfo.year
+  const monthObject = props.location.aboutProps.monthInfo.monthObject
+  const monthName = props.location.aboutProps.monthInfo.monthName
+  const monthId = props.location.aboutProps.monthInfo.monthId
+  const date = props.location.aboutProps.dateInfo.date
+  const day = props.location.aboutProps.dayInfo.day
+  const dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  const dayId = props.location.aboutProps.dayInfo.dayId
 
   const [task, setTask] = useState({
     name: '',
     note: '',
     dueDate: '',
-    priority: false,
-    checkmark: false
+    priority: false
   })
   const [taskId, setTaskId] = useState(null)
 
@@ -29,15 +35,6 @@ const TaskCreate = props => {
       task.priority = false
     }
     return task.priority
-  }
-
-  const onCompletion = () => {
-    if (task.onCompletion === false) {
-      task.onCompletion = true
-    } else {
-      task.onCompletion = false
-    }
-    return task.onCompletion
   }
 
   const handleChange = event => {
@@ -81,7 +78,18 @@ const TaskCreate = props => {
   }
 
   if (taskId) {
-    return <Redirect to={`/schoolyears/${schoolYearId}`} />
+    return (
+      <Redirect to={{
+        pathname: '/current-day',
+        aboutProps: {
+          schoolYearInfo: { schoolYear, schoolYearId },
+          yearInfo: { year },
+          monthInfo: { monthObject, monthId, monthName },
+          dateInfo: { date },
+          dayInfo: { day, dayNumber, dayId }
+        }
+      }} />
+    )
   }
 
   return (
@@ -89,7 +97,6 @@ const TaskCreate = props => {
       <TaskForm
         task={task}
         onPriority={onPriority}
-        onCompletion={onCompletion}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         cancelPath={`/schoolyears/${schoolYearId}`}

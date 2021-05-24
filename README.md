@@ -41,9 +41,10 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 MockUp
 ![teachers-planner-mockup](https://user-images.githubusercontent.com/53062479/119353437-e3415200-bc70-11eb-9c62-bf04cf291c0d.png)
 
-## Unsolved Problems that will be resolved in Version 2
-- Previous and next days can only be viewed for a specific month in Version 1, but in Version 2 users will be able to keep clicking the previous and next day buttons for all months
-- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2
+## Unsolved Problems that will be resolved in Version 2a
+- List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so going through the dates will run smoothly.
+- Previous and next days can only be viewed for a specific month in Version 1, but in Version 2a users will be able to keep clicking the previous and next day buttons for all months
+- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2a.
 
 ## Upcoming Release Features for Version 2
 - Users will be able to edit school year and task information.
