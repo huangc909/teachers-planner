@@ -97,9 +97,13 @@ const SchoolYear = props => {
   //   )
   // }
 
-  const sortedSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
+  const yearObject = schoolYear.months.sort((a, b) => a.number - b.number)
 
-  const monthObject = sortedSchoolYear.find(month => month.month === monthName)
+  const monthObject = yearObject.find(month => month.month === monthName)
+
+  const sortedMonthObject = monthObject.days.sort((a, b) => a.day - b.day)
+
+  console.log('sortedMonthObject ', sortedMonthObject)
 
   const monthId = monthObject._id
 
@@ -108,9 +112,9 @@ const SchoolYear = props => {
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          currentSchoolYearInfo: { sortedSchoolYear, schoolYearId },
+          schoolYearInfo: { schoolYearId },
           yearInfo: { year },
-          monthInfo: { monthObject, monthId, monthNumber, monthName },
+          monthInfo: { monthObject, monthId, monthName },
           dateInfo: { date },
           dayInfo: { day, dayNumber }
         }

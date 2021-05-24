@@ -8,7 +8,7 @@ import CheckMark from './CheckMark'
 const CurrentDay = (props) => {
   const { msgAlert } = props
 
-  const schoolYearId = props.location.aboutProps.currentSchoolYearInfo.schoolYearId
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
   const unsortedMonthObject = props.location.aboutProps.monthInfo.monthObject
   const monthName = props.location.aboutProps.monthInfo.monthName
@@ -53,9 +53,15 @@ const CurrentDay = (props) => {
       {...props}
       key={task._id}
       task={task}
+      year={year}
       schoolYearId={schoolYearId}
+      monthName={monthName}
+      monthObject={monthObject}
       monthId={monthId}
+      date={date}
+      day={day}
       dayId={dayId}
+      dayNumber={dayNumber}
       taskId={task._id}
     />
   ))
@@ -120,16 +126,18 @@ const CurrentDay = (props) => {
           </Link>
         </div>
       </div>
-      <Link to={{
-        pathname: '/task-create',
-        aboutProps: {
-          schoolYearId: { schoolYearId },
-          monthId: { monthId },
-          dayId: { dayId }
-        }
-      }} >
-        <button style={{ borderRadius: '25px' }}>+</button>
-      </Link>
+      <div>
+        <Link to={{
+          pathname: '/task-create',
+          aboutProps: {
+            schoolYearId: { schoolYearId },
+            monthId: { monthId },
+            dayId: { dayId }
+          }
+        }} >
+          <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
+        </Link>
+      </div>
       <button onClick={destroy}>Delete School Year</button>
     </div>
   )
