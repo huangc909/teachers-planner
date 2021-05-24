@@ -9,7 +9,7 @@ Teacher's Planner is an application that helps teachers organize their many dail
 
 
 ## Planning Experience
-As a former art teacher, I understand the many to-dos teachers need to complete daily, weekly, and monthly in order to ensure an organized and productive school year. Although classroom and special area teachers have slightly different tasks, there is always something that needs to be done.
+As a former art teacher, I've experienced the many to-dos teachers need to complete daily, weekly, and monthly in order to ensure an organized and productive school year. Although classroom and special area teachers have slightly different tasks, there is always something that needs to be done.
 
 I wanted to create a planner so that teachers can more easily organize their daily to-do tasks. When I was an art teacher, I taught at least 30 classes a week, which consisted of over 600 students. Keeping track of all 600+ students' progress, grades, and artworks as well as each class's lesson plans required efficient and strategic organization and planning.
 
@@ -88,3 +88,6 @@ Specific Task Info Page
 - Users will be able to add a class to a specific task.
 - Users will be able to upload, save, and view student work images to a specific class.
 - A more stylized theme and layout
+
+MVP: May 18, 2021 - May 24, 2021
+Version 2a: (Currently in development)
