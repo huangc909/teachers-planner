@@ -15,10 +15,11 @@ const CurrentDay = (props) => {
   console.log('monthObject in CurrentDay ', monthObject)
   const monthName = props.location.aboutProps.monthInfo.monthName
   const monthId = props.location.aboutProps.monthInfo.monthId
-  const date = props.location.aboutProps.dateInfo.date
+  let date = props.location.aboutProps.dateInfo.date
+  console.log('date ', date)
   const day = props.location.aboutProps.dayInfo.day
   const dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  const dayId = monthObject.days[date + 1]._id
+  let dayId = props.location.aboutProps.dayInfo.dayId
 
   const [currentDay, setCurrentDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
@@ -33,7 +34,7 @@ const CurrentDay = (props) => {
     })
       .then(res => setCurrentDay(res.data.day))
       .then(() => msgAlert({
-        heading: 'Showing today&apos;s list',
+        heading: 'Showing selected day to-do list',
         variant: 'primary'
       }))
       .catch(error => {
@@ -94,6 +95,11 @@ const CurrentDay = (props) => {
     )
   }
 
+  const next = () => {
+    date += 1
+    dayId = monthObject[date]._id
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
@@ -105,11 +111,11 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/previous-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
               monthInfo: { monthObject, monthId, monthName },
               dateInfo: { date },
-              dayInfo: { day, dayNumber }
+              dayInfo: { day, dayNumber, dayId }
             }
           }}>
             <button className="button-style">Previous Day</button>
@@ -122,14 +128,14 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/next-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
               monthInfo: { monthObject, monthId, monthName },
               dateInfo: { date },
               dayInfo: { day, dayNumber }
             }
           }}>
-            <button className="button-style">Next Day</button>
+            <button onClick={next} className="button-style">Next Day</button>
           </Link>
         </div>
       </div>

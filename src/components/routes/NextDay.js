@@ -15,9 +15,9 @@ const NextDay = props => {
   const monthName = props.location.aboutProps.monthInfo.monthName
   const previousDate = props.location.aboutProps.dateInfo.date
   const date = previousDate + 1
-  const dayId = monthObject.days[date + 1]._id
-  const previousDayNumber = props.location.aboutProps.dayInfo.dayNumber
-  const dayNumber = previousDayNumber + 1
+  const dayId = monthObject[date + 1]._id
+  let dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  dayNumber += 1
   let day = ''
 
   const dayNumbers = {
@@ -30,8 +30,9 @@ const NextDay = props => {
     6: 'Saturday'
   }
 
-  if (previousDayNumber === 6) {
+  if (dayNumber === 6) {
     day = dayNumbers[0]
+    dayNumber = 0
   } else {
     day = dayNumbers[dayNumber]
   }
@@ -104,11 +105,11 @@ const NextDay = props => {
           <Link to={{
             pathname: `/previous-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
-              monthInfo: { monthObject, monthId, monthName },
+              monthInfo: { monthName, monthId, monthObject },
               dateInfo: { date },
-              dayInfo: { day, dayNumber }
+              dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
             <button className="button-style">Previous Day</button>
@@ -121,11 +122,11 @@ const NextDay = props => {
           <Link to={{
             pathname: `/next-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { year },
-              monthInfo: { monthObject, monthId, monthName },
+              monthInfo: { monthName, monthId, monthObject },
               dateInfo: { date },
-              dayInfo: { day, dayNumber }
+              dayInfo: { dayId, day, dayNumber }
             }
           }}>
             <button className="button-style">Next Day</button>

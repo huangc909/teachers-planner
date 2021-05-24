@@ -15,10 +15,9 @@ const PreviousDay = props => {
   const monthName = props.location.aboutProps.monthInfo.monthName
   const nextDate = props.location.aboutProps.dateInfo.date
   const date = nextDate - 1
-  const dayId = monthObject.days[date - 1]._id
-  const nextDayNumber = props.location.aboutProps.dayInfo.dayNumber
-  console.log(nextDayNumber)
-  const dayNumber = nextDayNumber - 1
+  let dayNumber = props.location.aboutProps.dayInfo.dayNumber
+  const dayId = monthObject[date - 1]._id
+  dayNumber -= 1
   let day = ''
 
   const dayNumbers = {
@@ -31,8 +30,9 @@ const PreviousDay = props => {
     6: 'Saturday'
   }
 
-  if (nextDayNumber === 0) {
+  if (dayNumber === 0) {
     day = dayNumbers[6]
+    dayNumber = 6
   } else {
     day = dayNumbers[dayNumber]
   }

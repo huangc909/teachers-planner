@@ -43,7 +43,6 @@ MockUp
 
 ## Unsolved Problems that will be resolved in Version 2
 - Previous and next days can only be viewed for a specific month in Version 1, but in Version 2 users will be able to keep clicking the previous and next day buttons for all months
-- Previous weekday shows for a few days in Version 1, but will be present in Version 2
 - Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2
 
 ## Upcoming Release Features for Version 2
