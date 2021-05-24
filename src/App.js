@@ -106,7 +106,7 @@ class App extends Component {
           <AuthenticatedRoute user={user} exact path='/current-day' render={(props) => (
             <CurrentDay msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
-          <AuthenticatedRoute user={user} exact path='/next-day' render={(props) => (
+          <AuthenticatedRoute user={user} exact path='/next-day/:currentDayId' render={(props) => (
             <NextDay msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/previous-day' render={(props) => (

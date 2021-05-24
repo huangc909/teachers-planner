@@ -14,7 +14,7 @@ const NextDay = props => {
   console.log(monthName)
   const monthId = props.location.aboutProps.monthInfo.monthId
   console.log(monthId)
-  const monthObject = props.location.aboutProps.monthInfo.sortedMonthObject
+  const monthObject = props.location.aboutProps.monthInfo.monthObject
   console.log('todaysMonthObject ', monthObject)
   const previousDate = props.location.aboutProps.dayInfo.date
   console.log(previousDate)
@@ -122,11 +122,11 @@ const NextDay = props => {
           </div>
           <div style={{ margin: '10px' }}>
             <Link to={{
-              pathname: '/next-day',
+              pathname: `/next-day/${dayId}`,
               aboutProps: {
                 schoolYearInfo: { schoolYearId, year },
-                todaysMonthInfo: { monthName, monthId, monthObject },
-                todaysDayInfo: { dayId, date, day, dayNumber }
+                monthInfo: { monthName, monthId, monthObject },
+                dayInfo: { dayId, date, day, dayNumber }
               }
             }}>
               <button>Next Day</button>

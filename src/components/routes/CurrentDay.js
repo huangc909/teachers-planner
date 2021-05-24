@@ -10,17 +10,15 @@ const CurrentDay = (props) => {
 
   const schoolYearId = props.location.aboutProps.currentSchoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
-  const monthObject = props.location.aboutProps.monthInfo.monthObject
+  const unsortedMonthObject = props.location.aboutProps.monthInfo.monthObject
   const monthName = props.location.aboutProps.monthInfo.monthName
   const monthId = props.location.aboutProps.monthInfo.monthId
   const date = props.location.aboutProps.dateInfo.date
   const day = props.location.aboutProps.dayInfo.day
   const dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  console.log('day ', day)
+  const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
+  const dayId = monthObject[date + 1]._id
 
-  const sortedMonthObject = monthObject.days.sort((a, b) => a.day - b.day)
-
-  const dayId = sortedMonthObject[date - 1]._id
   const [currentDay, setCurrentDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
@@ -49,7 +47,7 @@ const CurrentDay = (props) => {
   if (!currentDay) {
     return <p>Loading...</p>
   }
-  console.log(currentDay)
+  // console.log('currentDay ', currentDay)
   const dailyTasks = currentDay.tasks.map(task => (
     <CheckMark
       {...props}
@@ -99,7 +97,7 @@ const CurrentDay = (props) => {
             pathname: '/previous-day',
             aboutProps: {
               schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, sortedMonthObject },
+              monthInfo: { monthName, monthId, monthObject },
               dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
@@ -111,10 +109,10 @@ const CurrentDay = (props) => {
         </div>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: '/next-day',
+            pathname: `/next-day/${dayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, sortedMonthObject },
+              monthInfo: { monthName, monthId, monthObject },
               dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
