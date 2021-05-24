@@ -41,13 +41,16 @@ const CheckMark = (props) => {
     })
       .catch(console.error)
   }
+
   return (
-    <li key={task._id} style={{ listStyle: 'none', display: 'flex', justifyContent: 'flexStart' }}>
-      <input type="button" value={ checked.checkmark ? '✔' : '' } onClick={(event) => {
+    <li key={task._id} style={{ listStyle: 'none', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center' }}>
+      <input className="checkbox" type="button" value={ checked.checkmark ? '✔' : '' } style={{ fontSize: '10px', display: 'flex', justifyContent: 'center', alignItems: 'center' }} onClick={(event) => {
         handleChange(event)
         handleSubmit(event)
       }} />
-      <p>{task.name}</p>
+      <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center' }}>
+        <p style={{ marginBottom: '0px', fontSize: '20px' }}>{task.name}</p>
+      </div>
     </li>
 
   )
