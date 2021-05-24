@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import { signUp, signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -51,12 +51,11 @@ class SignUp extends Component {
     const { email, firstName, password, passwordConfirmation } = this.state
 
     return (
-      <div className="row">
-        <div className="col-sm-10 col-md-8 mx-auto mt-5">
+      <div className="row" style={{ textAlign: 'center' }}>
+        <div className="col-sm-10 col-md-6 mx-auto mt-5">
           <h3>Sign Up</h3>
           <Form onSubmit={this.onSignUp}>
             <Form.Group controlId="email">
-              <Form.Label>Email address</Form.Label>
               <Form.Control
                 required
                 type="email"
@@ -68,7 +67,6 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Form.Group controlId="firstName">
-              <Form.Label>First Name</Form.Label>
               <Form.Control
                 required
                 name="firstName"
@@ -79,7 +77,6 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Form.Group controlId="password">
-              <Form.Label>Password</Form.Label>
               <Form.Control
                 required
                 name="password"
@@ -90,7 +87,6 @@ class SignUp extends Component {
               />
             </Form.Group>
             <Form.Group controlId="passwordConfirmation">
-              <Form.Label>Password Confirmation</Form.Label>
               <Form.Control
                 required
                 name="passwordConfirmation"
@@ -107,6 +103,9 @@ class SignUp extends Component {
               Submit
             </Button>
           </Form>
+          <Link to={'/sign-in'}>
+            I have an account already
+          </Link>
         </div>
       </div>
     )
