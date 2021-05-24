@@ -44,24 +44,35 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 
 ## Images
 MockUp
-![teachers-planner-mockup](https://user-images.githubusercontent.com/53062479/119353437-e3415200-bc70-11eb-9c62-bf04cf291c0d.png)
+<kbd>
+  <img width="1438" alt="teachers-planner-mockup" src="https://user-images.githubusercontent.com/53062479/119353437-e3415200-bc70-11eb-9c62-bf04cf291c0d.png">
+</kbd>
 
 Version 1
 Home Page with School Years
-<img width="1438" alt="Home-Page-with-School-Years" src="https://user-images.githubusercontent.com/53062479/119388819-ce78b480-bc98-11eb-9ec0-1eb820c6e088.png">
+<kbd>
+  <img width="1438" alt="Home-Page-with-School-Years" src="https://user-images.githubusercontent.com/53062479/119388819-ce78b480-bc98-11eb-9ec0-1eb820c6e088.png">
+</kbd>
 
 Add School Year Form
-<img width="1437" alt="Add-School-Year-Form" src="https://user-images.githubusercontent.com/53062479/119388812-cc165a80-bc98-11eb-8bd0-acc85356b0ea.png">
+<kbd>
+  <img width="1437" alt="Add-School-Year-Form" src="https://user-images.githubusercontent.com/53062479/119388812-cc165a80-bc98-11eb-8bd0-acc85356b0ea.png">
+</kbd>
 
 Daily To Do List
-<img width="1438" alt="Daily-To-Do-List" src="https://user-images.githubusercontent.com/53062479/119388836-d3d5ff00-bc98-11eb-8990-cfec40e744f7.png">
+<kbd>
+  <img width="1438" alt="Daily-To-Do-List" src="https://user-images.githubusercontent.com/53062479/119388836-d3d5ff00-bc98-11eb-8990-cfec40e744f7.png">
+</kbd>
 
 Add Task Form
-<img width="1438" alt="Add-Task-Form" src="https://user-images.githubusercontent.com/53062479/119388826-d0427800-bc98-11eb-90d6-63c449ac6b65.png">
+<kbd>
+  <img width="1438" alt="Add-Task-Form" src="https://user-images.githubusercontent.com/53062479/119388826-d0427800-bc98-11eb-90d6-63c449ac6b65.png">
+</kbd>
 
 Specific Task Info Page
-<img width="1435" alt="Specific-Task-Info-Page" src="https://user-images.githubusercontent.com/53062479/119388830-d20c3b80-bc98-11eb-9c67-a9892987b99f.png">
-
+<kbd>
+  <img width="1435" alt="Specific-Task-Info-Page" src="https://user-images.githubusercontent.com/53062479/119388830-d20c3b80-bc98-11eb-9c67-a9892987b99f.png">
+</kbd>
 
 ## Unsolved Problems that will be resolved in Version 2a
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
