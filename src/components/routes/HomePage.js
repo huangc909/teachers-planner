@@ -39,9 +39,9 @@ const HomePage = (props) => {
   )
 
   const years = schoolYears.map(schoolYear => (
-    <div key={schoolYear._id}>
+    <div key={schoolYear._id} style={{ margin: '5px' }}>
       <Link to={`/schoolyears/${schoolYear._id}`}>
-        <button>{schoolYear.startYear} - {schoolYear.endYear}</button>
+        <button style={{ height: '30px', width: '108px' }}>{schoolYear.startYear} - {schoolYear.endYear}</button>
       </Link>
     </div>
   ))
@@ -50,6 +50,7 @@ const HomePage = (props) => {
     <div style={{ textAlign: 'center' }}>
       <h1>School Year</h1>
       { years }
+      <br />
       { addYear }
     </div>
   )
