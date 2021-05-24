@@ -3,7 +3,7 @@ Teacher's Planner is an application that helps teachers organize their many dail
 
 
 ## Links
-- Application: (coming soon)
+- Application: https://huangc909.github.io/teachers-planner/
 - Frontend Repo: https://github.com/huangc909/teachers-planner
 - Backend Repo: https://github.com/huangc909/teachers-planner-server
 
@@ -67,6 +67,7 @@ Specific Task Info Page
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
 - Previous and next days can only be viewed for a specific month in Version 1, but in Version 2a users will be able to keep clicking the previous and next day buttons for all months
 - Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2a.
+- Loading of school year takes a few seconds. Version 2a will have a "Loading..." text for those few seconds.
 
 
 ## Upcoming Release Features for Version 2
