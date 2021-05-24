@@ -8,18 +8,12 @@ import CheckMark from './CheckMark'
 const NextDay = props => {
   const { msgAlert } = props
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  console.log(schoolYearId)
   const year = props.location.aboutProps.schoolYearInfo.year
   const monthName = props.location.aboutProps.monthInfo.monthName
-  console.log(monthName)
   const monthId = props.location.aboutProps.monthInfo.monthId
-  console.log(monthId)
   const monthObject = props.location.aboutProps.monthInfo.monthObject
-  console.log('todaysMonthObject ', monthObject)
   const previousDate = props.location.aboutProps.dayInfo.date
-  console.log(previousDate)
   const date = previousDate + 1
-  console.log(date)
   const dayId = monthObject[date + 1]._id
   const previousDayNumber = props.location.aboutProps.dayInfo.dayNumber
   const dayNumber = previousDayNumber + 1
@@ -82,7 +76,6 @@ const NextDay = props => {
       })
   }, [])
 
-  console.log(nextDay)
   if (!nextDay) {
     return <p>Loading...</p>
   }
@@ -107,7 +100,7 @@ const NextDay = props => {
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <div style={{ margin: '10px' }}>
             <Link to={{
-              pathname: '/previous-day',
+              pathname: `/previous-day/${dayId}`,
               aboutProps: {
                 schoolYearInfo: { schoolYearId, year },
                 monthInfo: { monthName, monthId, monthObject },

@@ -8,18 +8,12 @@ import CheckMark from './CheckMark'
 const PreviousDay = props => {
   const { msgAlert } = props
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  console.log(schoolYearId)
   const year = props.location.aboutProps.schoolYearInfo.year
   const monthName = props.location.aboutProps.monthInfo.monthName
-  console.log(monthName)
   const monthId = props.location.aboutProps.monthInfo.monthId
-  console.log(monthId)
-  const monthObject = props.location.aboutProps.monthInfo.sortedMonthObject
-  console.log('todaysMonthObject ', monthObject)
+  const monthObject = props.location.aboutProps.monthInfo.monthObject
   const nextDate = props.location.aboutProps.dayInfo.date
-  console.log(nextDate)
   const date = nextDate - 1
-  console.log(date)
   const dayId = monthObject[date - 1]._id
   const nextDayNumber = props.location.aboutProps.dayInfo.dayNumber
   console.log(nextDayNumber)
@@ -83,11 +77,11 @@ const PreviousDay = props => {
       })
   }, [])
 
-  console.log(previousDay)
   if (!previousDay) {
     return <p>Loading...</p>
   }
-
+  console.log(day)
+  console.log(dayNumber)
   const dailyTasks = previousDay.tasks.map(task => (
     <CheckMark
       {...props}
@@ -108,7 +102,7 @@ const PreviousDay = props => {
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
           <div style={{ margin: '10px' }}>
             <Link to={{
-              pathname: '/previous-day',
+              pathname: `/previous-day/${dayId}`,
               aboutProps: {
                 schoolYearInfo: { schoolYearId, year },
                 monthInfo: { monthName, monthId, monthObject },
@@ -123,7 +117,7 @@ const PreviousDay = props => {
           </div>
           <div style={{ margin: '10px' }}>
             <Link to={{
-              pathname: '/next-day',
+              pathname: `/next-day/${dayId}`,
               aboutProps: {
                 schoolYearInfo: { schoolYearId, year },
                 monthInfo: { monthName, monthId, monthObject },

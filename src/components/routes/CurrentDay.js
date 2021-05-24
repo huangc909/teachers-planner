@@ -94,7 +94,7 @@ const CurrentDay = (props) => {
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: '/previous-day',
+            pathname: `/previous-day/${dayId}`,
             aboutProps: {
               schoolYearInfo: { schoolYearId, year },
               monthInfo: { monthName, monthId, monthObject },
