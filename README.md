@@ -36,9 +36,11 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 ## Technologies Used
 - React
 - JavaScript
-- React Axios
+- Axios
 - JSX
-- React Bootstrap
+- HTML
+- CSS
+- Flexbox
 - Figma
 
 
