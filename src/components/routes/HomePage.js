@@ -34,7 +34,7 @@ const HomePage = (props) => {
   console.log(schoolYears)
   const addYear = (
     <Link to={'/schoolyear-create'}>
-      <button style={{ borderRadius: '25px' }}>Add Year</button>
+      <button className="button-style">Add Year</button>
     </Link>
   )
 

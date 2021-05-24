@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
@@ -19,6 +19,8 @@ const Task = props => {
   const { msgAlert } = props
 
   const [task, setTask] = useState(null)
+  const [deleted, setDeleted] = useState(false)
+
   useEffect(() => {
     axios({
       url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${taskId}`,
@@ -45,6 +47,42 @@ const Task = props => {
     return <p>Loading...</p>
   }
 
+  const destroy = (event) => {
+    axios({
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${taskId}`,
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${props.user.token}`
+      }
+    })
+      .then(() => setDeleted(true))
+      .then(() => msgAlert({
+        heading: 'Task Deleted',
+        variant: 'success'
+      }))
+      .catch(error => {
+        msgAlert({
+          heading: 'Failed to delete' + error.message,
+          variant: 'danger'
+        })
+      })
+  }
+
+  if (deleted) {
+    return (
+      <Redirect to={{
+        pathname: '/current-day',
+        aboutProps: {
+          schoolYearInfo: { schoolYearId },
+          yearInfo: { year },
+          monthInfo: { monthObject, monthId, monthName },
+          dateInfo: { date },
+          dayInfo: { day, dayNumber }
+        }
+      }} />
+    )
+  }
+
   return (
     <div>
       <div>
@@ -58,7 +96,7 @@ const Task = props => {
         <Link to={{
           pathname: '/current-day',
           aboutProps: {
-            currentSchoolYearInfo: { schoolYearId },
+            schoolYearInfo: { schoolYearId },
             yearInfo: { year },
             monthInfo: { monthObject, monthId, monthName },
             dateInfo: { date },
@@ -67,6 +105,7 @@ const Task = props => {
         }} >
           <button>Go Back</button>
         </Link>
+        <button onClick={destroy}>Delete Task</button>
       </div>
     </div>
   )

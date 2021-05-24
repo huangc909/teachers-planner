@@ -24,9 +24,9 @@ const SchoolYearForm = ({ schoolYear, handleSubmit, handleChange, cancelPath }) 
       />
     </div>
     <br />
-    <button type="submit">Continue</button>
+    <button className="button-style" type="submit">Add</button>
     <Link to={cancelPath}>
-      <button>Cancel</button>
+      <button className="button-style">Cancel</button>
     </Link>
   </form>
 )

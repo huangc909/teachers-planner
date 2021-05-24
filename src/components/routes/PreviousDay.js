@@ -14,7 +14,7 @@ const PreviousDay = props => {
   const monthObject = props.location.aboutProps.monthInfo.monthObject
   const nextDate = props.location.aboutProps.dayInfo.date
   const date = nextDate - 1
-  const dayId = monthObject[date - 1]._id
+  const dayId = monthObject.days[date - 1]._id
   const nextDayNumber = props.location.aboutProps.dayInfo.dayNumber
   console.log(nextDayNumber)
   const dayNumber = nextDayNumber - 1
@@ -95,39 +95,39 @@ const PreviousDay = props => {
   ))
 
   return (
-    <div>
-      <div style={{ textAlign: 'center' }}>
-        <h1>{day}</h1>
-        <h2>{monthName} {date}, {year}</h2>
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
-          <div style={{ margin: '10px' }}>
-            <Link to={{
-              pathname: `/previous-day/${dayId}`,
-              aboutProps: {
-                schoolYearInfo: { schoolYearId, year },
-                monthInfo: { monthName, monthId, monthObject },
-                dayInfo: { dayId, date, day, dayNumber }
-              }
-            }}>
-              <button>Previous Day</button>
-            </Link>
-          </div>
-          <div style={{ margin: '10px' }}>
-            {dailyTasks}
-          </div>
-          <div style={{ margin: '10px' }}>
-            <Link to={{
-              pathname: `/next-day/${dayId}`,
-              aboutProps: {
-                schoolYearInfo: { schoolYearId, year },
-                monthInfo: { monthName, monthId, monthObject },
-                dayInfo: { dayId, date, day, dayNumber }
-              }
-            }}>
-              <button>Next Day</button>
-            </Link>
-          </div>
+    <div style={{ textAlign: 'center' }}>
+      <h1>{day}</h1>
+      <h2>{monthName} {date}, {year}</h2>
+      <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+        <div style={{ margin: '10px' }}>
+          <Link to={{
+            pathname: `/previous-day/${dayId}`,
+            aboutProps: {
+              schoolYearInfo: { schoolYearId, year },
+              monthInfo: { monthName, monthId, monthObject },
+              dayInfo: { dayId, date, day, dayNumber }
+            }
+          }}>
+            <button className="button-style">Previous Day</button>
+          </Link>
         </div>
+        <div style={{ margin: '10px' }}>
+          {dailyTasks}
+        </div>
+        <div style={{ margin: '10px' }}>
+          <Link to={{
+            pathname: `/next-day/${dayId}`,
+            aboutProps: {
+              schoolYearInfo: { schoolYearId, year },
+              monthInfo: { monthName, monthId, monthObject },
+              dayInfo: { dayId, date, day, dayNumber }
+            }
+          }}>
+            <button className="button-style">Next Day</button>
+          </Link>
+        </div>
+      </div>
+      <div>
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
@@ -136,7 +136,7 @@ const PreviousDay = props => {
             dayId: { dayId }
           }
         }} >
-          <button style={{ borderRadius: '25px' }}>+</button>
+          <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
         </Link>
       </div>
     </div>

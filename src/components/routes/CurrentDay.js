@@ -10,14 +10,14 @@ const CurrentDay = (props) => {
 
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
-  const unsortedMonthObject = props.location.aboutProps.monthInfo.monthObject
+  const monthObject = props.location.aboutProps.monthInfo.monthObject
+  console.log('monthObject in CurrentDay ', monthObject)
   const monthName = props.location.aboutProps.monthInfo.monthName
   const monthId = props.location.aboutProps.monthInfo.monthId
   const date = props.location.aboutProps.dateInfo.date
   const day = props.location.aboutProps.dayInfo.day
   const dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
-  const dayId = monthObject[date + 1]._id
+  const dayId = monthObject.days[date + 1]._id
 
   const [currentDay, setCurrentDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
@@ -107,7 +107,7 @@ const CurrentDay = (props) => {
               dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
-            <button>Previous Day</button>
+            <button className="button-style">Previous Day</button>
           </Link>
         </div>
         <div style={{ margin: '10px' }}>
@@ -122,7 +122,7 @@ const CurrentDay = (props) => {
               dayInfo: { dayId, date, day, dayNumber }
             }
           }}>
-            <button>Next Day</button>
+            <button className="button-style">Next Day</button>
           </Link>
         </div>
       </div>
@@ -138,7 +138,7 @@ const CurrentDay = (props) => {
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
         </Link>
       </div>
-      <button onClick={destroy}>Delete School Year</button>
+      <button className="button-style" onClick={destroy}>Delete School Year</button>
     </div>
   )
 }
