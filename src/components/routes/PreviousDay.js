@@ -7,12 +7,13 @@ import CheckMark from './CheckMark'
 
 const PreviousDay = props => {
   const { msgAlert } = props
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  const year = props.location.aboutProps.schoolYearInfo.year
-  const monthName = props.location.aboutProps.monthInfo.monthName
-  const monthId = props.location.aboutProps.monthInfo.monthId
+  const year = props.location.aboutProps.yearInfo.year
   const monthObject = props.location.aboutProps.monthInfo.monthObject
-  const nextDate = props.location.aboutProps.dayInfo.date
+  const monthId = props.location.aboutProps.monthInfo.monthId
+  const monthName = props.location.aboutProps.monthInfo.monthName
+  const nextDate = props.location.aboutProps.dateInfo.date
   const date = nextDate - 1
   const dayId = monthObject.days[date - 1]._id
   const nextDayNumber = props.location.aboutProps.dayInfo.dayNumber
@@ -96,6 +97,8 @@ const PreviousDay = props => {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
+      <button className="button-style">Delete School Year</button>
       <h1>{day}</h1>
       <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -103,9 +106,11 @@ const PreviousDay = props => {
           <Link to={{
             pathname: `/previous-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, monthObject },
-              dayInfo: { dayId, date, day, dayNumber }
+              schoolYearInfo: { schoolYearId, schoolYear },
+              yearInfo: { year },
+              monthInfo: { monthObject, monthId, monthName },
+              dateInfo: { date },
+              dayInfo: { day, dayNumber }
             }
           }}>
             <button className="button-style">Previous Day</button>
@@ -118,9 +123,11 @@ const PreviousDay = props => {
           <Link to={{
             pathname: `/next-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, monthObject },
-              dayInfo: { dayId, date, day, dayNumber }
+              schoolYearInfo: { schoolYearId, schoolYear },
+              yearInfo: { year },
+              monthInfo: { monthObject, monthId, monthName },
+              dateInfo: { date },
+              dayInfo: { day, dayNumber }
             }
           }}>
             <button className="button-style">Next Day</button>

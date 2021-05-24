@@ -8,6 +8,7 @@ import CheckMark from './CheckMark'
 const CurrentDay = (props) => {
   const { msgAlert } = props
 
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
   const monthObject = props.location.aboutProps.monthInfo.monthObject
@@ -95,6 +96,8 @@ const CurrentDay = (props) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
+      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
+      <button className="button-style" onClick={destroy}>Delete School Year</button>
       <h1>{day}</h1>
       <h2>{monthName} {date}, {year}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
@@ -102,9 +105,11 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/previous-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, monthObject },
-              dayInfo: { dayId, date, day, dayNumber }
+              schoolYearInfo: { schoolYearId, schoolYear },
+              yearInfo: { year },
+              monthInfo: { monthObject, monthId, monthName },
+              dateInfo: { date },
+              dayInfo: { day, dayNumber }
             }
           }}>
             <button className="button-style">Previous Day</button>
@@ -117,9 +122,11 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/next-day/${dayId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, year },
-              monthInfo: { monthName, monthId, monthObject },
-              dayInfo: { dayId, date, day, dayNumber }
+              schoolYearInfo: { schoolYearId, schoolYear },
+              yearInfo: { year },
+              monthInfo: { monthObject, monthId, monthName },
+              dateInfo: { date },
+              dayInfo: { day, dayNumber }
             }
           }}>
             <button className="button-style">Next Day</button>
@@ -138,7 +145,6 @@ const CurrentDay = (props) => {
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
         </Link>
       </div>
-      <button className="button-style" onClick={destroy}>Delete School Year</button>
     </div>
   )
 }
