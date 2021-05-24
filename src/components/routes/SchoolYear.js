@@ -75,11 +75,7 @@ const SchoolYear = props => {
 
   const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
 
-  console.log('monthObject ', monthObject)
-
   const monthId = unsortedMonthObject._id
-
-  console.log(monthId)
 
   const dayId = monthObject[date - 1]._id
 

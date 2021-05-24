@@ -33,7 +33,7 @@ const HomePage = (props) => {
         })
       })
   }, [])
-  console.log(schoolYears)
+
   const addYear = (
     <Link to={'/schoolyear-create'}>
       <button className="button-style">Add Year</button>

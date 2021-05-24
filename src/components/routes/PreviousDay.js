@@ -83,8 +83,7 @@ const PreviousDay = props => {
   if (!previousDay) {
     return <p>Loading...</p>
   }
-  console.log(day)
-  console.log(dayNumber)
+
   const dailyTasks = previousDay.tasks.map(task => (
     <CheckMark
       {...props}

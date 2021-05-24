@@ -38,7 +38,6 @@ const CurrentDay = (props) => {
         variant: 'primary'
       }))
       .catch(error => {
-        // setDay({ day: '' })
         msgAlert({
           heading: 'Failed to show day' + error.message,
           variant: 'danger'
@@ -49,7 +48,7 @@ const CurrentDay = (props) => {
   if (!currentDay) {
     return <p>Loading...</p>
   }
-  console.log('currentDay ', currentDay)
+
   const dailyTasks = currentDay.tasks.map(task => (
     <CheckMark
       {...props}

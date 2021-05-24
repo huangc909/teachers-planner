@@ -8,7 +8,6 @@ import TaskForm from './../shared/TaskForm'
 
 const TaskCreate = props => {
   const { user, msgAlert } = props
-  console.log(props)
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const year = props.location.aboutProps.yearInfo.year
@@ -54,10 +53,6 @@ const TaskCreate = props => {
       },
       data: { task }
     })
-      .then(res => {
-        console.log(res)
-        return res
-      })
       .then(res => setTaskId(res.data.day.tasks[res.data.day.tasks.length - 1]._id))
       .then(() => msgAlert({
         heading: 'Successfully created task',
