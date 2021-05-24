@@ -6,7 +6,6 @@ import apiUrl from '../../apiConfig'
 const SchoolYear = props => {
   const schoolYearId = props.match.params.schoolYearId
   const [schoolYear, setSchoolYear] = useState(null)
-  // const [deleted, setDeleted] = useState(false)
   const { msgAlert } = props
 
   const today = new Date()
@@ -66,57 +65,34 @@ const SchoolYear = props => {
       })
   }, [])
 
-  // const destroy = () => {
-  //   axios({
-  //     url: `${apiUrl}/schoolYears/${props.match.params.schoolYearId}`,
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Authorization': `Bearer ${props.user.token}`
-  //     }
-  //   })
-  //     .then(() => setDeleted(true))
-  //     .then(() => msgAlert({
-  //       heading: 'School Year Deleted',
-  //       variant: 'success'
-  //     }))
-  //     .catch(error => {
-  //       setSchoolYear({ startYear: '' })
-  //       msgAlert({
-  //         heading: 'Failed to delete' + error.message,
-  //         variant: 'danger'
-  //       })
-  //     })
-  // }
   if (!schoolYear) {
     return <p>Loading...</p>
   }
 
-  // if (deleted) {
-  //   return (
-  //     <Redirect to={'/home-page'} />
-  //   )
-  // }
-
   const yearObject = schoolYear.months.sort((a, b) => a.number - b.number)
 
-  const monthObject = yearObject.find(month => month.month === monthName)
+  const unsortedMonthObject = yearObject.find(month => month.month === monthName)
 
-  const sortedMonthObject = monthObject.days.sort((a, b) => a.day - b.day)
+  const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
 
-  console.log('sortedMonthObject ', sortedMonthObject)
+  console.log('monthObject ', monthObject)
 
-  const monthId = monthObject._id
+  const monthId = unsortedMonthObject._id
+
+  console.log(monthId)
+
+  const dayId = monthObject[date + 1]._id
 
   if (schoolYear) {
     return (
       <Redirect to={{
-        pathname: '/current-day/',
+        pathname: `/current-day/${dayId}`,
         aboutProps: {
-          schoolYearInfo: { schoolYearId, schoolYear },
+          schoolYearInfo: { schoolYear, schoolYearId },
           yearInfo: { year },
-          monthInfo: { monthObject, monthId, monthName },
+          monthInfo: { monthObject, monthName, monthId },
           dateInfo: { date },
-          dayInfo: { day, dayNumber }
+          dayInfo: { day, dayNumber, dayId }
         }
       }} />
     )
