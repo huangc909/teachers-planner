@@ -76,7 +76,7 @@ Specific Task Info Page
   <img width="1435" alt="Specific-Task-Info-Page" src="https://user-images.githubusercontent.com/53062479/119388830-d20c3b80-bc98-11eb-9c67-a9892987b99f.png">
 </kbd>
 
-## Unsolved Problems that will be resolved in Version 2a
+## Unsolved Problems that will be resolved in Version 1a
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
 - Previous and next days can only be viewed for a specific month in Version 1, but in Version 2a users will be able to keep clicking the previous and next day buttons for all months
 - Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2a.
