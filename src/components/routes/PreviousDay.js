@@ -79,7 +79,7 @@ const PreviousDay = props => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [refresh])
 
   if (!previousDay) {
     return <p>Loading...</p>

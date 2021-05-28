@@ -90,4 +90,5 @@ Specific Task Info Page
 - A more stylized theme and layout
 
 MVP: May 18, 2021 - May 24, 2021
+
 Version 1a: (Currently in development)
