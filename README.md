@@ -78,9 +78,9 @@ Specific Task Info Page
 
 ## Unsolved Problems that will be resolved in Version 1a
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
-- Previous and next days can only be viewed for a specific month in Version 1, but in Version 2a users will be able to keep clicking the previous and next day buttons for all months
-- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 2a.
-- Loading of school year takes a few seconds. Version 2a will have a "Loading..." text for those few seconds.
+- Previous and next days can only be viewed for a specific month in Version 1, but in Version 1a users will be able to keep clicking the previous and next day buttons for all months
+- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 1a.
+- Loading of school year takes a few seconds. Version 1a will have a "Loading..." text for those few seconds.
 
 
 ## Upcoming Release Features for Version 2
@@ -90,4 +90,4 @@ Specific Task Info Page
 - A more stylized theme and layout
 
 MVP: May 18, 2021 - May 24, 2021
-Version 2a: (Currently in development)
+Version 1a: (Currently in development)

@@ -56,6 +56,7 @@ const NextDay = props => {
 
   const [nextDay, setNextDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  const [refresh, setRefresh] = useState(false)
 
   useEffect(() => {
     axios({
@@ -77,7 +78,7 @@ const NextDay = props => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [refresh])
 
   if (!nextDay) {
     return <p>Loading...</p>
@@ -129,6 +130,10 @@ const NextDay = props => {
     )
   }
 
+  const refreshPage = () => {
+    setRefresh(!refresh)
+  }
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
@@ -164,7 +169,7 @@ const NextDay = props => {
               dayInfo: { day, dayNumber, dayId }
             }
           }}>
-            <button className="button-style">Next Day</button>
+            <button onClick={refreshPage} className="button-style">Next Day</button>
           </Link>
         </div>
       </div>
