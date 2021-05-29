@@ -94,3 +94,5 @@ Specific Task Info Page
 MVP: May 18, 2021 - May 24, 2021
 
 Version 1.1: May 28, 2021
+
+Version 1.2: (Currently in development)
