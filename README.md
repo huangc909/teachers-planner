@@ -76,10 +76,12 @@ Specific Task Info Page
   <img width="1435" alt="Specific-Task-Info-Page" src="https://user-images.githubusercontent.com/53062479/119388830-d20c3b80-bc98-11eb-9c67-a9892987b99f.png">
 </kbd>
 
-## Unsolved Problems that will be resolved in Version 1a
+## Unsolved Problems that will be resolved in Version 1.1
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
-- Previous and next days can only be viewed for a specific month in Version 1, but in Version 1a users will be able to keep clicking the previous and next day buttons for all months
-- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 1a.
+
+## Unsolved Problems that will be resolved in Version 1.2
+- Previous and next days can only be viewed for a specific month in Version 1, but in Version 1.2 users will be able to keep clicking the previous and next day buttons for all months
+- Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 1.2.
 - Loading of school year takes a few seconds. Version 1a will have a "Loading..." text for those few seconds.
 
 
@@ -91,4 +93,4 @@ Specific Task Info Page
 
 MVP: May 18, 2021 - May 24, 2021
 
-Version 1a: (Currently in development)
+Version 1.1: May 28, 2021
