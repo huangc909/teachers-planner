@@ -4,15 +4,15 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const SchoolYear = props => {
-  const schoolYearId = props.match.params.schoolYearId
-  const [schoolYear, setSchoolYear] = useState(null)
+  const currSchoolYearId = props.match.params.schoolYearId
+  const [currSchoolYear, setCurrSchoolYear] = useState(null)
   const { msgAlert } = props
 
   const today = new Date()
-  const year = today.getFullYear()
-  const monthNumber = (today.getMonth() + 1)
-  const date = today.getDate()
-  const dayNumber = today.getDay()
+  const currYear = today.getFullYear()
+  const currMonthNumber = (today.getMonth() + 1)
+  const currDate = today.getDate()
+  const currDayNumber = today.getDay()
 
   const monthNumbers = {
     1: 'January',
@@ -29,7 +29,7 @@ const SchoolYear = props => {
     12: 'December'
   }
 
-  const monthName = monthNumbers[monthNumber]
+  const currMonthName = monthNumbers[currMonthNumber]
 
   const dayNumbers = {
     0: 'Sunday',
@@ -41,23 +41,23 @@ const SchoolYear = props => {
     6: 'Saturday'
   }
 
-  const day = dayNumbers[dayNumber]
+  const currDay = dayNumbers[currDayNumber]
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${schoolYearId}`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setSchoolYear(res.data.schoolYear))
+      .then(res => setCurrSchoolYear(res.data.schoolYear))
       .then(() => msgAlert({
         heading: 'Showing selected school year',
         variant: 'primary'
       }))
       .catch(error => {
-        setSchoolYear({ startYear: '' })
+        setCurrSchoolYear({ startYear: '' })
         msgAlert({
           heading: 'Failed to show blog' + error.message,
           variant: 'danger'
@@ -65,30 +65,30 @@ const SchoolYear = props => {
       })
   }, [])
 
-  if (!schoolYear) {
+  if (!currSchoolYear) {
     return <p>Loading...</p>
   }
 
-  const yearObject = schoolYear.months.sort((a, b) => a.number - b.number)
+  const yearObject = currSchoolYear.months.sort((a, b) => a.number - b.number)
 
-  const unsortedMonthObject = yearObject.find(month => month.month === monthName)
+  const unsortedMonthObject = yearObject.find(month => month.month === currMonthName)
 
   const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
 
   const monthId = unsortedMonthObject._id
 
-  const dayId = monthObject[date - 1]._id
+  const currDateId = monthObject[currDate - 1]._id
 
-  if (schoolYear) {
+  if (currSchoolYear) {
     return (
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          schoolYearInfo: { schoolYear, schoolYearId },
-          yearInfo: { year },
-          monthInfo: { monthObject, monthName, monthId },
-          dateInfo: { date },
-          dayInfo: { day, dayNumber, dayId }
+          schoolYearInfo: { currSchoolYear, currSchoolYearId },
+          yearInfo: { currYear },
+          monthInfo: { monthObject, currMonthName, monthId },
+          dateInfo: { currDate, currDateId },
+          dayInfo: { currDay, currDayNumber }
         }
       }} />
     )

@@ -7,24 +7,24 @@ import CheckMark from './CheckMark'
 
 const PreviousDay = props => {
   const { msgAlert } = props
-  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
-  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  const year = props.location.aboutProps.yearInfo.year
+  const currSchoolYear = props.location.aboutProps.schoolYearInfo.currSchoolYear
+  const currSchoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
+  const currYear = props.location.aboutProps.yearInfo.currYear
   const monthObject = props.location.aboutProps.monthInfo.monthObject
   const monthName = props.location.aboutProps.monthInfo.monthName
   const monthId = props.location.aboutProps.monthInfo.monthId
-  let date = props.location.aboutProps.dateInfo.date
-  date -= 1
-  let day = ''
-  let dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  if (dayNumber === 0) {
-    dayNumber = 6
+  let currDate = props.location.aboutProps.dateInfo.currDate
+  currDate -= 1
+  let currDay = ''
+  let currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
+  if (currDayNumber === 0) {
+    currDayNumber = 6
   } else {
-    dayNumber -= 1
+    currDayNumber -= 1
   }
-  const dayId = monthObject[date - 1]._id
-  const nextDayId = monthObject[date]._id
-  const previousDayId = monthObject[date - 2]._id
+  const currDateId = monthObject[currDate - 1]._id
+  const nextDateId = monthObject[currDate]._id
+  const prevDateId = monthObject[currDate - 2]._id
 
   const dayNumbers = {
     0: 'Sunday',
@@ -36,7 +36,7 @@ const PreviousDay = props => {
     6: 'Saturday'
   }
 
-  day = dayNumbers[dayNumber]
+  currDay = dayNumbers[currDayNumber]
 
   // const thirtyDayMonthNames = {
   //   0: 'April',
@@ -61,7 +61,7 @@ const PreviousDay = props => {
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${monthId}/days/${currDateId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -90,23 +90,23 @@ const PreviousDay = props => {
       {...props}
       key={task._id}
       task={task}
-      year={year}
-      schoolYear={schoolYear}
-      schoolYearId={schoolYearId}
+      currYear={currYear}
+      currSchoolYear={currSchoolYear}
+      currSchoolYearId={currSchoolYearId}
       monthName={monthName}
       monthObject={monthObject}
       monthId={monthId}
-      date={date}
-      day={day}
-      dayId={dayId}
-      dayNumber={dayNumber}
+      currDate={currDate}
+      currDay={currDay}
+      currDateId={currDateId}
+      currDayNumber={currDayNumber}
       taskId={task._id}
     />
   ))
 
   const destroy = (event) => {
     axios({
-      url: `${apiUrl}/schoolYears/${schoolYearId}`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -137,20 +137,20 @@ const PreviousDay = props => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
+      <h6>{currSchoolYear.startYear}-{currSchoolYear.endYear}</h6>
       <br />
-      <h1>{day}</h1>
-      <h2>{monthName} {date}, {year}</h2>
+      <h1>{currDay}</h1>
+      <h2>{monthName} {currDate}, {currYear}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/previous-day/${previousDayId}`,
+            pathname: `/previous-day/${prevDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
-              yearInfo: { year },
+              schoolYearInfo: { currSchoolYearId, currSchoolYear },
+              yearInfo: { currYear },
               monthInfo: { monthObject, monthId, monthName },
-              dateInfo: { date },
-              dayInfo: { day, dayNumber, dayId }
+              dateInfo: { currDate, currDateId },
+              dayInfo: { currDay, currDayNumber }
             }
           }}>
             <button onClick={refreshPage} className="button-style">Previous Day</button>
@@ -161,13 +161,13 @@ const PreviousDay = props => {
         </div>
         <div style={{ margin: '10px' }}>
           <Link to={{
-            pathname: `/next-day/${nextDayId}`,
+            pathname: `/next-day/${nextDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYearId, schoolYear },
-              yearInfo: { year },
+              schoolYearInfo: { currSchoolYearId, currSchoolYear },
+              yearInfo: { currYear },
               monthInfo: { monthObject, monthId, monthName },
-              dateInfo: { date },
-              dayInfo: { day, dayNumber, dayId }
+              dateInfo: { currDate, currDateId },
+              dayInfo: { currDay, currDayNumber }
             }
           }}>
             <button className="button-style">Next Day</button>
@@ -178,11 +178,11 @@ const PreviousDay = props => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
-            yearInfo: { year },
+            schoolYearInfo: { currSchoolYear, currSchoolYearId },
+            yearInfo: { currYear },
             monthInfo: { monthObject, monthId, monthName },
-            dateInfo: { date },
-            dayInfo: { day, dayNumber, dayId }
+            dateInfo: { currDate, currDateId },
+            dayInfo: { currDay, currDayNumber }
           }
         }} >
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>

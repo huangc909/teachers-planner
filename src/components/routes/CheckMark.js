@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const CheckMark = (props) => {
-  const { schoolYear, schoolYearId, year, monthName, monthObject, monthId, date, day, dayId, dayNumber, task, user } = props
+  const { currSchoolYear, currSchoolYearId, currYear, monthName, monthObject, monthId, currDate, currDay, currDateId, currDayNumber, task, user } = props
   const [checked, setChecked] = useState({
     name: props.task.name,
     note: props.task.note,
@@ -25,7 +25,7 @@ const CheckMark = (props) => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}/checkmark`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${monthId}/days/${currDateId}/tasks/${task._id}/checkmark`,
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -54,13 +54,13 @@ const CheckMark = (props) => {
       </div>
       <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center', flexWrap: 'wrap' }}>
         <Link to={{
-          pathname: `/schoolYears/${schoolYearId}/months/${monthId}/days/${dayId}/tasks/${task._id}`,
+          pathname: `/schoolYears/${currSchoolYearId}/months/${monthId}/days/${currDateId}/tasks/${task._id}`,
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
-            yearInfo: { year },
+            schoolYearInfo: { currSchoolYear, currSchoolYearId },
+            yearInfo: { currYear },
             monthInfo: { monthObject, monthName, monthId },
-            dateInfo: { date },
-            dayInfo: { day, dayNumber, dayId }
+            dateInfo: { currDate, currDateId },
+            dayInfo: { currDay, currDayNumber }
           }
         }}>
           <p style={{ fontSize: '17px' }}>{task.name}</p>
