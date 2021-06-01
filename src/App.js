@@ -18,6 +18,8 @@ import MonthsCreate from './components/routes/MonthsCreate'
 import TaskCreate from './components/routes/TaskCreate'
 
 import SchoolYear from './components/routes/SchoolYear'
+import CurrentSchoolYear from './components/routes/CurrentSchoolYear'
+import OtherSchoolYear from './components/routes/OtherSchoolYear'
 import Months from './components/routes/Months'
 // import Month from './components/routes/Month'
 import CurrentDay from './components/routes/CurrentDay'
@@ -101,6 +103,12 @@ class App extends Component {
 
           <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId' render={(props) => (
             <SchoolYear msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/current-school-year' render={(props) => (
+            <CurrentSchoolYear msgAlert={this.msgAlert} user={user} {...props}/>
+          )} />
+          <AuthenticatedRoute user={user} exact path='/other-school-year' render={(props) => (
+            <OtherSchoolYear msgAlert={this.msgAlert} user={user} {...props}/>
           )} />
           <AuthenticatedRoute user={user} exact path='/schoolyears/:schoolYearId/months' render={(props) => (
             <Months msgAlert={this.msgAlert} user={user} {...props}/>
