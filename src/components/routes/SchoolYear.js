@@ -8,11 +8,23 @@ const SchoolYear = props => {
   const [currSchoolYear, setCurrSchoolYear] = useState(null)
   const { msgAlert } = props
 
+  // Calculate today's date
   const today = new Date()
-  const currYear = today.getFullYear()
-  const currMonthNumber = (today.getMonth() + 1)
-  const currDate = today.getDate()
-  const currDayNumber = today.getDay()
+  const todaysYear = today.getFullYear()
+  const todaysDate = today.getDate()
+  const todaysMonthNumber = (today.getMonth() + 1)
+  const todaysDayNumber = today.getDay()
+
+  // Set up Current info
+  let currYear = 0
+  let currMonthNumber = 0
+  let currMonthName = ''
+  let currMonthIndex = 0
+  let currDate = 0
+  let currDateIndex = 0
+  let currDateId = ''
+  let currDayNumber = 0
+  let currDay = ''
 
   const monthNumbers = {
     1: 'January',
@@ -29,7 +41,7 @@ const SchoolYear = props => {
     12: 'December'
   }
 
-  const currMonthName = monthNumbers[currMonthNumber]
+  const todaysMonthName = monthNumbers[todaysMonthNumber]
 
   const dayNumbers = {
     0: 'Sunday',
@@ -40,8 +52,6 @@ const SchoolYear = props => {
     5: 'Friday',
     6: 'Saturday'
   }
-
-  const currDay = dayNumbers[currDayNumber]
 
   useEffect(() => {
     axios({
@@ -69,15 +79,83 @@ const SchoolYear = props => {
     return <p>Loading...</p>
   }
 
+  // Determine if today's year and month are within the selected school year
+  if ((todaysYear === currSchoolYear.startYear && todaysMonthName === 'August') || (todaysYear === currSchoolYear.startYear && todaysMonthName === 'September') || (todaysYear === currSchoolYear.startYear && todaysMonthName === 'October') || (todaysYear === currSchoolYear.startYear && todaysMonthName === 'November') || (todaysYear === currSchoolYear.startYear && todaysMonthName === 'December') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'January') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'February') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'March') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'April') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'May') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'June') || (todaysYear === currSchoolYear.endYear && todaysMonthName === 'July')) {
+    // If yes, date is today's date
+    currYear = todaysYear
+    currMonthNumber = todaysMonthName
+    currMonthName = dayNumbers[todaysDayNumber]
+    currMonthIndex = currMonthNumber - 1
+    if (currMonthNumber === 0) currMonthIndex = 11
+    currDate = todaysDate
+    currDayNumber = todaysDayNumber
+    currDay = dayNumbers[currDayNumber]
+  } else {
+    // Else, set new date to August 1, schoolyear startYear
+    const newDay = new Date(`August 1, ${currSchoolYear.startYear} 00:00:00`)
+    const newYear = newDay.getFullYear()
+    const newDate = newDay.getDate()
+    const newMonthNumber = (newDay.getMonth() + 1)
+    const newDayNumber = newDay.getDay()
+    currYear = newYear
+    currMonthNumber = newMonthNumber
+    currMonthName = monthNumbers[newMonthNumber]
+    currMonthIndex = currMonthNumber - 1
+    if (currMonthNumber === 0) currMonthIndex = 11
+    currDate = newDate
+    currDayNumber = newDayNumber
+    currDay = dayNumbers[currDayNumber]
+  }
+
+  // Calculate for leap year
+  const leapYear = (currYear % 100 === 0) ? (currYear % 400 === 0) : (currYear % 4 === 0)
+
+  // Organize school year, month, and day objects to be in order
   const yearObject = currSchoolYear.months.sort((a, b) => a.number - b.number)
-
   const unsortedMonthObject = yearObject.find(month => month.month === currMonthName)
-
   const currMonth = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
-
   const currMonthId = unsortedMonthObject._id
+  currDateIndex = currDate - 1
+  currDateId = currMonth[currDateIndex]._id
 
-  const currDateId = currMonth[currDate - 1]._id
+  // Set up Previous Info
+  let prevMonthNumber = currMonthNumber - 1
+  if (currMonthNumber === 0) prevMonthNumber = 11
+
+  let prevMonthIndex = prevMonthNumber - 1
+  if (prevMonthNumber === 0) prevMonthIndex = 11
+
+  let prevMonth = currSchoolYear[prevMonthIndex]
+  let prevMonthName = prevMonth.month
+  let prevMonthId = prevMonth._id
+
+  let prevDate = 0
+  if ((currDate === 1 && currMonthName === 'September') || (currDate === 1 && currMonthName === 'November') || (currDate === 1 && currMonthName === 'February') || (currDate === 1 && currMonthName === 'April') || (currDate === 1 && currMonthName === 'June')) {
+    prevDate = 31
+  } else if ((currDate === 1 && currMonthName === 'August') || (currDate === 1 && currMonthName === 'October') || (currDate === 1 && currMonthName === 'December') || (currDate === 1 && currMonthName === 'January') || (currDate === 1 && currMonthName === 'May') || (currDate === 1 && currMonthName === 'July')) {
+    prevDate = 30
+  } else if (leapYear && currDate === 0 && currMonthName === 'March') {
+    prevDate = 29
+  } else if (!leapYear && currDate === 0 && currMonthName === 'March') {
+    prevDate = 28
+  } else {
+    prevDate = currDate - 1
+  }
+
+  let prevDateId
+  let prevDateIndex = prevDate - 1
+  let prevDay
+  let prevDayNumber
+
+  // Set up Next Info
+  let nextMonth
+  let nextMonthName
+  let nextMonthId
+  let nextMonthNumber
+  let nextDate
+  let nextDateId
+  let nextDay
+  let nextDayNumber
 
   if (currSchoolYear) {
     return (
@@ -86,7 +164,7 @@ const SchoolYear = props => {
         aboutProps: {
           schoolYearInfo: { currSchoolYear, currSchoolYearId },
           yearInfo: { currYear },
-          monthInfo: { currMonth, currMonthName, currMonthId },
+          monthInfo: { currMonth, currMonthName, currMonthId, currMonthNumber, currMonthIndex },
           dateInfo: { currDate, currDateId },
           dayInfo: { currDay, currDayNumber }
         }
