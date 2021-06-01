@@ -1,8 +1,11 @@
 import React from 'react'
+import { Redirect } from 'react-router-dom'
 
 const CurrentSchoolYear = (props) => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.sortedCurrSchoolYear
   console.log('schoolYear: ', schoolYear)
+  const schoolYearId = schoolYear._id
+  console.log('schoolYearId: ', schoolYearId)
   const startYear = props.location.aboutProps.schoolYearInfo.startYear
   console.log('startYear: ', startYear)
   const endYear = props.location.aboutProps.schoolYearInfo.endYear
@@ -67,11 +70,11 @@ const CurrentSchoolYear = (props) => {
 
   console.log('prevMonthNumber: ', prevMonthNumber)
   console.log('prevMonthIndex: ', prevMonthIndex)
-  const prevMonth = schoolYear[prevMonthIndex]
+  const prevMonth = schoolYear[prevMonthIndex].days.sort((a, b) => a.day - b.day)
   console.log('prevMonth: ', prevMonth)
-  const prevMonthName = prevMonth.month
+  const prevMonthName = schoolYear[prevMonthIndex].month
   console.log('prevMonthName: ', prevMonthName)
-  const prevMonthId = prevMonth._id
+  const prevMonthId = schoolYear[prevMonthIndex]._id
   console.log('prevMonthId: ', prevMonthId)
 
   let prevDate = 0
@@ -98,9 +101,9 @@ const CurrentSchoolYear = (props) => {
 
   let prevDateId = ''
   if (currDate === 1) {
-    prevDateId = prevMonth.days[prevDateIndex]._id
+    prevDateId = prevMonth[prevDateIndex]._id
   } else {
-    prevDateId = currMonth.days[prevDateIndex]._id
+    prevDateId = currMonth[prevDateIndex]._id
   }
   console.log('prevDateId: ', prevDateId)
 
@@ -111,92 +114,56 @@ const CurrentSchoolYear = (props) => {
   console.log('prevDay: ', prevDay)
 
   // Set up Next Info
-  // let nextMonthIndex = currMonthIndex + 1
-  // if (currMonthIndex === 11) nextMonthIndex = 0
-  //
-  // const nextMonth = sortedCurrSchoolYear[nextMonthIndex]
-  // const nextMonthName = nextMonth.month
-  // const nextMonthId = nextMonth._id
-  //
-  // let nextMonthNumber = currMonthNumber + 1
-  // if (currMonthNumber === 12) nextMonthNumber = 1
-  //
-  // let nextDate = 0
-  // if (currDate === currMonth.length) {
-  //   nextDate = 1
-  // } else {
-  //   nextDate = currDate + 1
-  // }
-  //
-  // const nextDateIndex = currDateIndex + 1
-  // let nextDateId = ''
-  // if (currDate === currMonth.days.length) {
-  //   nextDateId = nextMonth.days[nextDateIndex]._id
-  // } else {
-  //   nextDateId = currMonth.days[nextDateIndex]._id
-  // }
-  //
-  // let nextDayNumber = currDayNumber + 1
-  // if (currDayNumber === 6) nextDayNumber = 0
-  // const nextDay = dayNumbers[nextDayNumber]
-  //
-  // currMonthNumber = todaysMonthNumber + 5
-  // console.log('currMonthNumber Test: ', currMonthNumber)
-  //
-  // // Determine if today's year and month are within the selected school year
-  // if ((todaysYear === sortedCurrSchoolYear.startYear && todaysMonthName === 'August') || (todaysYear === sortedCurrSchoolYear.startYear && todaysMonthName === 'September') || (todaysYear === sortedCurrSchoolYear.startYear && todaysMonthName === 'October') || (todaysYear === sortedCurrSchoolYear.startYear && todaysMonthName === 'November') || (todaysYear === sortedCurrSchoolYear.startYear && todaysMonthName === 'December') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'January') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'February') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'March') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'April') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'May') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'June') || (todaysYear === sortedCurrSchoolYear.endYear && todaysMonthName === 'July')) {
-  //   // If yes, date is today's date
-  //   currYear = todaysYear
-  //
-  //   currMonthNumber = todaysMonthNumber + 5
-  //   if (todaysMonthNumber === 8) currMonthNumber = 1
-  //   currMonthName = monthNumbers[currMonthNumber]
-  //
-  //   currMonthIndex = currMonthNumber - 1
-  //   if (currMonthNumber === 0) currMonthIndex = 11
-  //   currDate = todaysDate
-  //   currDayNumber = todaysDayNumber
-  //   currDay = dayNumbers[currDayNumber]
-  // } else {
-  //   // Else, set new date to August 1, schoolyear startYear
-  //   const newDay = new Date(`August 1, ${sortedCurrSchoolYear.startYear} 00:00:00`)
-  //   const newYear = newDay.getFullYear()
-  //   const newDate = newDay.getDate()
-  //   const newMonthNumber = (newDay.getMonth() + 1)
-  //   const newDayNumber = newDay.getDay()
-  //   currYear = newYear
-  //   currMonthNumber = newMonthNumber + 5
-  //   if (newMonthNumber === 8) currMonthNumber = 1
-  //   currMonthName = monthNumbers[newMonthNumber]
-  //   currMonthIndex = currMonthNumber - 1
-  //   if (currMonthNumber === 0) currMonthIndex = 11
-  //   currDate = newDate
-  //   currDayNumber = newDayNumber
-  //   currDay = dayNumbers[currDayNumber]
-  // }
-  // console.log('currYear: ', currYear)
-  // console.log('Current Month Number: ', currMonthNumber)
-  // console.log('todaysMonthNumber: ', todaysMonthNumber)
-  // console.log('currMonthName: ', currMonthName)
-  //
-  // const unsortedMonthObject = sortedCurrSchoolYear.find(month => month.month === currMonthName)
-  // // console.log('unsortedMonthObject: ', )
-  // const currMonth = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
-  //
-  // console.log('Current Date: ', currDate)
+  let nextMonthIndex = currMonthIndex + 1
+  if (currMonthIndex === 11) nextMonthIndex = 0
+  console.log('nextMonthIndex: ', nextMonthIndex)
+
+  const nextMonth = schoolYear[nextMonthIndex].days.sort((a, b) => a.day - b.day)
+  console.log('nextMonth: ', nextMonth)
+  const nextMonthName = schoolYear[nextMonthIndex].month
+  console.log('nextMonthName: ', nextMonthName)
+  const nextMonthId = schoolYear[nextMonthIndex]._id
+  console.log('nextMonthId: ', nextMonthId)
+
+  let nextMonthNumber = currMonthNumber + 1
+  if (currMonthNumber === 12) nextMonthNumber = 1
+  console.log('nextMonthNumber: ', nextMonthNumber)
+
+  let nextDate = 0
+  if (currDate === currMonth.length) {
+    nextDate = 1
+  } else {
+    nextDate = currDate + 1
+  }
+  console.log('nextDate: ', nextDate)
+
+  const nextDateIndex = currDateIndex + 1
+  console.log('nextDateIndex: ', nextDateIndex)
+
+  let nextDateId = ''
+  if (currDate === currMonth.length) {
+    nextDateId = nextMonth.days[nextDateIndex]._id
+  } else {
+    nextDateId = currMonth[nextDateIndex]._id
+  }
+  console.log('nextDateId: ', nextDateId)
+
+  let nextDayNumber = currDayNumber + 1
+  if (currDayNumber === 6) nextDayNumber = 0
+  const nextDay = dayNumbers[nextDayNumber]
+  console.log('nextDay: ', nextDay)
 
   return (
-    // <Redirect to={{
-    //   pathname: '/current-day',
-    //   aboutProps: {
-    //     schoolYearInfo: { sortedCurrSchoolYear, currSchoolYearId },
-    //     yearInfo: { currYear },
-    //     monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
-    //     dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
-    //     dayInfo: { currDay, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
-    //   }
-    // }} />
-    <div>CurrentSchoolYear Component</div>
+    <Redirect to={{
+      pathname: '/current-day',
+      aboutProps: {
+        schoolYearInfo: { schoolYear, schoolYearId },
+        yearInfo: { currYear },
+        monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+        dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+        dayInfo: { currDayName, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
+      }
+    }} />
   )
 }
 
