@@ -83,19 +83,17 @@ const SchoolYear = props => {
   // Organize school year to be in chronological order
   const sortedCurrSchoolYear = currSchoolYear.months.sort((a, b) => a.number - b.number)
 
-  let schoolYear = ''
   const startYear = parseInt(currSchoolYear.startYear)
   const endYear = parseInt(currSchoolYear.endYear)
 
   // If todaysYear matches either schoolYear.start or schoolYear.end
   // AND the schoolYearMonthNumber matches
   if ((todaysYear === startYear && todaysMonthName === 'August') || (todaysYear === startYear && todaysMonthName === 'September') || (todaysYear === startYear && todaysMonthName === 'October') || (todaysYear === startYear && todaysMonthName === 'November') || (todaysYear === startYear && todaysMonthName === 'December') || (todaysYear === endYear && todaysMonthName === 'January') || (todaysYear === endYear && todaysMonthName === 'February') || (todaysYear === endYear && todaysMonthName === 'March') || (todaysYear === endYear && todaysMonthName === 'April') || (todaysYear === endYear && todaysMonthName === 'May') || (todaysYear === endYear && todaysMonthName === 'June') || (todaysYear === endYear && todaysMonthName === 'July')) {
-    schoolYear = 'Current School Year'
     return (
       <Redirect to={{
         pathname: '/current-school-year',
         aboutProps: {
-          schoolYearInfo: { schoolYear, sortedCurrSchoolYear, startYear, endYear },
+          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear },
           yearInfo: { todaysYear },
           leapYear: { leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
@@ -105,12 +103,11 @@ const SchoolYear = props => {
       }} />
     )
   } else {
-    schoolYear = 'Other School Year'
     return (
       <Redirect to={{
         pathname: '/other-school-year',
         aboutProps: {
-          schoolYearInfo: { schoolYear, sortedCurrSchoolYear, startYear, endYear },
+          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear },
           yearInfo: { todaysYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
           dateInfo: { todaysDate },

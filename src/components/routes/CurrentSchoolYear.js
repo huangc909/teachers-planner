@@ -1,31 +1,62 @@
 import React from 'react'
 
-const CurrentSchoolYear = () => {
+const CurrentSchoolYear = (props) => {
+  const schoolYear = props.location.aboutProps.schoolYearInfo.sortedCurrSchoolYear
+  console.log('schoolYear: ', schoolYear)
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  console.log('startYear: ', startYear)
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
+  console.log('endYear: ', endYear)
+  const todaysYear = props.location.aboutProps.yearInfo.todaysYear
+  console.log('todaysYear: ', todaysYear)
+  const leapYear = props.location.aboutProps.leapYear.leapYear
+  console.log('leapYear: ', leapYear)
+  const schoolYearMonthNumber = props.location.aboutProps.monthInfo.schoolYearMonthNumber
+  console.log('schoolYearMonthNumber: ', schoolYearMonthNumber)
+  const todaysMonthName = props.location.aboutProps.monthInfo.todaysMonthName
+  console.log('todaysMonthName: ', todaysMonthName)
+  const todaysMonthNumber = props.location.aboutProps.monthInfo.todaysMonthNumber
+  console.log('todaysMonthNumber: ', todaysMonthNumber)
+  const todaysDate = props.location.aboutProps.dateInfo.todaysDate
+  console.log('todaysDate: ', todaysDate)
+  const todaysDayNumber = props.location.aboutProps.dayInfo.todaysDayNumber
+  console.log('todayDayNumber: ', todaysDayNumber)
   // // Set up Current info
-  // let currYear = 0
-  // let currMonthNumber = 0
-  // let currMonthName = ''
-  // let currMonthIndex = 0
-  // let currDate = 0
-  // let currDateIndex = 0
-  // let currDateId = ''
-  // let currDayNumber = 0
-  // let currDay =
-  // console.log('currYear Initially: ', currYear)
-  //
-  // // const dayNumbers = {
-  // //   0: 'Sunday',
-  // //   1: 'Monday',
-  // //   2: 'Tuesday',
-  // //   3: 'Wednesday',
-  // //   4: 'Thursday',
-  // //   5: 'Friday',
-  // //   6: 'Saturday'
-  // // }
-  //
-  // const currMonthId = currMonth._id
-  // currDateIndex = currDate - 1
-  // currDateId = currMonth[currDateIndex]._id
+  const currYear = todaysYear
+  console.log('currYear: ', currYear)
+  // Use school year month number from now on
+  const currMonthNumber = schoolYearMonthNumber
+  console.log('currMonthNumber: ', currMonthNumber)
+  const currMonthName = todaysMonthName
+  console.log('currMonthName: ', currMonthName)
+  const currMonthIndex = schoolYearMonthNumber - 1
+  console.log('currMonthIndex: ', currMonthIndex)
+  // Sort month object
+  const currMonth = schoolYear[currMonthIndex].days.sort((a, b) => a.day - b.day)
+  console.log('currMonth: ', currMonth)
+  const currMonthId = currMonth._id
+  console.log('currMonthId: ', currMonthId)
+  const currDate = todaysDate
+  console.log('currDate: ', currDate)
+  const currDateIndex = todaysDate - 1
+  console.log('currDateIndex: ', currDateIndex)
+  const currDateId = schoolYear[currMonthIndex].days[currDateIndex]._id
+  console.log('currDateId: ', currDateId)
+  const currDayNumber = todaysDayNumber
+  console.log('currDayNumber: ', currDayNumber)
+
+  const dayNumbers = {
+    0: 'Sunday',
+    1: 'Monday',
+    2: 'Tuesday',
+    3: 'Wednesday',
+    4: 'Thursday',
+    5: 'Friday',
+    6: 'Saturday'
+  }
+
+  const currDayName = dayNumbers[currDayNumber]
+  console.log('currDayName: ', currDayName)
   //
   // // Set up Previous Info
   // let prevMonthNumber = currMonthNumber - 1
@@ -105,9 +136,6 @@ const CurrentSchoolYear = () => {
   // let nextDayNumber = currDayNumber + 1
   // if (currDayNumber === 6) nextDayNumber = 0
   // const nextDay = dayNumbers[nextDayNumber]
-  //
-  // // Calculate for leap year
-  // const leapYear = (currYear % 100 === 0) ? (currYear % 400 === 0) : (currYear % 4 === 0)
   //
   // currMonthNumber = todaysMonthNumber + 5
   // console.log('currMonthNumber Test: ', currMonthNumber)
