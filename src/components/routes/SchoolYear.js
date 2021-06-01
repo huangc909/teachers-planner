@@ -120,42 +120,69 @@ const SchoolYear = props => {
 
   // Set up Previous Info
   let prevMonthNumber = currMonthNumber - 1
-  if (currMonthNumber === 0) prevMonthNumber = 11
+  if (currMonthNumber === 1) prevMonthNumber = 12
 
-  let prevMonthIndex = prevMonthNumber - 1
-  if (prevMonthNumber === 0) prevMonthIndex = 11
+  let prevMonthIndex = currMonthIndex - 1
+  if (currMonthIndex === 0) prevMonthIndex = 11
 
-  let prevMonth = currSchoolYear[prevMonthIndex]
-  let prevMonthName = prevMonth.month
-  let prevMonthId = prevMonth._id
+  const prevMonth = currSchoolYear[prevMonthIndex]
+  const prevMonthName = prevMonth.month
+  const prevMonthId = prevMonth._id
 
   let prevDate = 0
   if ((currDate === 1 && currMonthName === 'September') || (currDate === 1 && currMonthName === 'November') || (currDate === 1 && currMonthName === 'February') || (currDate === 1 && currMonthName === 'April') || (currDate === 1 && currMonthName === 'June')) {
     prevDate = 31
   } else if ((currDate === 1 && currMonthName === 'August') || (currDate === 1 && currMonthName === 'October') || (currDate === 1 && currMonthName === 'December') || (currDate === 1 && currMonthName === 'January') || (currDate === 1 && currMonthName === 'May') || (currDate === 1 && currMonthName === 'July')) {
     prevDate = 30
-  } else if (leapYear && currDate === 0 && currMonthName === 'March') {
+  } else if (leapYear && currDate === 1 && currMonthName === 'March') {
     prevDate = 29
-  } else if (!leapYear && currDate === 0 && currMonthName === 'March') {
+  } else if (!leapYear && currDate === 1 && currMonthName === 'March') {
     prevDate = 28
   } else {
     prevDate = currDate - 1
   }
 
-  let prevDateId
-  let prevDateIndex = prevDate - 1
-  let prevDay
-  let prevDayNumber
+  const prevDateIndex = currDateIndex - 1
+  let prevDateId = ''
+  if (currDate === 1) {
+    prevDateId = prevMonth[prevDateIndex]._id
+  } else {
+    prevDateId = currMonth[prevDateIndex]._id
+  }
+
+  let prevDayNumber = currDayNumber - 1
+  if (currDayNumber === 0) prevDayNumber = 6
+  const prevDay = dayNumbers[prevDayNumber]
 
   // Set up Next Info
-  let nextMonth
-  let nextMonthName
-  let nextMonthId
-  let nextMonthNumber
-  let nextDate
-  let nextDateId
-  let nextDay
-  let nextDayNumber
+  let nextMonthIndex = currMonthIndex + 1
+  if (currMonthIndex === 11) nextMonthIndex = 0
+
+  const nextMonth = currSchoolYear[nextMonthIndex]
+  const nextMonthName = nextMonth.month
+  const nextMonthId = nextMonth._id
+
+  let nextMonthNumber = currMonthNumber + 1
+  if (currMonthNumber === 12) nextMonthNumber = 1
+
+  let nextDate = 0
+  if (currDate === currMonth.length) {
+    nextDate = 1
+  } else {
+    nextDate = currDate + 1
+  }
+
+  const nextDateIndex = currDateIndex + 1
+  let nextDateId = ''
+  if (currDate === currMonth.length) {
+    nextDateId = nextMonth[nextDateIndex]._id
+  } else {
+    nextDateId = currMonth[nextDateIndex]._id
+  }
+
+  let nextDayNumber = currDayNumber + 1
+  if (currDayNumber === 6) nextDayNumber = 0
+  const nextDay = dayNumbers[nextDayNumber]
 
   if (currSchoolYear) {
     return (
@@ -164,9 +191,9 @@ const SchoolYear = props => {
         aboutProps: {
           schoolYearInfo: { currSchoolYear, currSchoolYearId },
           yearInfo: { currYear },
-          monthInfo: { currMonth, currMonthName, currMonthId, currMonthNumber, currMonthIndex },
-          dateInfo: { currDate, currDateId },
-          dayInfo: { currDay, currDayNumber }
+          monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+          dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+          dayInfo: { currDay, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
         }
       }} />
     )
