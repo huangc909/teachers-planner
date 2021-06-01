@@ -110,8 +110,8 @@ const CurrentSchoolYear = (props) => {
   let prevDayNumber = currDayNumber - 1
   if (currDayNumber === 0) prevDayNumber = 6
   console.log('prevDayNumber: ', prevDayNumber)
-  const prevDay = dayNumbers[prevDayNumber]
-  console.log('prevDay: ', prevDay)
+  const prevDayName = dayNumbers[prevDayNumber]
+  console.log('prevDayName: ', prevDayName)
 
   // Set up Next Info
   let nextMonthIndex = currMonthIndex + 1
@@ -150,8 +150,8 @@ const CurrentSchoolYear = (props) => {
 
   let nextDayNumber = currDayNumber + 1
   if (currDayNumber === 6) nextDayNumber = 0
-  const nextDay = dayNumbers[nextDayNumber]
-  console.log('nextDay: ', nextDay)
+  const nextDayName = dayNumbers[nextDayNumber]
+  console.log('nextDayName: ', nextDayName)
 
   return (
     <Redirect to={{
@@ -161,7 +161,7 @@ const CurrentSchoolYear = (props) => {
         yearInfo: { currYear },
         monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
         dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
-        dayInfo: { currDayName, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
+        dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
       }
     }} />
   )

@@ -8,8 +8,8 @@ import CheckMark from './CheckMark'
 const CurrentDay = (props) => {
   const { msgAlert } = props
 
-  const currSchoolYear = props.location.aboutProps.schoolYearInfo.sortedCurrSchoolYear
-  const currSchoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const currYear = props.location.aboutProps.yearInfo.currYear
   const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
@@ -19,7 +19,7 @@ const CurrentDay = (props) => {
   const currDateIndex = props.location.aboutProps.dateInfo.currDateIndex
   const currDate = props.location.aboutProps.dateInfo.currDate
   const currDateId = props.location.aboutProps.dateInfo.currDateId
-  const currDay = props.location.aboutProps.dayInfo.currDay
+  const currDayName = props.location.aboutProps.dayInfo.currDayName
   const currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
 
   const prevMonthIndex = props.location.aboutProps.monthInfo.prevMonthIndex
@@ -30,7 +30,7 @@ const CurrentDay = (props) => {
   const prevDateIndex = props.location.aboutProps.dateInfo.prevDateIndex
   const prevDate = props.location.aboutProps.dateInfo.prevDate
   const prevDateId = props.location.aboutProps.dateInfo.prevDateId
-  const prevDay = props.location.aboutProps.dayInfo.prevDay
+  const prevDayName = props.location.aboutProps.dayInfo.prevDayName
   const prevDayNumber = props.location.aboutProps.dayInfo.prevDayNumber
 
   const nextMonthIndex = props.location.aboutProps.monthInfo.nextMonthIndex
@@ -41,7 +41,7 @@ const CurrentDay = (props) => {
   const nextDateIndex = props.location.aboutProps.dateInfo.nextDateIndex
   const nextDate = props.location.aboutProps.dateInfo.nextDate
   const nextDateId = props.location.aboutProps.dateInfo.nextDateId
-  const nextDay = props.location.aboutProps.dateInfo.nextDay
+  const nextDayName = props.location.aboutProps.dateInfo.nextDayName
   const nextDayNumber = props.location.aboutProps.dateInfo.nextDayNumber
 
   const [currentDay, setCurrentDay] = useState(null)
@@ -49,7 +49,7 @@ const CurrentDay = (props) => {
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${currMonthId}/days/${currDateId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -77,23 +77,45 @@ const CurrentDay = (props) => {
       {...props}
       key={task._id}
       task={task}
+      taskId={task._id}
+      schoolYear={schoolYear}
+      schoolYearId={schoolYearId}
       currYear={currYear}
-      currSchoolYear={currSchoolYear}
-      currSchoolYearId={currSchoolYearId}
+      currMonthIndex={currMonthIndex}
+      currMonthId={currMonthId}
       currMonth={currMonth}
       currMonthName={currMonthName}
-      currMonthId={currMonthId}
+      currMonthNumber={currMonthNumber}
+      currDateIndex={currDateIndex}
       currDate={currDate}
-      currDay={currDay}
       currDateId={currDateId}
+      currDayName={currDayName}
       currDayNumber={currDayNumber}
-      taskId={task._id}
+      prevMonthIndex={prevMonthIndex}
+      prevMonthId={prevMonthId}
+      prevMonthName={prevMonthName}
+      prevMonthNumber={prevMonthNumber}
+      prevDateIndex={prevDateIndex}
+      prevDate={prevDate}
+      prevDateId={prevDateId}
+      prevDayName={prevDayName}
+      prevDayNumber={prevDayNumber}
+      nextMonthIndex={nextMonthIndex}
+      nextMonthId={nextMonthId}
+      nextMonth={nextMonth}
+      nextMonthName={nextMonthName}
+      nextMonthNumber={nextMonthNumber}
+      nextDateIndex={nextDateIndex}
+      nextDate={nextDate}
+      nextDateId={nextDateId}
+      nextDayName={nextDayName}
+      nextDayNumber={nextDayNumber}
     />
   ))
 
   const destroy = (event) => {
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}`,
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -120,20 +142,20 @@ const CurrentDay = (props) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h6>{currSchoolYear.startYear}-{currSchoolYear.endYear}</h6>
+      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
       <br />
-      <h1>{currDay}</h1>
+      <h1>{currDayName}</h1>
       <h2>{currMonthName} {currDate}, {currYear}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
             pathname: `/previous-day/${prevDateId}`,
             aboutProps: {
-              schoolYearInfo: { currSchoolYear, currSchoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { currYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
-              dayInfo: { currDay, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
+              dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
             <button className="button-style">Previous Day</button>
@@ -146,11 +168,11 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/next-day/${nextDateId}`,
             aboutProps: {
-              schoolYearInfo: { currSchoolYear, currSchoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId },
               yearInfo: { currYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
-              dayInfo: { currDay, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
+              dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
             <button className="button-style">Next Day</button>
@@ -161,11 +183,11 @@ const CurrentDay = (props) => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearInfo: { currSchoolYear, currSchoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId },
             yearInfo: { currYear },
             monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
             dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
-            dayInfo: { currDay, currDayNumber, prevDay, prevDayNumber, nextDay, nextDayNumber }
+            dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
           }
         }} >
           <button style={{ width: '30px', height: '30px', borderRadius: '25px' }}>+</button>
