@@ -93,7 +93,7 @@ const SchoolYear = props => {
       <Redirect to={{
         pathname: '/current-school-year',
         aboutProps: {
-          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear },
+          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear, currSchoolYearId },
           yearInfo: { todaysYear },
           leapYear: { leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },

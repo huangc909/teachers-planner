@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom'
 const CurrentSchoolYear = (props) => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.sortedCurrSchoolYear
   console.log('schoolYear: ', schoolYear)
-  const schoolYearId = schoolYear._id
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
   console.log('schoolYearId: ', schoolYearId)
   const startYear = props.location.aboutProps.schoolYearInfo.startYear
   console.log('startYear: ', startYear)

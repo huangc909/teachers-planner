@@ -10,6 +10,7 @@ const CurrentDay = (props) => {
 
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
+  console.log('schoolYearId: ', schoolYearId)
   const currYear = props.location.aboutProps.yearInfo.currYear
   const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
