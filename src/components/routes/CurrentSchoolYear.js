@@ -34,7 +34,7 @@ const CurrentSchoolYear = (props) => {
   // Sort month object
   const currMonth = schoolYear[currMonthIndex].days.sort((a, b) => a.day - b.day)
   console.log('currMonth: ', currMonth)
-  const currMonthId = currMonth._id
+  const currMonthId = schoolYear[currMonthIndex]._id
   console.log('currMonthId: ', currMonthId)
   const currDate = todaysDate
   console.log('currDate: ', currDate)
@@ -57,57 +57,60 @@ const CurrentSchoolYear = (props) => {
 
   const currDayName = dayNumbers[currDayNumber]
   console.log('currDayName: ', currDayName)
-  //
-  // // Set up Previous Info
-  // let prevMonthNumber = currMonthNumber - 1
-  // if (currMonthNumber === 1) prevMonthNumber = 12
-  //
-  // let prevMonthIndex = currMonthIndex - 1
-  // if (currMonthIndex === 0) prevMonthIndex = 11
-  //
-  // console.log('prevMonthIndex: ', prevMonthIndex)
-  // const prevMonth = sortedCurrSchoolYear[prevMonthIndex]
-  // const prevMonthName = prevMonth.month
-  // const prevMonthId = prevMonth._id
-  //
-  // console.log('prevMonth: ', prevMonth)
-  // console.log('prevDays: ', prevMonth.days)
-  //
-  // let prevDate = 0
-  // let prevDateIndex = 0
-  // if ((currDate === 1 && currMonthName === 'September') || (currDate === 1 && currMonthName === 'November') || (currDate === 1 && currMonthName === 'February') || (currDate === 1 && currMonthName === 'April') || (currDate === 1 && currMonthName === 'June')) {
-  //   prevDate = 31
-  //   prevDateIndex = 30
-  // } else if ((currDate === 1 && currMonthName === 'August') || (currDate === 1 && currMonthName === 'October') || (currDate === 1 && currMonthName === 'December') || (currDate === 1 && currMonthName === 'January') || (currDate === 1 && currMonthName === 'May') || (currDate === 1 && currMonthName === 'July')) {
-  //   prevDate = 30
-  //   prevDateIndex = 29
-  // } else if (leapYear && currDate === 1 && currMonthName === 'March') {
-  //   prevDate = 29
-  //   prevDateIndex = 28
-  // } else if (!leapYear && currDate === 1 && currMonthName === 'March') {
-  //   prevDate = 28
-  //   prevDateIndex = 27
-  // } else {
-  //   prevDate = currDate - 1
-  //   prevDateIndex = currDateIndex - 1
-  // }
-  //
-  // console.log('prevDateIndex: ', prevDateIndex)
-  //
-  // let prevDateId = ''
-  // if (currDate === 1) {
-  //   prevDateId = prevMonth.days[prevDateIndex]._id
-  // } else {
-  //   prevDateId = currMonth.days[prevDateIndex]._id
-  // }
-  //
-  // console.log('prevDate: ', prevMonth.days[prevDateIndex])
-  //
-  // let prevDayNumber = currDayNumber - 1
-  // if (currDayNumber === 0) prevDayNumber = 6
-  // const prevDay = dayNumbers[prevDayNumber]
-  //
-  // // Set up Next Info
+
+  // Set up Previous Info
+  let prevMonthNumber = currMonthNumber - 1
+  if (currMonthNumber === 1) prevMonthNumber = 12
+
+  let prevMonthIndex = currMonthIndex - 1
+  if (currMonthIndex === 0) prevMonthIndex = 11
+
+  console.log('prevMonthNumber: ', prevMonthNumber)
+  console.log('prevMonthIndex: ', prevMonthIndex)
+  const prevMonth = schoolYear[prevMonthIndex]
+  console.log('prevMonth: ', prevMonth)
+  const prevMonthName = prevMonth.month
+  console.log('prevMonthName: ', prevMonthName)
+  const prevMonthId = prevMonth._id
+  console.log('prevMonthId: ', prevMonthId)
+
+  let prevDate = 0
+  let prevDateIndex = 0
+  if ((currDate === 1 && currMonthName === 'September') || (currDate === 1 && currMonthName === 'November') || (currDate === 1 && currMonthName === 'February') || (currDate === 1 && currMonthName === 'April') || (currDate === 1 && currMonthName === 'June')) {
+    prevDate = 31
+    prevDateIndex = 30
+  } else if ((currDate === 1 && currMonthName === 'August') || (currDate === 1 && currMonthName === 'October') || (currDate === 1 && currMonthName === 'December') || (currDate === 1 && currMonthName === 'January') || (currDate === 1 && currMonthName === 'May') || (currDate === 1 && currMonthName === 'July')) {
+    prevDate = 30
+    prevDateIndex = 29
+  } else if (leapYear && currDate === 1 && currMonthName === 'March') {
+    prevDate = 29
+    prevDateIndex = 28
+  } else if (!leapYear && currDate === 1 && currMonthName === 'March') {
+    prevDate = 28
+    prevDateIndex = 27
+  } else {
+    prevDate = currDate - 1
+    prevDateIndex = currDateIndex - 1
+  }
+
+  console.log('prevDate: ', prevDate)
+  console.log('prevDateIndex: ', prevDateIndex)
+
+  let prevDateId = ''
+  if (currDate === 1) {
+    prevDateId = prevMonth.days[prevDateIndex]._id
+  } else {
+    prevDateId = currMonth.days[prevDateIndex]._id
+  }
+  console.log('prevDateId: ', prevDateId)
+
+  let prevDayNumber = currDayNumber - 1
+  if (currDayNumber === 0) prevDayNumber = 6
+  console.log('prevDayNumber: ', prevDayNumber)
+  const prevDay = dayNumbers[prevDayNumber]
+  console.log('prevDay: ', prevDay)
+
+  // Set up Next Info
   // let nextMonthIndex = currMonthIndex + 1
   // if (currMonthIndex === 11) nextMonthIndex = 0
   //
