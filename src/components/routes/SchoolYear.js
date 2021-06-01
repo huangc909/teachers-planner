@@ -73,11 +73,11 @@ const SchoolYear = props => {
 
   const unsortedMonthObject = yearObject.find(month => month.month === currMonthName)
 
-  const monthObject = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
+  const currMonth = unsortedMonthObject.days.sort((a, b) => a.day - b.day)
 
-  const monthId = unsortedMonthObject._id
+  const currMonthId = unsortedMonthObject._id
 
-  const currDateId = monthObject[currDate - 1]._id
+  const currDateId = currMonth[currDate - 1]._id
 
   if (currSchoolYear) {
     return (
@@ -86,7 +86,7 @@ const SchoolYear = props => {
         aboutProps: {
           schoolYearInfo: { currSchoolYear, currSchoolYearId },
           yearInfo: { currYear },
-          monthInfo: { monthObject, currMonthName, monthId },
+          monthInfo: { currMonth, currMonthName, currMonthId },
           dateInfo: { currDate, currDateId },
           dayInfo: { currDay, currDayNumber }
         }

@@ -10,9 +10,9 @@ const NextDay = props => {
   const currSchoolYear = props.location.aboutProps.schoolYearInfo.currSchoolYear
   const currSchoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
   const currYear = props.location.aboutProps.yearInfo.currYear
-  const monthObject = props.location.aboutProps.monthInfo.monthObject
-  const monthName = props.location.aboutProps.monthInfo.monthName
-  const monthId = props.location.aboutProps.monthInfo.monthId
+  const currMonth = props.location.aboutProps.monthInfo.currMonth
+  const currMonthName = props.location.aboutProps.monthInfo.currMonthName
+  const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   let currDate = props.location.aboutProps.dateInfo.currDate
   currDate += 1
   let currDay = ''
@@ -22,9 +22,9 @@ const NextDay = props => {
   } else {
     currDayNumber += 1
   }
-  const currDateId = monthObject[currDate - 1]._id
-  const nextDateId = monthObject[currDate]._id
-  const prevDateId = monthObject[currDate - 2]._id
+  const currDateId = currMonth[currDate - 1]._id
+  const nextDateId = currMonth[currDate]._id
+  const prevDateId = currMonth[currDate - 2]._id
 
   const dayNumbers = {
     0: 'Sunday',
@@ -60,7 +60,7 @@ const NextDay = props => {
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${monthId}/days/${currDateId}`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
@@ -92,9 +92,9 @@ const NextDay = props => {
       currYear={currYear}
       currSchoolYear={currSchoolYear}
       currSchoolYearId={currSchoolYearId}
-      monthName={monthName}
-      monthObject={monthObject}
-      monthId={monthId}
+      currMonth={currMonth}
+      currMonthName={currMonthName}
+      currMonthId={currMonthId}
       currDate={currDate}
       currDay={currDay}
       currDateId={currDateId}
@@ -139,7 +139,7 @@ const NextDay = props => {
       <h6>{currSchoolYear.startYear}-{currSchoolYear.endYear}</h6>
       <br />
       <h1>{currDay}</h1>
-      <h2>{monthName} {currDate}, {currYear}</h2>
+      <h2>{currMonthName} {currDate}, {currYear}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
@@ -147,7 +147,7 @@ const NextDay = props => {
             aboutProps: {
               schoolYearInfo: { currSchoolYear, currSchoolYearId },
               yearInfo: { currYear },
-              monthInfo: { monthName, monthId, monthObject },
+              monthInfo: { currMonth, currMonthName, currMonthId },
               dateInfo: { currDate, currDateId },
               dayInfo: { currDay, currDayNumber }
             }
@@ -164,7 +164,7 @@ const NextDay = props => {
             aboutProps: {
               schoolYearInfo: { currSchoolYear, currSchoolYearId },
               yearInfo: { currYear },
-              monthInfo: { monthObject, monthId, monthName },
+              monthInfo: { currMonth, currMonthName, currMonthId },
               dateInfo: { currDate, currDateId },
               dayInfo: { currDay, currDayNumber }
             }
@@ -179,7 +179,7 @@ const NextDay = props => {
           aboutProps: {
             schoolYearInfo: { currSchoolYear, currSchoolYearId },
             yearInfo: { currYear },
-            monthInfo: { monthObject, monthId, monthName },
+            monthInfo: { currMonth, currMonthName, currMonthId },
             dateInfo: { currDate, currDateId },
             dayInfo: { currDay, currDayNumber }
           }

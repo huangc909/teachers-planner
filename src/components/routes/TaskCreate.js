@@ -11,9 +11,9 @@ const TaskCreate = props => {
   const currSchoolYear = props.location.aboutProps.schoolYearInfo.currSchoolYear
   const currSchoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
   const currYear = props.location.aboutProps.yearInfo.currYear
-  const monthObject = props.location.aboutProps.monthInfo.monthObject
+  const currMonth = props.location.aboutProps.monthInfo.currMonth
   const currMonthName = props.location.aboutProps.monthInfo.currMonthName
-  const monthId = props.location.aboutProps.monthInfo.monthId
+  const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currDate = props.location.aboutProps.dateInfo.currDate
   const currDay = props.location.aboutProps.dayInfo.currDay
   const currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
@@ -46,7 +46,7 @@ const TaskCreate = props => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${monthId}/days/${currDateId}/tasks`,
+      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}/tasks`,
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -79,7 +79,7 @@ const TaskCreate = props => {
         aboutProps: {
           schoolYearInfo: { currSchoolYear, currSchoolYearId },
           yearInfo: { currYear },
-          monthInfo: { monthObject, currMonthName, monthId },
+          monthInfo: { currMonth, currMonthName, currMonthId },
           dateInfo: { currDate, currDateId },
           dayInfo: { currDay, currDayNumber }
         }
