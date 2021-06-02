@@ -10,6 +10,8 @@ const TaskCreate = props => {
   const { user, msgAlert } = props
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
   const currYear = props.location.aboutProps.yearInfo.currYear
   const leapYear = props.location.aboutProps.yearInfo.leapYear
 
@@ -104,7 +106,7 @@ const TaskCreate = props => {
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          schoolYearInfo: { schoolYear, schoolYearId },
+          schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
           yearInfo: { currYear, leapYear },
           monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
           dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },

@@ -8,6 +8,8 @@ const CheckMark = (props) => {
     task,
     schoolYear,
     schoolYearId,
+    startYear,
+    endYear,
     currYear,
     leapYear,
     currMonthIndex,
@@ -93,7 +95,7 @@ const CheckMark = (props) => {
         <Link to={{
           pathname: `/schoolYears/${schoolYearId}/months/${currMonthId}/days/${currDateId}/tasks/${task._id}`,
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
             yearInfo: { currYear, leapYear },
             monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
             dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },

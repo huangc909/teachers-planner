@@ -11,6 +11,8 @@ const CurrentDay = (props) => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   console.log('schoolYearId: ', schoolYearId)
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
   const currYear = props.location.aboutProps.yearInfo.currYear
   const leapYear = props.location.aboutProps.yearInfo.leapYear
 
@@ -39,6 +41,7 @@ const CurrentDay = (props) => {
   const nextMonthIndex = props.location.aboutProps.monthInfo.nextMonthIndex
   const nextMonthId = props.location.aboutProps.monthInfo.nextMonthId
   const nextMonth = props.location.aboutProps.monthInfo.nextMonth
+  console.log('nextMonth: ', nextMonth)
   const nextMonthName = props.location.aboutProps.monthInfo.nextMonthName
   const nextMonthNumber = props.location.aboutProps.monthInfo.nextMonthNumber
   const nextDateIndex = props.location.aboutProps.dateInfo.nextDateIndex
@@ -83,6 +86,8 @@ const CurrentDay = (props) => {
       taskId={task._id}
       schoolYear={schoolYear}
       schoolYearId={schoolYearId}
+      startYear={startYear}
+      endYear={endYear}
       leapYear={leapYear}
       currYear={currYear}
       currMonthIndex={currMonthIndex}
@@ -147,7 +152,7 @@ const CurrentDay = (props) => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
+      <h6>{startYear}-{endYear}</h6>
       <br />
       <h1>{currDayName}</h1>
       <h2>{currMonthName} {currDate}, {currYear}</h2>
@@ -156,7 +161,7 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/previous-day/${prevDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYear, schoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
               yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
@@ -173,7 +178,7 @@ const CurrentDay = (props) => {
           <Link to={{
             pathname: `/next-day/${nextDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYear, schoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
               yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
@@ -188,7 +193,7 @@ const CurrentDay = (props) => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
             yearInfo: { currYear, leapYear },
             monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
             dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },

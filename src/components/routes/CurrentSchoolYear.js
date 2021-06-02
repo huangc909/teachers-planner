@@ -6,9 +6,9 @@ const CurrentSchoolYear = (props) => {
   // console.log('schoolYear: ', schoolYear)
   const schoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
   // console.log('schoolYearId: ', schoolYearId)
-  // const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
   // console.log('startYear: ', startYear)
-  // const endYear = props.location.aboutProps.schoolYearInfo.endYear
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
   // console.log('endYear: ', endYear)
   const todaysYear = props.location.aboutProps.yearInfo.todaysYear
   // console.log('todaysYear: ', todaysYear)
@@ -157,7 +157,7 @@ const CurrentSchoolYear = (props) => {
     <Redirect to={{
       pathname: '/current-day',
       aboutProps: {
-        schoolYearInfo: { schoolYear, schoolYearId },
+        schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
         yearInfo: { currYear, leapYear },
         monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
         dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },

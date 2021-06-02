@@ -11,6 +11,8 @@ const NextDay = props => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   console.log('schoolYearId: ', schoolYearId)
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
   const currYear = props.location.aboutProps.yearInfo.currYear
   const leapYear = props.location.aboutProps.yearInfo.leapYear
 
@@ -177,7 +179,7 @@ const NextDay = props => {
 
   // let nextDateId = ''
   if (currDate === currMonth.length) {
-    nextDateId = nextMonth.days[nextDateIndex]._id
+    nextDateId = nextMonth[nextDateIndex]._id
   } else {
     nextDateId = currMonth[nextDateIndex]._id
   }
@@ -226,6 +228,8 @@ const NextDay = props => {
       taskId={task._id}
       schoolYear={schoolYear}
       schoolYearId={schoolYearId}
+      startYear={startYear}
+      endYear={endYear}
       currYear={currYear}
       leapYear={leapYear}
       currMonthIndex={currMonthIndex}
@@ -294,7 +298,7 @@ const NextDay = props => {
 
   return (
     <div style={{ textAlign: 'center' }}>
-      <h6>{schoolYear.startYear}-{schoolYear.endYear}</h6>
+      <h6>{startYear}-{endYear}</h6>
       <br />
       <h1>{currDayName}</h1>
       <h2>{currMonthName} {currDate}, {currYear}</h2>
@@ -303,7 +307,7 @@ const NextDay = props => {
           <Link to={{
             pathname: `/previous-day/${prevDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYear, schoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
               yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
@@ -320,7 +324,7 @@ const NextDay = props => {
           <Link to={{
             pathname: `/next-day/${nextDateId}`,
             aboutProps: {
-              schoolYearInfo: { schoolYear, schoolYearId },
+              schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
               yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
@@ -335,7 +339,7 @@ const NextDay = props => {
         <Link to={{
           pathname: '/task-create',
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
             yearInfo: { currYear, leapYear },
             monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
             dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
