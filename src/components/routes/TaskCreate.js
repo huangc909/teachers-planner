@@ -11,8 +11,9 @@ const TaskCreate = props => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const currYear = props.location.aboutProps.yearInfo.currYear
+  const leapYear = props.location.aboutProps.yearInfo.leapYear
 
-  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
+  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthcurrMonthIndex
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currMonth = props.location.aboutProps.monthInfo.currMonth
   const currMonthName = props.location.aboutProps.monthInfo.currMonthName
@@ -104,7 +105,7 @@ const TaskCreate = props => {
         pathname: '/current-day',
         aboutProps: {
           schoolYearInfo: { schoolYear, schoolYearId },
-          yearInfo: { currYear },
+          yearInfo: { currYear, leapYear },
           monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
           dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
           dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }

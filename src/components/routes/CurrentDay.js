@@ -12,8 +12,9 @@ const CurrentDay = (props) => {
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   console.log('schoolYearId: ', schoolYearId)
   const currYear = props.location.aboutProps.yearInfo.currYear
+  const leapYear = props.location.aboutProps.yearInfo.leapYear
 
-  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
+  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthIndex
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currMonth = props.location.aboutProps.monthInfo.currMonth
   const currMonthName = props.location.aboutProps.monthInfo.currMonthName
@@ -82,6 +83,7 @@ const CurrentDay = (props) => {
       taskId={task._id}
       schoolYear={schoolYear}
       schoolYearId={schoolYearId}
+      leapYear={leapYear}
       currYear={currYear}
       currMonthIndex={currMonthIndex}
       currMonthId={currMonthId}
@@ -155,7 +157,7 @@ const CurrentDay = (props) => {
             pathname: `/previous-day/${prevDateId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
-              yearInfo: { currYear },
+              yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
@@ -172,7 +174,7 @@ const CurrentDay = (props) => {
             pathname: `/next-day/${nextDateId}`,
             aboutProps: {
               schoolYearInfo: { schoolYear, schoolYearId },
-              yearInfo: { currYear },
+              yearInfo: { currYear, leapYear },
               monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
               dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
@@ -187,7 +189,7 @@ const CurrentDay = (props) => {
           pathname: '/task-create',
           aboutProps: {
             schoolYearInfo: { schoolYear, schoolYearId },
-            yearInfo: { currYear },
+            yearInfo: { currYear, leapYear },
             monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
             dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
             dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }

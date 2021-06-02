@@ -3,50 +3,50 @@ import { Redirect } from 'react-router-dom'
 
 const CurrentSchoolYear = (props) => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.sortedCurrSchoolYear
-  console.log('schoolYear: ', schoolYear)
+  // console.log('schoolYear: ', schoolYear)
   const schoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
-  console.log('schoolYearId: ', schoolYearId)
-  const startYear = props.location.aboutProps.schoolYearInfo.startYear
-  console.log('startYear: ', startYear)
-  const endYear = props.location.aboutProps.schoolYearInfo.endYear
-  console.log('endYear: ', endYear)
+  // console.log('schoolYearId: ', schoolYearId)
+  // const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  // console.log('startYear: ', startYear)
+  // const endYear = props.location.aboutProps.schoolYearInfo.endYear
+  // console.log('endYear: ', endYear)
   const todaysYear = props.location.aboutProps.yearInfo.todaysYear
-  console.log('todaysYear: ', todaysYear)
-  const leapYear = props.location.aboutProps.leapYear.leapYear
-  console.log('leapYear: ', leapYear)
+  // console.log('todaysYear: ', todaysYear)
+  const leapYear = props.location.aboutProps.yearInfo.leapYear
+  // console.log('leapYear: ', leapYear)
   const schoolYearMonthNumber = props.location.aboutProps.monthInfo.schoolYearMonthNumber
-  console.log('schoolYearMonthNumber: ', schoolYearMonthNumber)
+  // console.log('schoolYearMonthNumber: ', schoolYearMonthNumber)
   const todaysMonthName = props.location.aboutProps.monthInfo.todaysMonthName
-  console.log('todaysMonthName: ', todaysMonthName)
-  const todaysMonthNumber = props.location.aboutProps.monthInfo.todaysMonthNumber
-  console.log('todaysMonthNumber: ', todaysMonthNumber)
+  // console.log('todaysMonthName: ', todaysMonthName)
+  // const todaysMonthNumber = props.location.aboutProps.monthInfo.todaysMonthNumber
+  // console.log('todaysMonthNumber: ', todaysMonthNumber)
   const todaysDate = props.location.aboutProps.dateInfo.todaysDate
-  console.log('todaysDate: ', todaysDate)
+  // console.log('todaysDate: ', todaysDate)
   const todaysDayNumber = props.location.aboutProps.dayInfo.todaysDayNumber
-  console.log('todayDayNumber: ', todaysDayNumber)
+  // console.log('todayDayNumber: ', todaysDayNumber)
   // // Set up Current info
   const currYear = todaysYear
-  console.log('currYear: ', currYear)
+  // console.log('currYear: ', currYear)
   // Use school year month number from now on
   const currMonthNumber = schoolYearMonthNumber
-  console.log('currMonthNumber: ', currMonthNumber)
+  // console.log('currMonthNumber: ', currMonthNumber)
   const currMonthName = todaysMonthName
-  console.log('currMonthName: ', currMonthName)
+  // console.log('currMonthName: ', currMonthName)
   const currMonthIndex = schoolYearMonthNumber - 1
-  console.log('currMonthIndex: ', currMonthIndex)
+  // console.log('currMonthIndex: ', currMonthIndex)
   // Sort month object
   const currMonth = schoolYear[currMonthIndex].days.sort((a, b) => a.day - b.day)
-  console.log('currMonth: ', currMonth)
+  // console.log('currMonth: ', currMonth)
   const currMonthId = schoolYear[currMonthIndex]._id
-  console.log('currMonthId: ', currMonthId)
+  // console.log('currMonthId: ', currMonthId)
   const currDate = todaysDate
-  console.log('currDate: ', currDate)
+  // console.log('currDate: ', currDate)
   const currDateIndex = todaysDate - 1
-  console.log('currDateIndex: ', currDateIndex)
+  // console.log('currDateIndex: ', currDateIndex)
   const currDateId = schoolYear[currMonthIndex].days[currDateIndex]._id
-  console.log('currDateId: ', currDateId)
+  // console.log('currDateId: ', currDateId)
   const currDayNumber = todaysDayNumber
-  console.log('currDayNumber: ', currDayNumber)
+  // console.log('currDayNumber: ', currDayNumber)
 
   const dayNumbers = {
     0: 'Sunday',
@@ -158,7 +158,7 @@ const CurrentSchoolYear = (props) => {
       pathname: '/current-day',
       aboutProps: {
         schoolYearInfo: { schoolYear, schoolYearId },
-        yearInfo: { currYear },
+        yearInfo: { currYear, leapYear },
         monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
         dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
         dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }

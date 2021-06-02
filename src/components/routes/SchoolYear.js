@@ -94,8 +94,7 @@ const SchoolYear = props => {
         pathname: '/current-school-year',
         aboutProps: {
           schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear, currSchoolYearId },
-          yearInfo: { todaysYear },
-          leapYear: { leapYear },
+          yearInfo: { todaysYear, leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
           dateInfo: { todaysDate },
           dayInfo: { todaysDayNumber }
@@ -108,7 +107,7 @@ const SchoolYear = props => {
         pathname: '/other-school-year',
         aboutProps: {
           schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear },
-          yearInfo: { todaysYear },
+          yearInfo: { todaysYear, leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
           dateInfo: { todaysDate },
           dayInfo: { todaysDayNumber }
