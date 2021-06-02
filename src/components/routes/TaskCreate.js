@@ -8,16 +8,42 @@ import TaskForm from './../shared/TaskForm'
 
 const TaskCreate = props => {
   const { user, msgAlert } = props
-  const currSchoolYear = props.location.aboutProps.schoolYearInfo.currSchoolYear
-  const currSchoolYearId = props.location.aboutProps.schoolYearInfo.currSchoolYearId
+  const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
+  const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   const currYear = props.location.aboutProps.yearInfo.currYear
+
+  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
+  const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currMonth = props.location.aboutProps.monthInfo.currMonth
   const currMonthName = props.location.aboutProps.monthInfo.currMonthName
-  const currMonthId = props.location.aboutProps.monthInfo.currMonthId
+  const currMonthNumber = props.location.aboutProps.monthInfo.currMonthNumber
+  const currDateIndex = props.location.aboutProps.dateInfo.currDateIndex
   const currDate = props.location.aboutProps.dateInfo.currDate
-  const currDay = props.location.aboutProps.dayInfo.currDay
-  const currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
   const currDateId = props.location.aboutProps.dateInfo.currDateId
+  const currDayName = props.location.aboutProps.dayInfo.currDayName
+  const currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
+
+  const prevMonthIndex = props.location.aboutProps.monthInfo.prevMonthIndex
+  const prevMonthId = props.location.aboutProps.monthInfo.prevMonthId
+  const prevMonth = props.location.aboutProps.monthInfo.prevMonth
+  const prevMonthName = props.location.aboutProps.monthInfo.prevMonthName
+  const prevMonthNumber = props.location.aboutProps.monthInfo.prevMonthNumber
+  const prevDateIndex = props.location.aboutProps.dateInfo.prevDateIndex
+  const prevDate = props.location.aboutProps.dateInfo.prevDate
+  const prevDateId = props.location.aboutProps.dateInfo.prevDateId
+  const prevDayName = props.location.aboutProps.dayInfo.prevDayName
+  const prevDayNumber = props.location.aboutProps.dayInfo.prevDayNumber
+
+  const nextMonthIndex = props.location.aboutProps.monthInfo.nextMonthIndex
+  const nextMonthId = props.location.aboutProps.monthInfo.nextMonthId
+  const nextMonth = props.location.aboutProps.monthInfo.nextMonth
+  const nextMonthName = props.location.aboutProps.monthInfo.nextMonthName
+  const nextMonthNumber = props.location.aboutProps.monthInfo.nextMonthNumber
+  const nextDateIndex = props.location.aboutProps.dateInfo.nextDateIndex
+  const nextDate = props.location.aboutProps.dateInfo.nextDate
+  const nextDateId = props.location.aboutProps.dateInfo.nextDateId
+  const nextDayName = props.location.aboutProps.dateInfo.nextDayName
+  const nextDayNumber = props.location.aboutProps.dateInfo.nextDayNumber
 
   const [task, setTask] = useState({
     name: '',
@@ -46,7 +72,7 @@ const TaskCreate = props => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}/tasks`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${currMonthId}/days/${currDateId}/tasks`,
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -77,11 +103,11 @@ const TaskCreate = props => {
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          schoolYearInfo: { currSchoolYear, currSchoolYearId },
+          schoolYearInfo: { schoolYear, schoolYearId },
           yearInfo: { currYear },
-          monthInfo: { currMonth, currMonthName, currMonthId },
-          dateInfo: { currDate, currDateId },
-          dayInfo: { currDay, currDayNumber }
+          monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+          dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+          dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
         }
       }} />
     )
@@ -94,7 +120,7 @@ const TaskCreate = props => {
         onPriority={onPriority}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath={`/schoolyears/${currSchoolYearId}`}
+        cancelPath={`/schoolyears/${schoolYearId}`}
       />
     </div>
   )

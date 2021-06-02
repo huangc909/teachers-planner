@@ -12,6 +12,7 @@ const CurrentDay = (props) => {
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
   console.log('schoolYearId: ', schoolYearId)
   const currYear = props.location.aboutProps.yearInfo.currYear
+
   const currMonthIndex = props.location.aboutProps.monthInfo.currMonthId
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currMonth = props.location.aboutProps.monthInfo.currMonth
@@ -94,6 +95,7 @@ const CurrentDay = (props) => {
       currDayNumber={currDayNumber}
       prevMonthIndex={prevMonthIndex}
       prevMonthId={prevMonthId}
+      prevMonth={prevMonth}
       prevMonthName={prevMonthName}
       prevMonthNumber={prevMonthNumber}
       prevDateIndex={prevDateIndex}

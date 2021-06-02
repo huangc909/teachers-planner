@@ -4,7 +4,43 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
 const CheckMark = (props) => {
-  const { currSchoolYear, currSchoolYearId, currYear, currMonthName, currMonth, currMonthId, currDate, currDay, currDateId, currDayNumber, task, user } = props
+  const {
+    task,
+    schoolYear,
+    schoolYearId,
+    currYear,
+    currMonthIndex,
+    currMonthId,
+    currMonth,
+    currMonthName,
+    currMonthNumber,
+    currDateIndex,
+    currDate,
+    currDateId,
+    currDayName,
+    currDayNumber,
+    prevMonthIndex,
+    prevMonthId,
+    prevMonth,
+    prevMonthName,
+    prevMonthNumber,
+    prevDateIndex,
+    prevDate,
+    prevDateId,
+    prevDayName,
+    prevDayNumber,
+    nextMonthIndex,
+    nextMonthId,
+    nextMonth,
+    nextMonthName,
+    nextMonthNumber,
+    nextDateIndex,
+    nextDate,
+    nextDateId,
+    nextDayName,
+    nextDayNumber,
+    user
+  } = props
   const [checked, setChecked] = useState({
     name: props.task.name,
     note: props.task.note,
@@ -25,7 +61,7 @@ const CheckMark = (props) => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}/tasks/${task._id}/checkmark`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}/months/${currMonthId}/days/${currDateId}/tasks/${task._id}/checkmark`,
       method: 'PATCH',
       headers: {
         'Authorization': `Bearer ${user.token}`
@@ -54,13 +90,13 @@ const CheckMark = (props) => {
       </div>
       <div style={{ height: '20px', display: 'flex', flexDirection: 'row', justifyContent: 'flexStart', alignItems: 'center', flexWrap: 'wrap' }}>
         <Link to={{
-          pathname: `/schoolYears/${currSchoolYearId}/months/${currMonthId}/days/${currDateId}/tasks/${task._id}`,
+          pathname: `/schoolYears/${schoolYearId}/months/${currMonthId}/days/${currDateId}/tasks/${task._id}`,
           aboutProps: {
-            schoolYearInfo: { currSchoolYear, currSchoolYearId },
+            schoolYearInfo: { schoolYear, schoolYearId },
             yearInfo: { currYear },
-            monthInfo: { currMonth, currMonthName, currMonthId },
-            dateInfo: { currDate, currDateId },
-            dayInfo: { currDay, currDayNumber }
+            monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+            dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+            dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
           }
         }}>
           <p style={{ fontSize: '17px' }}>{task.name}</p>
