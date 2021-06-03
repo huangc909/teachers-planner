@@ -10,7 +10,7 @@ const CurrentDay = (props) => {
 
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  console.log('schoolYearId: ', schoolYearId)
+  // console.log('schoolYearId: ', schoolYearId)
   const startYear = props.location.aboutProps.schoolYearInfo.startYear
   const endYear = props.location.aboutProps.schoolYearInfo.endYear
   const currYear = props.location.aboutProps.yearInfo.currYear
@@ -41,7 +41,7 @@ const CurrentDay = (props) => {
   const nextMonthIndex = props.location.aboutProps.monthInfo.nextMonthIndex
   const nextMonthId = props.location.aboutProps.monthInfo.nextMonthId
   const nextMonth = props.location.aboutProps.monthInfo.nextMonth
-  console.log('nextMonth: ', nextMonth)
+  // console.log('nextMonth: ', nextMonth)
   const nextMonthName = props.location.aboutProps.monthInfo.nextMonthName
   const nextMonthNumber = props.location.aboutProps.monthInfo.nextMonthNumber
   const nextDateIndex = props.location.aboutProps.dateInfo.nextDateIndex
