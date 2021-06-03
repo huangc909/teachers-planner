@@ -17,6 +17,7 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 
 
 ## User Stories
+# MVP
 - As a user, I can sign-up for an account.
 - As a user, I can sign-in to my account.
 - As a user, I can change my account password.
@@ -27,10 +28,16 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 - As a user, I can see the months and days of a school year.
 - As a user, I can add tasks to a specific day.
 - As a user, I can see the details about a task.
-- As a user, I can edit a task for a specific day.
 - As a user, I can delete a task for a specific day.
-- As a user, I can the to-do list for previous and next days.
+- As a user, I can see the to-do list for previous and next days.
 - As a user, I can checkmark a task when it has been completed.
+
+# Version 2 (Coming Soon)
+- As a user, I can edit a task for a specific day.
+- As a user, I can add a specific class to a specific task.
+- As a user, I can upload student works to a specific class.
+- As a user, I can view student works from a specific class.
+- As a user, I can delete student works from a specific class.
 
 
 ## Technologies Used
@@ -79,21 +86,25 @@ Specific Task Info Page
 ## Unsolved Problems that will be resolved in Version 1.1
 - List will appear when clicking on previous day, then next day, then back on previous day. This bug will be fixed so that going through the dates will run smoothly.
 
+
 ## Unsolved Problems that will be resolved in Version 1.2
 - Previous and next days can only be viewed for a specific month in Version 1, but in Version 1.2 users will be able to keep clicking the previous and next day buttons for all months
 - Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 1.2.
 - Loading of school year takes a few seconds. Version 1.2 will have a "Loading..." text for those few seconds.
 
 
+## Upcoming Release Features for Version 1.3
+- A more stylized theme and layout
+
+
 ## Upcoming Release Features for Version 2
 - Users will be able to edit school year and task information.
 - Users will be able to add a class to a specific task.
-- Users will be able to upload, save, and view student work images to a specific class.
-- A more stylized theme and layout
+- Users will be able to upload, view, and delete student work images from a specific class.
 
 
 ## Version Release Dates
 - MVP: May 18, 2021 - May 24, 2021
 - Version 1.1: May 28, 2021
 - Version 1.2: June 3, 2021
-- Version 2: (Currently in Development)
+- Version 1.3: (Currently in Development)
