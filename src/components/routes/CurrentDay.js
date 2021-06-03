@@ -150,6 +150,9 @@ const CurrentDay = (props) => {
     )
   }
 
+  console.log('currDate: ', currDate)
+  console.log('currMonthName: ', currMonthName)
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h6>{startYear}-{endYear}</h6>
@@ -168,7 +171,12 @@ const CurrentDay = (props) => {
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
-            <button className="button-style">Previous Day</button>
+            <button
+              className="button-style"
+              style={ (currDate === 1 && currMonthName === 'August') ? { display: 'none' } : { display: 'inline' } }
+            >
+              Previous Day
+            </button>
           </Link>
         </div>
         <div style={{ margin: '10px' }}>
@@ -185,7 +193,12 @@ const CurrentDay = (props) => {
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
-            <button className="button-style">Next Day</button>
+            <button
+              className="button-style"
+              style={ (currDate === 31 && currMonthName === 'July') ? { display: 'none' } : { display: 'inline' } }
+            >
+              Next Day
+            </button>
           </Link>
         </div>
       </div>

@@ -315,7 +315,13 @@ const NextDay = props => {
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
-            <button onClick={refreshPage} className="button-style">Previous Day</button>
+            <button
+              onClick={refreshPage}
+              className="button-style"
+              style={ (currDate === 1 && currMonthName === 'August') ? { display: 'none' } : { display: 'inline' } }
+            >
+              Previous Day
+            </button>
           </Link>
         </div>
         <div style={{ margin: '10px' }}>
@@ -332,7 +338,13 @@ const NextDay = props => {
               dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
             }
           }}>
-            <button onClick={refreshPage} className="button-style">Next Day</button>
+            <button
+              onClick={refreshPage}
+              className="button-style"
+              style={ (currDate === 31 && currMonthName === 'July') ? { display: 'none' } : { display: 'inline' } }
+            >
+              Next Day
+            </button>
           </Link>
         </div>
       </div>
