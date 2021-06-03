@@ -15,7 +15,7 @@ const TaskCreate = props => {
   const currYear = props.location.aboutProps.yearInfo.currYear
   const leapYear = props.location.aboutProps.yearInfo.leapYear
 
-  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthcurrMonthIndex
+  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthIndex
   const currMonthId = props.location.aboutProps.monthInfo.currMonthId
   const currMonth = props.location.aboutProps.monthInfo.currMonth
   const currMonthName = props.location.aboutProps.monthInfo.currMonthName

@@ -10,7 +10,7 @@ const PrevDay = props => {
 
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  console.log('schoolYearId: ', schoolYearId)
+  // console.log('schoolYearId: ', schoolYearId)
   const startYear = props.location.aboutProps.schoolYearInfo.startYear
   const endYear = props.location.aboutProps.schoolYearInfo.endYear
   const currYear = props.location.aboutProps.yearInfo.currYear
@@ -85,22 +85,22 @@ const PrevDay = props => {
     currDateIndex--
   }
 
-  console.log('currMonthIndex: ', currMonthIndex)
-  console.log('currDate: ', currDate)
+  // console.log('currMonthIndex: ', currMonthIndex)
+  // console.log('currDate: ', currDate)
 
   currMonthId = schoolYear[currMonthIndex]._id
-  console.log('currMonthId: ', currMonthId)
+  // console.log('currMonthId: ', currMonthId)
   currMonth = schoolYear[currMonthIndex].days.sort((a, b) => a.day - b.day)
-  console.log('currMonth: ', currMonth)
+  // console.log('currMonth: ', currMonth)
   currMonthName = schoolYear[currMonthIndex].month
-  console.log('currMonthName: ', currMonthName)
+  // console.log('currMonthName: ', currMonthName)
   currMonthNumber = currMonthIndex + 1
-  console.log('currMonthNumber: ', currMonthNumber)
+  // console.log('currMonthNumber: ', currMonthNumber)
   currDateIndex = currDate - 1
-  console.log('currDateIndex: ', currDateIndex)
+  // console.log('currDateIndex: ', currDateIndex)
 
   currDateId = currMonth[currDateIndex]._id
-  console.log('currDateId: ', currDateId)
+  // console.log('currDateId: ', currDateId)
 
   const dayNumbers = {
     0: 'Sunday',
@@ -117,10 +117,10 @@ const PrevDay = props => {
   } else {
     currDayNumber--
   }
-  console.log('currDayNumber: ', currDayNumber)
+  // console.log('currDayNumber: ', currDayNumber)
 
   currDayName = dayNumbers[currDayNumber]
-  console.log('currDayName: ', currDayName)
+  // console.log('currDayName: ', currDayName)
 
   // Set up Previous Info
   prevMonthNumber = currMonthNumber - 1
@@ -129,14 +129,14 @@ const PrevDay = props => {
   prevMonthIndex = currMonthIndex - 1
   if (currMonthIndex === 0) prevMonthIndex = 11
 
-  console.log('prevMonthNumber: ', prevMonthNumber)
-  console.log('prevMonthIndex: ', prevMonthIndex)
+  // console.log('prevMonthNumber: ', prevMonthNumber)
+  // console.log('prevMonthIndex: ', prevMonthIndex)
   prevMonth = schoolYear[prevMonthIndex].days.sort((a, b) => a.day - b.day)
-  console.log('prevMonth: ', prevMonth)
+  // console.log('prevMonth: ', prevMonth)
   prevMonthName = schoolYear[prevMonthIndex].month
-  console.log('prevMonthName: ', prevMonthName)
+  // console.log('prevMonthName: ', prevMonthName)
   prevMonthId = schoolYear[prevMonthIndex]._id
-  console.log('prevMonthId: ', prevMonthId)
+  // console.log('prevMonthId: ', prevMonthId)
 
   // prevDate = 0
   // prevDateIndex = 0
@@ -157,8 +157,8 @@ const PrevDay = props => {
     prevDateIndex = currDateIndex - 1
   }
 
-  console.log('prevDate: ', prevDate)
-  console.log('prevDateIndex: ', prevDateIndex)
+  // console.log('prevDate: ', prevDate)
+  // console.log('prevDateIndex: ', prevDateIndex)
 
   // let prevDateId = ''
   if (currDate === 1) {
@@ -166,29 +166,29 @@ const PrevDay = props => {
   } else {
     prevDateId = currMonth[prevDateIndex]._id
   }
-  console.log('prevDateId: ', prevDateId)
+  // console.log('prevDateId: ', prevDateId)
 
   prevDayNumber = currDayNumber - 1
   if (currDayNumber === 0) prevDayNumber = 6
-  console.log('prevDayNumber: ', prevDayNumber)
+  // console.log('prevDayNumber: ', prevDayNumber)
   prevDayName = dayNumbers[prevDayNumber]
-  console.log('prevDayName: ', prevDayName)
+  // console.log('prevDayName: ', prevDayName)
 
   // Set up Next Info
   nextMonthIndex = currMonthIndex + 1
   if (currMonthIndex === 11) nextMonthIndex = 0
-  console.log('nextMonthIndex: ', nextMonthIndex)
+  // console.log('nextMonthIndex: ', nextMonthIndex)
 
   nextMonth = schoolYear[nextMonthIndex].days.sort((a, b) => a.day - b.day)
-  console.log('nextMonth: ', nextMonth)
+  // console.log('nextMonth: ', nextMonth)
   nextMonthName = schoolYear[nextMonthIndex].month
-  console.log('nextMonthName: ', nextMonthName)
+  // console.log('nextMonthName: ', nextMonthName)
   nextMonthId = schoolYear[nextMonthIndex]._id
-  console.log('nextMonthId: ', nextMonthId)
+  // console.log('nextMonthId: ', nextMonthId)
 
   nextMonthNumber = currMonthNumber + 1
   if (currMonthNumber === 12) nextMonthNumber = 1
-  console.log('nextMonthNumber: ', nextMonthNumber)
+  // console.log('nextMonthNumber: ', nextMonthNumber)
 
   // let nextDate = 0
   if (currDate === currMonth.length) {
@@ -198,9 +198,9 @@ const PrevDay = props => {
     nextDate = currDate + 1
     nextDateIndex = currDateIndex + 1
   }
-  console.log('nextDate: ', nextDate)
+  // console.log('nextDate: ', nextDate)
 
-  console.log('nextDateIndex: ', nextDateIndex)
+  // console.log('nextDateIndex: ', nextDateIndex)
 
   // let nextDateId = ''
   if (currDate === currMonth.length) {
@@ -208,12 +208,12 @@ const PrevDay = props => {
   } else {
     nextDateId = currMonth[nextDateIndex]._id
   }
-  console.log('nextDateId: ', nextDateId)
+  // console.log('nextDateId: ', nextDateId)
 
   nextDayNumber = currDayNumber + 1
   if (currDayNumber === 6) nextDayNumber = 0
   nextDayName = dayNumbers[nextDayNumber]
-  console.log('nextDayName: ', nextDayName)
+  // console.log('nextDayName: ', nextDayName)
 
   const [prevDay, setPrevDay] = useState(null)
   const [deleted, setDeleted] = useState(false)
