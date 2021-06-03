@@ -162,7 +162,9 @@ const MonthsCreate = props => {
 
   return (
     // <Redirect to={`/schoolyears/${schoolYearId}`} />
-    <Redirect to={'/home-page'} />
+    <div>
+      <Redirect to={'/home-page'} />
+    </div>
   )
 }
 

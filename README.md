@@ -82,7 +82,7 @@ Specific Task Info Page
 ## Unsolved Problems that will be resolved in Version 1.2
 - Previous and next days can only be viewed for a specific month in Version 1, but in Version 1.2 users will be able to keep clicking the previous and next day buttons for all months
 - Current to-do list no matter which school year is selected will display this school year's dates, but this will be fixed in Version 1.2.
-- Loading of school year takes a few seconds. Version 1a will have a "Loading..." text for those few seconds.
+- Loading of school year takes a few seconds. Version 1.2 will have a "Loading..." text for those few seconds.
 
 
 ## Upcoming Release Features for Version 2

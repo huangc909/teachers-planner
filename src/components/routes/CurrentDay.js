@@ -75,7 +75,7 @@ const CurrentDay = (props) => {
   }, [])
 
   if (!currentDay) {
-    return <p>Loading...</p>
+    return <p>Loading Daily List...</p>
   }
 
   const dailyTasks = currentDay.tasks.map(task => (
