@@ -17,7 +17,7 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 
 
 ## User Stories
-# MVP
+### MVP
 - As a user, I can sign-up for an account.
 - As a user, I can sign-in to my account.
 - As a user, I can change my account password.
@@ -32,7 +32,7 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 - As a user, I can see the to-do list for previous and next days.
 - As a user, I can checkmark a task when it has been completed.
 
-# Version 2 (Coming Soon)
+### Version 2 (Coming Soon)
 - As a user, I can edit a task for a specific day.
 - As a user, I can add a specific class to a specific task.
 - As a user, I can upload student works to a specific class.
