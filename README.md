@@ -91,10 +91,9 @@ Specific Task Info Page
 - Users will be able to upload, save, and view student work images to a specific class.
 - A more stylized theme and layout
 
-MVP: May 18, 2021 - May 24, 2021
 
-Version 1.1: May 28, 2021
-
-Version 1.2: June 3, 2021
-
-Version 2: (Currently in Development)
+## Version Release Dates
+- MVP: May 18, 2021 - May 24, 2021
+- Version 1.1: May 28, 2021
+- Version 1.2: June 3, 2021
+- Version 2: (Currently in Development)
