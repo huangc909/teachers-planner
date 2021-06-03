@@ -6,14 +6,48 @@ import apiUrl from '../../apiConfig'
 const Task = props => {
   const schoolYear = props.location.aboutProps.schoolYearInfo.schoolYear
   const schoolYearId = props.location.aboutProps.schoolYearInfo.schoolYearId
-  const year = props.location.aboutProps.yearInfo.year
-  const monthObject = props.location.aboutProps.monthInfo.monthObject
-  const monthName = props.location.aboutProps.monthInfo.monthName
-  const monthId = props.location.aboutProps.monthInfo.monthId
-  const date = props.location.aboutProps.dateInfo.date
-  const day = props.location.aboutProps.dayInfo.day
-  const dayNumber = props.location.aboutProps.dayInfo.dayNumber
-  const dayId = props.location.aboutProps.dayInfo.dayId
+  // console.log('schoolYearId: ', schoolYearId)
+  const startYear = props.location.aboutProps.schoolYearInfo.startYear
+  const endYear = props.location.aboutProps.schoolYearInfo.endYear
+  const currYear = props.location.aboutProps.yearInfo.currYear
+  const leapYear = props.location.aboutProps.yearInfo.leapYear
+
+  const currMonthIndex = props.location.aboutProps.monthInfo.currMonthIndex
+  const currMonthId = props.location.aboutProps.monthInfo.currMonthId
+  const currMonth = props.location.aboutProps.monthInfo.currMonth
+  const currMonthName = props.location.aboutProps.monthInfo.currMonthName
+  const currMonthNumber = props.location.aboutProps.monthInfo.currMonthNumber
+  const currDateIndex = props.location.aboutProps.dateInfo.currDateIndex
+  const currDate = props.location.aboutProps.dateInfo.currDate
+  const currDateId = props.location.aboutProps.dateInfo.currDateId
+  const currDayName = props.location.aboutProps.dayInfo.currDayName
+  const currDayNumber = props.location.aboutProps.dayInfo.currDayNumber
+
+  const prevMonthIndex = props.location.aboutProps.monthInfo.prevMonthIndex
+  const prevMonthId = props.location.aboutProps.monthInfo.prevMonthId
+  const prevMonth = props.location.aboutProps.monthInfo.prevMonth
+  const prevMonthName = props.location.aboutProps.monthInfo.prevMonthName
+  const prevMonthNumber = props.location.aboutProps.monthInfo.prevMonthNumber
+  const prevDateIndex = props.location.aboutProps.dateInfo.prevDateIndex
+  const prevDate = props.location.aboutProps.dateInfo.prevDate
+  const prevDateId = props.location.aboutProps.dateInfo.prevDateId
+  const prevDayName = props.location.aboutProps.dayInfo.prevDayName
+  const prevDayNumber = props.location.aboutProps.dayInfo.prevDayNumber
+
+  const nextMonthIndex = props.location.aboutProps.monthInfo.nextMonthIndex
+  const nextMonthId = props.location.aboutProps.monthInfo.nextMonthId
+  const nextMonth = props.location.aboutProps.monthInfo.nextMonth
+  // console.log('nextMonth: ', nextMonth)
+  const nextMonthName = props.location.aboutProps.monthInfo.nextMonthName
+  const nextMonthNumber = props.location.aboutProps.monthInfo.nextMonthNumber
+  const nextDateIndex = props.location.aboutProps.dateInfo.nextDateIndex
+  const nextDate = props.location.aboutProps.dateInfo.nextDate
+  const nextDateId = props.location.aboutProps.dateInfo.nextDateId
+  const nextDayName = props.location.aboutProps.dateInfo.nextDayName
+  const nextDayNumber = props.location.aboutProps.dateInfo.nextDayNumber
+
+  const monthId = props.match.params.monthId
+  const dayId = props.match.params.dayId
   const taskId = props.match.params.taskId
 
   const { msgAlert } = props
@@ -73,11 +107,11 @@ const Task = props => {
       <Redirect to={{
         pathname: '/current-day',
         aboutProps: {
-          schoolYearInfo: { schoolYear, schoolYearId },
-          yearInfo: { year },
-          monthInfo: { monthObject, monthName, monthId },
-          dateInfo: { date },
-          dayInfo: { day, dayNumber, dayId }
+          schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
+          yearInfo: { currYear, leapYear },
+          monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+          dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+          dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
         }
       }} />
     )
@@ -96,14 +130,14 @@ const Task = props => {
         <Link to={{
           pathname: '/current-day',
           aboutProps: {
-            schoolYearInfo: { schoolYear, schoolYearId },
-            yearInfo: { year },
-            monthInfo: { monthObject, monthName, monthId },
-            dateInfo: { date },
-            dayInfo: { day, dayNumber, dayId }
+            schoolYearInfo: { schoolYear, schoolYearId, startYear, endYear },
+            yearInfo: { currYear, leapYear },
+            monthInfo: { currMonthIndex, currMonthId, currMonth, currMonthName, currMonthNumber, prevMonthIndex, prevMonthId, prevMonth, prevMonthName, prevMonthNumber, nextMonthIndex, nextMonthId, nextMonth, nextMonthName, nextMonthNumber },
+            dateInfo: { currDateIndex, currDate, currDateId, prevDateIndex, prevDate, prevDateId, nextDateIndex, nextDate, nextDateId },
+            dayInfo: { currDayName, currDayNumber, prevDayName, prevDayNumber, nextDayName, nextDayNumber }
           }
         }} >
-          <button>Go Back</button>
+          <button style={{ marginRight: '10px' }}>Go Back</button>
         </Link>
         <button onClick={destroy}>Delete Task</button>
       </div>
