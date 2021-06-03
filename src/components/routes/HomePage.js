@@ -38,8 +38,8 @@ const HomePage = (props) => {
     </Link>
   )
 
-  // const sortedYears = schoolYears
-  console.log(schoolYears)
+  // Sort school years by startYear
+  schoolYears.sort((a, b) => a.startYear - b.startYear)
 
   const years = schoolYears.map(schoolYear => (
     <div key={schoolYear._id} style={{ margin: '5px' }}>
