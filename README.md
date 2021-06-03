@@ -95,4 +95,6 @@ MVP: May 18, 2021 - May 24, 2021
 
 Version 1.1: May 28, 2021
 
-Version 1.2: (Currently in development)
+Version 1.2: June 3, 2021
+
+Version 2: (Currently in Development)
