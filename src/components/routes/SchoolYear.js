@@ -5,8 +5,8 @@ import apiUrl from '../../apiConfig'
 
 // SchoolYear Component will determine if selected school year is the current school year or not
 const SchoolYear = props => {
-  const currSchoolYearId = props.match.params.schoolYearId
-  const [currSchoolYear, setCurrSchoolYear] = useState(null)
+  const schoolYearId = props.match.params.schoolYearId
+  const [schoolYear, setSchoolYear] = useState(null)
   const { msgAlert } = props
 
   // Calculate today's date
@@ -21,19 +21,19 @@ const SchoolYear = props => {
 
   useEffect(() => {
     axios({
-      url: `${apiUrl}/schoolYears/${currSchoolYearId}`,
+      url: `${apiUrl}/schoolYears/${schoolYearId}`,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setCurrSchoolYear(res.data.schoolYear))
+      .then(res => setSchoolYear(res.data.schoolYear))
       .then(() => msgAlert({
         heading: 'Showing selected school year',
         variant: 'primary'
       }))
       .catch(error => {
-        setCurrSchoolYear({ startYear: '' })
+        setSchoolYear({ startYear: '' })
         msgAlert({
           heading: 'Failed to show blog' + error.message,
           variant: 'danger'
@@ -41,7 +41,7 @@ const SchoolYear = props => {
       })
   }, [])
 
-  if (!currSchoolYear) {
+  if (!schoolYear) {
     return <p>Loading...</p>
   }
 
@@ -81,10 +81,12 @@ const SchoolYear = props => {
   }
 
   // Organize school year to be in chronological order
-  const sortedCurrSchoolYear = currSchoolYear.months.sort((a, b) => a.number - b.number)
+  const sortedCurrSchoolYear = schoolYear.months.sort((a, b) => a.number - b.number)
 
-  const startYear = parseInt(currSchoolYear.startYear)
-  const endYear = parseInt(currSchoolYear.endYear)
+  const startYear = parseInt(schoolYear.startYear)
+  const endYear = parseInt(schoolYear.endYear)
+
+  // console.log('schoolYear Id from SchoolYear Component: ', schoolYearId)
 
   // If todaysYear matches either schoolYear.start or schoolYear.end
   // AND the schoolYearMonthNumber matches
@@ -93,7 +95,7 @@ const SchoolYear = props => {
       <Redirect to={{
         pathname: '/current-school-year',
         aboutProps: {
-          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear, currSchoolYearId },
+          schoolYearInfo: { sortedCurrSchoolYear, schoolYearId, startYear, endYear },
           yearInfo: { todaysYear, leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
           dateInfo: { todaysDate },
@@ -106,7 +108,7 @@ const SchoolYear = props => {
       <Redirect to={{
         pathname: '/other-school-year',
         aboutProps: {
-          schoolYearInfo: { sortedCurrSchoolYear, startYear, endYear },
+          schoolYearInfo: { sortedCurrSchoolYear, schoolYearId, startYear, endYear },
           yearInfo: { todaysYear, leapYear },
           monthInfo: { schoolYearMonthNumber, todaysMonthName, todaysMonthNumber },
           dateInfo: { todaysDate },
