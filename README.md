@@ -22,7 +22,6 @@ With the Teacher's Planner, teachers can keep a running list of daily tasks as w
 - As a user, I can sign-in to my account.
 - As a user, I can change my account password.
 - As a user, I can sign-out of my account.
-
 - As a user, I can add a school year.
 - As a user, I can delete a school year.
 - As a user, I can see the months and days of a school year.
