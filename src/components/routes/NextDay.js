@@ -302,7 +302,6 @@ const NextDay = props => {
       <h6>{startYear}-{endYear}</h6>
       <br />
       <h1>{currDayName}</h1>
-      <h2>{currMonthName} {currDate}, {currYear}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
@@ -324,9 +323,7 @@ const NextDay = props => {
             </button>
           </Link>
         </div>
-        <div style={{ margin: '10px' }}>
-          {nextDay.length === 0 ? <div></div> : dailyTasks}
-        </div>
+        <h2>{currMonthName} {currDate}, {currYear}</h2>
         <div style={{ margin: '10px' }}>
           <Link to={{
             pathname: `/next-day/${nextDateId}`,
@@ -347,6 +344,9 @@ const NextDay = props => {
             </button>
           </Link>
         </div>
+      </div>
+      <div style={{ margin: '10px' }}>
+        {nextDay.length === 0 ? <div></div> : dailyTasks}
       </div>
       <div>
         <Link to={{

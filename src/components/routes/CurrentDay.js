@@ -158,7 +158,6 @@ const CurrentDay = (props) => {
       <h6>{startYear}-{endYear}</h6>
       <br />
       <h1>{currDayName}</h1>
-      <h2>{currMonthName} {currDate}, {currYear}</h2>
       <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
         <div style={{ margin: '10px' }}>
           <Link to={{
@@ -179,9 +178,7 @@ const CurrentDay = (props) => {
             </button>
           </Link>
         </div>
-        <div style={{ margin: '10px' }}>
-          {dailyTasks}
-        </div>
+        <h2>{currMonthName} {currDate}, {currYear}</h2>
         <div style={{ margin: '10px' }}>
           <Link to={{
             pathname: `/next-day/${nextDateId}`,
@@ -202,6 +199,9 @@ const CurrentDay = (props) => {
           </Link>
         </div>
       </div>
+      <div style={{ margin: '10px' }}>
+        {dailyTasks}
+      </div>
       <div>
         <Link to={{
           pathname: '/task-create',
@@ -219,6 +219,7 @@ const CurrentDay = (props) => {
       <br />
       <div>
         <button style={{ marginTop: '250px' }} className="button-style" onClick={destroy}>Delete School Year</button>
+        <p style={{ color: 'red' }}>This will permanently delete the data from the entire school year</p>
       </div>
     </div>
   )
